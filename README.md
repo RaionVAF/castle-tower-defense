@@ -24,76 +24,76 @@ Do NOT use any models, animations, or code from the Asset Store, Mixamo, or any 
 
 As exceptions to the above, you may use these free models:
 
-Retro Urban KitLinks to an external site. 
+Retro Urban KitLinks to an external site.<br/> 
 https://www.kenney.nl/assets/retro-urban-kit
 
-City Kit (Suburban)Links to an external site. 
+City Kit (Suburban)Links to an external site.<br/> 
 https://www.kenney.nl/assets/city-kit-suburban
 
-City Kit (Roads)Links to an external site. 
+City Kit (Roads)Links to an external site.<br/> 
 https://www.kenney.nl/assets/city-kit-roads
 
-Blaster KitLinks to an external site. 
+Blaster KitLinks to an external site.<br/>
 https://www.kenney.nl/assets/blaster-kit
 
-Holiday KitLinks to an external site. 
+Holiday KitLinks to an external site.<br/> 
 https://www.kenney.nl/assets/holiday-kit
 
-Platformer KitLinks to an external site. 
+Platformer KitLinks to an external site.<br/>
 https://www.kenney.nl/assets/platformer-kit
 
-Space KitLinks to an external site. 
+Space KitLinks to an external site.<br/> 
 https://www.kenney.nl/assets/space-kit
 
-Hexagon KitLinks to an external site. 
+Hexagon KitLinks to an external site.<br/> 
 http://kenney.nl/assets/hexagon-kit
 
-Nature KitLinks to an external site. 
+Nature KitLinks to an external site.<br/>
 https://www.kenney.nl/assets/nature-kit
 
-Car KitLinks to an external site. 
+Car KitLinks to an external site.<br/> 
 https://www.kenney.nl/assets/car-kit
 
-Food KitLinks to an external site. 
+Food KitLinks to an external site.<br/> 
 https://www.kenney.nl/assets/food-kit
 
-Graveyard KitLinks to an external site.
+Graveyard KitLinks to an external site.<br/>
 https://www.kenney.nl/assets/graveyard-kit
 
-Tower Defense KitLinks to an external site. 
+Tower Defense KitLinks to an external site.<br/> 
 https://www.kenney.nl/assets/tower-defense-kit
 
-Fantasy Town KitLinks to an external site. 
+Fantasy Town KitLinks to an external site.<br/> 
 https://www.kenney.nl/assets/fantasy-town-kit
 
-Pirate KitLinks to an external site. 
+Pirate KitLinks to an external site.<br/> 
 https://www.kenney.nl/assets/pirate-kit
 
-Furniture KitLinks to an external site. 
+Furniture KitLinks to an external site.<br/> 
 https://www.kenney.nl/assets/furniture-kit
 
-Castle KitLinks to an external site. 
+Castle KitLinks to an external site.<br/> 
 https://www.kenney.nl/assets/castle-kit
 
-Racing KitLinks to an external site. 
+Racing KitLinks to an external site.<br/> 
 https://www.kenney.nl/assets/racing-kit
 
-Watercraft PackLinks to an external site. 
+Watercraft PackLinks to an external site.<br/> 
 https://www.kenney.nl/assets/watercraft-pack
 
-Modular BuildingsLinks to an external site. 
+Modular BuildingsLinks to an external site.<br/> 
 https://www.kenney.nl/assets/modular-buildings
 
-Weapon PackLinks to an external site. 
+Weapon PackLinks to an external site.<br/> 
 https://www.kenney.nl/assets/weapon-pack
 
-3D Road TilesLinks to an external site. 
+3D Road TilesLinks to an external site.<br/> 
 https://www.kenney.nl/assets/3d-road-tiles
 
-Minigolf KitLinks to an external site. 
+Minigolf KitLinks to an external site.<br/> 
 https://www.kenney.nl/assets/minigolf-kit
 
-Medieval Town (base)Links to an external site. 
+Medieval Town (base)Links to an external site.<br/> 
 https://www.kenney.nl/assets/medieval-town-base
 
 All of the above are from Kenney Game Assets and are free to download and use. Note: I am not affiliated with Kenney Game Assets, but I will be able to recognize their models, which allows me to see easily which parts of your project you did yourself and which parts you downloaded. Be sure to limit yourself to the assets listed above, as not all assets at the Kenney site are on the list.
