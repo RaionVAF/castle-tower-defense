@@ -9,7 +9,7 @@ public class characterController : MonoBehaviour
     private GameObject playerModel, leftArmJoint, rightArmJoint, leftLegJoint, rightLegJoint;
 
     // Speed constants
-    float movementSpeed = 5f;
+    float movementSpeed = 75f;
     float playerRotationSpeed = 10f;
     float jointRotationSpeed = 8f;
     float armRotationAngle = 45f;
@@ -43,78 +43,78 @@ public class characterController : MonoBehaviour
             if (Input.GetKey(KeyCode.W) && Input.GetKey(KeyCode.A))
             {
                 // Move character forward-left
-                float x = calculateCoord(playerModel.transform.localPosition.x, false);
-                float z = calculateCoord(playerModel.transform.localPosition.z, true);
+                float x = calculateCoord(playerModel.transform.localPosition.x, true);
+                float z = calculateCoord(playerModel.transform.localPosition.z, false);
                 moveCharacter(new Vector3(x, playerModel.transform.position.y, z));
 
                 // Rotate character model to look forward-left
-                rotateCharacter(Quaternion.Euler(0, 315, 0));
+                rotateCharacter(Quaternion.Euler(0, 135, 0));
             }
             else if (Input.GetKey(KeyCode.S) && Input.GetKey(KeyCode.A))
             {
                 // Move character backward-left
-                float x = calculateCoord(playerModel.transform.localPosition.x, false);
-                float z = calculateCoord(playerModel.transform.localPosition.z, false);
+                float x = calculateCoord(playerModel.transform.localPosition.x, true);
+                float z = calculateCoord(playerModel.transform.localPosition.z, true);
                 moveCharacter(new Vector3(x, playerModel.transform.position.y, z));
 
                 // Rotate character model to look backward-left
-                rotateCharacter(Quaternion.Euler(0, -135, 0));
+                rotateCharacter(Quaternion.Euler(0, 45, 0));
             }
             else if (Input.GetKey(KeyCode.A))
             {
                 // Move character left
-                float x = calculateCoord(playerModel.transform.localPosition.x, false);
+                float x = calculateCoord(playerModel.transform.localPosition.x, true);
                 moveCharacter(new Vector3(x, playerModel.transform.position.y, playerModel.transform.position.z));
 
                 // Rotate character to look left
-                rotateCharacter(Quaternion.Euler(0, -90, 0));
+                rotateCharacter(Quaternion.Euler(0, 90, 0));
             }
             else if (Input.GetKey(KeyCode.W) && Input.GetKey(KeyCode.D))
             {
                 // Move character forward-right
-                float x = calculateCoord(playerModel.transform.localPosition.x, true);
-                float z = calculateCoord(playerModel.transform.localPosition.z, true);
+                float x = calculateCoord(playerModel.transform.localPosition.x, false);
+                float z = calculateCoord(playerModel.transform.localPosition.z, false);
                 moveCharacter(new Vector3(x, playerModel.transform.position.y, z));
 
                 // Rotate character model to look forward-right
-                rotateCharacter(Quaternion.Euler(0, 45, 0));
+                rotateCharacter(Quaternion.Euler(0, -135, 0));
             }
             else if (Input.GetKey(KeyCode.S) && Input.GetKey(KeyCode.D))
             {
                 // Move character backward-right
-                float x = calculateCoord(playerModel.transform.localPosition.x, true);
-                float z = calculateCoord(playerModel.transform.localPosition.z, false);
+                float x = calculateCoord(playerModel.transform.localPosition.x, false);
+                float z = calculateCoord(playerModel.transform.localPosition.z, true);
                 moveCharacter(new Vector3(x, playerModel.transform.position.y, z));
 
                 // Rotate character to look backward-right
-                rotateCharacter(Quaternion.Euler(0, 135, 0));
+                rotateCharacter(Quaternion.Euler(0, 315, 0));
             }
             else if (Input.GetKey(KeyCode.D))
             {
                 // Move character right
-                float x = calculateCoord(playerModel.transform.localPosition.x, true);
+                float x = calculateCoord(playerModel.transform.localPosition.x, false);
                 moveCharacter(new Vector3(x, playerModel.transform.position.y, playerModel.transform.position.z));
 
                 // Rotate character to look right
-                rotateCharacter(Quaternion.Euler(0, 90, 0));
+                rotateCharacter(Quaternion.Euler(0, -90, 0));
             }
             else if (Input.GetKey(KeyCode.W))
             {
                 // Move character forward
-                float z = calculateCoord(playerModel.transform.localPosition.z, true);
+                float z = calculateCoord(playerModel.transform.localPosition.z, false);
                 moveCharacter(new Vector3(playerModel.transform.position.x, playerModel.transform.position.y, z));
             
                 // Rotate character to look forward
-                rotateCharacter(Quaternion.Euler(0, 0, 0));
+                rotateCharacter(Quaternion.Euler(0, 180, 0));
             }
             else if (Input.GetKey(KeyCode.S))
             {
                 // Move character backward
-                float z = calculateCoord(playerModel.transform.localPosition.z, false);
+                float z = calculateCoord(playerModel.transform.localPosition.z, true);
                 moveCharacter(new Vector3(playerModel.transform.position.x, playerModel.transform.position.y, z));
 
                 // Rotate character to look backward
-                rotateCharacter(Quaternion.Euler(0, 180, 0));
+                rotateCharacter(Quaternion.Euler(0, 0, 0));
             }
         }
     }

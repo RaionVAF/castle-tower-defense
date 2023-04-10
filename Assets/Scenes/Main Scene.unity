@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.172768, g: 0.21589169, b: 0.29782546, a: 1}
+  m_IndirectSpecularColor: {r: 0.17276844, g: 0.21589246, b: 0.2978263, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -3772,8 +3772,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 159972810}
+  - component: {fileID: 159972811}
   m_Layer: 0
-  m_Name: Ground (3)
+  m_Name: East Pathway
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3856,8 +3857,22 @@ Transform:
   - {fileID: 878318201}
   - {fileID: 442425141}
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: -120, z: 0}
+--- !u!64 &159972811
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 159972809}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 0}
 --- !u!1 &160876849
 GameObject:
   m_ObjectHideFlags: 0
@@ -5216,8 +5231,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 207183675}
+  - component: {fileID: 207183676}
   m_Layer: 0
-  m_Name: Ground (2)
+  m_Name: South Pathway
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5300,8 +5316,22 @@ Transform:
   - {fileID: 1847742234}
   - {fileID: 654836768}
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: -60, z: 0}
+--- !u!64 &207183676
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 207183674}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 0}
 --- !u!1 &210154551
 GameObject:
   m_ObjectHideFlags: 0
@@ -14040,8 +14070,9 @@ GameObject:
   - component: {fileID: 528547236}
   - component: {fileID: 528547235}
   - component: {fileID: 528547234}
+  - component: {fileID: 528547237}
   m_Layer: 0
-  m_Name: Cylinder (1)
+  m_Name: Outer Castle Ground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -14112,6 +14143,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!64 &528547237
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 528547233}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1 &531078647
 GameObject:
   m_ObjectHideFlags: 0
@@ -18252,6 +18297,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 633938559}
+  - component: {fileID: 633938560}
   m_Layer: 0
   m_Name: Village
   m_TagString: Untagged
@@ -18273,8 +18319,22 @@ Transform:
   m_Children:
   - {fileID: 1248047245}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!64 &633938560
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 633938558}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 0}
 --- !u!1 &636121818
 GameObject:
   m_ObjectHideFlags: 0
@@ -18781,6 +18841,75 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 654836767}
   m_Mesh: {fileID: 841788800871384779, guid: 87fe30efef38cc440b3c085029aa7e5f, type: 3}
+--- !u!1001 &659231836
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 3609180894032256891, guid: 9a82c01e2719207489f0932ee4c76091, type: 3}
+      propertyPath: m_RootOrder
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 3609180894032256891, guid: 9a82c01e2719207489f0932ee4c76091, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3609180894032256891, guid: 9a82c01e2719207489f0932ee4c76091, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3609180894032256891, guid: 9a82c01e2719207489f0932ee4c76091, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3609180894032256891, guid: 9a82c01e2719207489f0932ee4c76091, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3609180894032256891, guid: 9a82c01e2719207489f0932ee4c76091, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -2.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3609180894032256891, guid: 9a82c01e2719207489f0932ee4c76091, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -80
+      objectReference: {fileID: 0}
+    - target: {fileID: 3609180894032256891, guid: 9a82c01e2719207489f0932ee4c76091, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3609180894032256891, guid: 9a82c01e2719207489f0932ee4c76091, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3609180894032256891, guid: 9a82c01e2719207489f0932ee4c76091, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3609180894032256891, guid: 9a82c01e2719207489f0932ee4c76091, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3609180894032256891, guid: 9a82c01e2719207489f0932ee4c76091, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3609180894032256891, guid: 9a82c01e2719207489f0932ee4c76091, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -180
+      objectReference: {fileID: 0}
+    - target: {fileID: 3609180894032256891, guid: 9a82c01e2719207489f0932ee4c76091, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4133656063966381505, guid: 9a82c01e2719207489f0932ee4c76091, type: 3}
+      propertyPath: m_Name
+      value: playableKnight
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 9a82c01e2719207489f0932ee4c76091, type: 3}
 --- !u!1 &661867491
 GameObject:
   m_ObjectHideFlags: 0
@@ -23226,8 +23355,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 806791143}
+  - component: {fileID: 806791144}
   m_Layer: 0
-  m_Name: Ground (4)
+  m_Name: Northeast Pathway
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -23310,8 +23440,22 @@ Transform:
   - {fileID: 1403129683}
   - {fileID: 51773681}
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: -180, z: 0}
+--- !u!64 &806791144
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 806791142}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 0}
 --- !u!1 &809466775
 GameObject:
   m_ObjectHideFlags: 0
@@ -30523,7 +30667,7 @@ GameObject:
   - component: {fileID: 1054563190}
   - component: {fileID: 1054563189}
   m_Layer: 0
-  m_Name: Pivot (1)
+  m_Name: Camera Pivot 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -30555,7 +30699,7 @@ Transform:
   m_Children:
   - {fileID: 165834103}
   m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 60, z: 0}
 --- !u!1 &1055359669
 GameObject:
@@ -33177,8 +33321,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1122416884}
+  - component: {fileID: 1122416885}
   m_Layer: 0
-  m_Name: Ground
+  m_Name: West Pathway
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -33261,8 +33406,22 @@ Transform:
   - {fileID: 636121819}
   - {fileID: 1682166938}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 60, z: 0}
+--- !u!64 &1122416885
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1122416882}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 0}
 --- !u!1 &1135960221
 GameObject:
   m_ObjectHideFlags: 0
@@ -35119,8 +35278,9 @@ GameObject:
   - component: {fileID: 1188184418}
   - component: {fileID: 1188184417}
   - component: {fileID: 1188184416}
+  - component: {fileID: 1188184419}
   m_Layer: 0
-  m_Name: Cylinder
+  m_Name: Inner Castle Ground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -35191,6 +35351,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!64 &1188184419
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1188184415}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1 &1188685571
 GameObject:
   m_ObjectHideFlags: 0
@@ -39022,7 +39196,7 @@ GameObject:
   - component: {fileID: 1303129355}
   - component: {fileID: 1303129356}
   m_Layer: 0
-  m_Name: Pivot
+  m_Name: Camera Pivot 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -48699,8 +48873,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1625740199}
+  - component: {fileID: 1625740200}
   m_Layer: 0
-  m_Name: Ground (1)
+  m_Name: Southwest Pathway
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -48783,8 +48958,22 @@ Transform:
   - {fileID: 1183602011}
   - {fileID: 765844184}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!64 &1625740200
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1625740198}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 0}
 --- !u!1 &1629463976
 GameObject:
   m_ObjectHideFlags: 0
@@ -49531,7 +49720,7 @@ Transform:
   - {fileID: 14373780}
   - {fileID: 703176814}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 30, z: 0}
 --- !u!1 &1646403969
 GameObject:
@@ -55901,8 +56090,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1864497302}
+  - component: {fileID: 1864497303}
   m_Layer: 0
-  m_Name: Ground (5)
+  m_Name: North Pathway
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -55985,8 +56175,22 @@ Transform:
   - {fileID: 2002196805}
   - {fileID: 2136746970}
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 120, z: 0}
+--- !u!64 &1864497303
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1864497301}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 0}
 --- !u!1 &1865558178
 GameObject:
   m_ObjectHideFlags: 0
