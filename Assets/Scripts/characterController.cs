@@ -9,7 +9,7 @@ public class characterController : MonoBehaviour
     private GameObject playerModel, leftArmJoint, rightArmJoint, leftLegJoint, rightLegJoint;
 
     // Speed constants
-    float movementSpeed = 75f;
+    float movementSpeed = 25f;
     float playerRotationSpeed = 10f;
     float jointRotationSpeed = 8f;
     float armRotationAngle = 45f;
