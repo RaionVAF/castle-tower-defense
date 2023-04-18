@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class mainMenu : MonoBehaviour
 {
+    public GameObject canvas;
     // Start is called before the first frame update
     void Start()
     {
@@ -15,4 +16,9 @@ public class mainMenu : MonoBehaviour
     {
         transform.localRotation *= Quaternion.Euler(0f, 1f, 0f);
     }
+
+    public void PlayGame(){
+		// StartCoroutine(FadeMenu());
+        Destroy(canvas, 0.25f);
+	}
 }
