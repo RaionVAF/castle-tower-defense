@@ -31,24 +31,48 @@ public class Ballista : MonoBehaviour
         StartCoroutine(Shoot());
     }
 
-    void OnCollisionEnter(Collision col)
+    // void OnCollisionEnter(Collision col)
+    // {
+    //     //when enemy enters the shooting radius, add this enemy to enemyList
+    //     GameObject enemy = col.gameObject;
+    //     Debug.Log("on collision enter entered");
+    //     if (!enemyList.Contains(enemy))
+    //     {
+    //         enemyList.Add(enemy);
+    //         Debug.Log("enemy added! " + enemyList.Count + " " + enemy.name);
+    //     }
+    // }
+
+    // void OnCollisionExit(Collision col)
+    // {
+    //     //when enemy leaves the shooting radius, remove this enemy to enemyList
+    //     GameObject enemy = col.gameObject;
+    //     Debug.Log("on collision exit entered: " + enemy.name);
+    //     if (enemyList.Contains(enemy))
+    //     {
+    //         enemyList.Remove(enemy);
+    //         Debug.Log("enemy removed!");
+    //     }
+    // }
+
+    void OnTriggerEnter(Collider col)
     {
         //when enemy enters the shooting radius, add this enemy to enemyList
         GameObject enemy = col.gameObject;
         Debug.Log("on collision enter entered");
-        if (!enemyList.Contains(enemy))
+        if (!enemyList.Contains(enemy) && enemy.name == "playableKnight")
         {
             enemyList.Add(enemy);
             Debug.Log("enemy added! " + enemyList.Count + " " + enemy.name);
         }
     }
 
-    void OnCollisionExit(Collision col)
+    void OnTriggerExit(Collider col)
     {
         //when enemy leaves the shooting radius, remove this enemy to enemyList
         GameObject enemy = col.gameObject;
         Debug.Log("on collision exit entered: " + enemy.name);
-        if (enemyList.Contains(enemy))
+        if (enemyList.Contains(enemy) && enemy.name == "playableKnight")
         {
             enemyList.Remove(enemy);
             Debug.Log("enemy removed!");
