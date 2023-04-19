@@ -6,6 +6,7 @@ TagManager:
   tags:
   - balcksmith
   - alchemist
+  - spawning
   layers:
   - Default
   - TransparentFX
