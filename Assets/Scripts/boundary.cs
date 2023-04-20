@@ -5,7 +5,7 @@ using UnityEngine;
 public class boundary : MonoBehaviour
 {
     public GameObject building;
-    bool isAttackable = true;
+    public bool isAttackable = true;
     // Start is called before the first frame update
     void Start()
     {

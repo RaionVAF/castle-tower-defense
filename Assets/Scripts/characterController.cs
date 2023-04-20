@@ -40,7 +40,7 @@ public class characterController : MonoBehaviour
         //      - A towards castle
         //      - S down a region
         //      - D away from the castle
-        Vector3 input = new Vector3(-1f * Input.GetAxis("Vertical"), 0, Input.GetAxis("Horizontal"));
+        Vector3 input = new Vector3(-1f * Input.GetAxis("Horizontal"), 0, -1f * Input.GetAxis("Vertical"));
         input = Quaternion.Euler(0, pivot.eulerAngles.y, 0) * input;
         playerRB.MovePosition(playerRB.position + input * Time.deltaTime * movementSpeed);
         if(Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0) isMoving = true;
