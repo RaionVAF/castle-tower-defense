@@ -10,14 +10,12 @@ public class spawning : MonoBehaviour
     private float timer;
 
     // time between increase of mobs
-    static float leveltimer = 15f;
+    static float leveltimer = 5f;
     private GameObject[] spawnplats;
     public List<GameObject> enemyList = new List<GameObject>();
     
-    // needs prefabs 
     public GameObject Zombie;
 
-    // needs prefabs 
     public GameObject Skeleton;
 
     private GameObject newmob;
@@ -27,10 +25,7 @@ public class spawning : MonoBehaviour
     {
         spawnplats = GameObject.FindGameObjectsWithTag("spawnplat");
 
-        mobcap = 1;
-
-        newmob = Instantiate(Zombie, spawnplats[0].transform.position, spawnplats[0].transform.rotation);
-        enemyList.Add(newmob);
+        mobcap = 0;
         
         StartCoroutine(spawn());
     }
@@ -38,6 +33,7 @@ public class spawning : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // mobcap inreases with time, basic difficulty scaler
         timer += Time.deltaTime;
         if (timer > leveltimer){
             mobcap +=1;
@@ -45,7 +41,7 @@ public class spawning : MonoBehaviour
         }
         
         // temp hard cap on mobs
-        mobcap = Math.Clamp(mobcap, 1, 5);
+        mobcap = Math.Clamp(mobcap, 0, 50);
     }
 
     IEnumerator spawn(){
@@ -56,7 +52,7 @@ public class spawning : MonoBehaviour
 
         yield return lessthancap;
 
-        plat = UnityEngine.Random.Range(0,6);
+        plat = UnityEngine.Random.Range(0,1);
         if (mobcap < 5){
             // early game always spawns zombies
             newmob = Instantiate(Zombie, spawnplats[plat].transform.position, spawnplats[plat].transform.rotation);

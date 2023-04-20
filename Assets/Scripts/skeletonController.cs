@@ -34,16 +34,18 @@ public class skeletonController : MonoBehaviour
     void Start()
     {
         // Initialize GameObjects that will be used for animating
+
+        // Edit: access local gameobject instead of gameobject.find
         skeletonRB = GetComponent<Rigidbody>();
-        skeletonModel = GameObject.Find("skeleton");
-        leftArmJoint = GameObject.Find("skeleton/Left Arm Joint");
-        rightArmJoint = GameObject.Find("skeleton/Right Arm Joint");
-        leftLegJoint = GameObject.Find("skeleton/Left Leg Joint");
-        rightLegJoint = GameObject.Find("skeleton/Right Leg Joint");
-        leftElbowJoint = GameObject.Find("skeleton/Left Arm Joint/Left Elbow Joint");
-        rightElbowJoint = GameObject.Find("skeleton/Right Arm Joint/Right Elbow Joint");
+        skeletonModel = transform.gameObject;
+        leftArmJoint = transform.GetChild(4).gameObject;
+        rightArmJoint = transform.GetChild(5).gameObject;
+        leftLegJoint = transform.GetChild(6).gameObject;
+        rightLegJoint = transform.GetChild(7).gameObject;
+        leftElbowJoint = transform.GetChild(4).GetChild(0).gameObject;
+        rightElbowJoint = transform.GetChild(5).GetChild(0).gameObject;
         // Get target placeholder 
-        target = GameObject.Find("alchemist");
+        target = GameObject.Find("playableKnight");
         StartCoroutine(animate());
     }
 
