@@ -7,6 +7,9 @@ public class zombieController : MonoBehaviour
     // Public member for death particles
     public GameObject deathParticleEffects;
 
+    // Identity for script to 
+    public int id;
+
     // Zombie model rigidbody and joint references
     private Rigidbody zombieRB;
     private GameObject zombieModel, leftArmJoint, rightArmJoint, leftLegJoint, rightLegJoint;
@@ -34,14 +37,16 @@ public class zombieController : MonoBehaviour
     void Start()
     {
         // Initialize GameObjects that will be used for animating
+
+        // Edit: access local gameobject instead of gameobject.find
         zombieRB = GetComponent<Rigidbody>();
-        zombieModel = GameObject.Find("zombie");
-        leftArmJoint = GameObject.Find("zombie/Left Arm Joint");
-        rightArmJoint = GameObject.Find("zombie/Right Arm Joint");
-        leftLegJoint = GameObject.Find("zombie/Left Leg Joint");
-        rightLegJoint = GameObject.Find("zombie/Right Leg Joint");
+        zombieModel = transform.gameObject;
+        leftArmJoint = transform.GetChild(2).gameObject;
+        rightArmJoint = transform.GetChild(3).gameObject;
+        leftLegJoint = transform.GetChild(4).gameObject;
+        rightLegJoint = transform.GetChild(5).gameObject;
         // Get target placeholder 
-        target = GameObject.Find("blacksmith");
+        target = GameObject.Find("playableKnight");
         StartCoroutine(animate());
     }
 
@@ -50,6 +55,10 @@ public class zombieController : MonoBehaviour
     {
         // Keep rotating zombie towards target after spawning until the zombie is looking
         // at the target. If the rotation is finished, start moving zombie towards target
+
+        if (target == null) {
+            Debug.Log("NULL OBJECT");
+        }
         if (!finishedRotating)
         {
             rotateZombieTowardsTarget(target.transform.localPosition);
