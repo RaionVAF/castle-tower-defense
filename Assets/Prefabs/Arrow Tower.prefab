@@ -130,7 +130,8 @@ GameObject:
   - component: {fileID: 1157153584773656928}
   - component: {fileID: 6329387850141135395}
   - component: {fileID: 6328734383142525273}
-  m_Layer: 0
+  - component: {fileID: 1040911938062860167}
+  m_Layer: 3
   m_Name: Arrow Tower
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -236,6 +237,7 @@ MonoBehaviour:
   arrow: {fileID: 0}
   bow: {fileID: 0}
   newArrow: {fileID: 199154194798286668, guid: 6778912db95234e418a05cd4f9bb1bfa, type: 3}
+  rotatePoint: {fileID: 0}
   enemyList: []
 --- !u!54 &6329387850141135395
 Rigidbody:
@@ -266,6 +268,18 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 20
   m_Center: {x: 0, y: 0.7874044, z: 0}
+--- !u!114 &1040911938062860167
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1157153584773656943}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b2f66809d7e634bcaafb715865f40019, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1157153584965050426
 GameObject:
   m_ObjectHideFlags: 0
