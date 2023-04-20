@@ -30,64 +30,22 @@ public class Ballista : MonoBehaviour
         StartCoroutine(Shoot());
     }
 
-<<<<<<< HEAD
-    // void OnCollisionEnter(Collision col)
-    // {
-    //     //when enemy enters the shooting radius, add this enemy to enemyList
-    //     GameObject enemy = col.gameObject;
-    //     Debug.Log("on collision enter entered");
-    //     if (!enemyList.Contains(enemy))
-    //     {
-    //         enemyList.Add(enemy);
-    //         Debug.Log("enemy added! " + enemyList.Count + " " + enemy.name);
-    //     }
-    // }
-
-    // void OnCollisionExit(Collision col)
-    // {
-    //     //when enemy leaves the shooting radius, remove this enemy to enemyList
-    //     GameObject enemy = col.gameObject;
-    //     Debug.Log("on collision exit entered: " + enemy.name);
-    //     if (enemyList.Contains(enemy))
-    //     {
-    //         enemyList.Remove(enemy);
-    //         Debug.Log("enemy removed!");
-    //     }
-    // }
-
-    void OnTriggerEnter(Collider col)
-    {
-        //when enemy enters the shooting radius, add this enemy to enemyList
-        GameObject enemy = col.gameObject;
-        Debug.Log("on collision enter entered");
-        if (!enemyList.Contains(enemy) && enemy.name == "playableKnight")
-=======
     //THE ENEMY IS THE TRIGGER
     void OnTriggerEnter(Collider other)
     {
         //when enemy enters the shooting radius, add this enemy to enemyList
         GameObject enemy = other.gameObject;
         if (enemy.CompareTag("Enemy") && !enemyList.Contains(enemy))
->>>>>>> tower-functionality
         {
             enemyList.Add(enemy);
         }
     }
 
-<<<<<<< HEAD
-    void OnTriggerExit(Collider col)
-    {
-        //when enemy leaves the shooting radius, remove this enemy to enemyList
-        GameObject enemy = col.gameObject;
-        Debug.Log("on collision exit entered: " + enemy.name);
-        if (enemyList.Contains(enemy) && enemy.name == "playableKnight")
-=======
     void OnTriggerExit(Collider other)
     {
         //when enemy leaves the shooting radius, remove this enemy to enemyList
         GameObject enemy = other.gameObject;
         if (enemy.CompareTag("Enemy") && enemyList.Contains(enemy))
->>>>>>> tower-functionality
         {
             enemyList.Remove(enemy);
         }
