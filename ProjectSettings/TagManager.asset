@@ -6,16 +6,19 @@ TagManager:
   tags:
   - balcksmith
   - alchemist
+  - weapon
+  - Enemy
+  - Tower
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - TOWER
   - Water
   - UI
+  - WEAPON
   - 
-  - 
-  - 
+  - ENEMY
   - 
   - 
   - 

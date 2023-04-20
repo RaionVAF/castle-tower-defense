@@ -2,13 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+//DEALS WITH THE PHYSICS AND FUNCTIONALITY OF THE TOWER
 public class Ballista : MonoBehaviour
 {
 
     float velocity = 15f;
-    float radius = 60f;
-    float shootingRate = 2.0f;
     float destroyRate = 6.5f;
+    public int damageOutput = 2;
+    public float shootingRate = 2.0f;
     public GameObject arrow;
     public GameObject bow;
     public GameObject newArrow;
@@ -26,32 +27,27 @@ public class Ballista : MonoBehaviour
         rotatePoint = transform.Find("rotatePoint").gameObject;
 
         //START COROUTINE TO SHOOT ARROWS
-        //Debug.Log("before remove arrow");
-        //Debug.Log("after remove arrow");
         StartCoroutine(Shoot());
     }
 
-    void OnCollisionEnter(Collision col)
+    //THE ENEMY IS THE TRIGGER
+    void OnTriggerEnter(Collider other)
     {
         //when enemy enters the shooting radius, add this enemy to enemyList
-        GameObject enemy = col.gameObject;
-        Debug.Log("on collision enter entered");
-        if (!enemyList.Contains(enemy))
+        GameObject enemy = other.gameObject;
+        if (enemy.CompareTag("Enemy") && !enemyList.Contains(enemy))
         {
             enemyList.Add(enemy);
-            Debug.Log("enemy added! " + enemyList.Count + " " + enemy.name);
         }
     }
 
-    void OnCollisionExit(Collision col)
+    void OnTriggerExit(Collider other)
     {
         //when enemy leaves the shooting radius, remove this enemy to enemyList
-        GameObject enemy = col.gameObject;
-        Debug.Log("on collision exit entered: " + enemy.name);
-        if (enemyList.Contains(enemy))
+        GameObject enemy = other.gameObject;
+        if (enemy.CompareTag("Enemy") && enemyList.Contains(enemy))
         {
             enemyList.Remove(enemy);
-            Debug.Log("enemy removed!");
         }
     }
 
@@ -61,14 +57,13 @@ public class Ballista : MonoBehaviour
          * coroutine that waits indefinitely -- waits for enemy to enter radius.
          */
 
-        //Debug.Log("waiting for enemy entrance");
-
-        //Debug.Log(enemyList.Count);
-
         WaitUntil untilEnemyEnters = new WaitUntil(() => enemyList.Count > 0);
 
         while (true)
         {
+            //clean out any enemies that have been killed
+            enemyList.RemoveAll(e => e == null);
+
             yield return untilEnemyEnters;
 
             //choose the closest enemy to shoot at
@@ -81,6 +76,9 @@ public class Ballista : MonoBehaviour
 
             for (int e = 0; e < enemyList.Count; e++)
             {
+                //check if any enemies are dead (marked as non-active)
+                GameObject currEnemy = enemyList[e];
+
                 currEnemyPosition = enemyList[e].transform.position;
                 enemyDistance = Vector3.Distance(transform.position, currEnemyPosition);
                 if (enemyDistance < minDistance)
@@ -103,8 +101,6 @@ public class Ballista : MonoBehaviour
              * 
              * */
 
-            //PROBLEM: TILTS IN THE X AND Z DIRECTIONS
-
             newRotation = Quaternion.LookRotation(minEnemyPosition);
             rotatePoint.transform.LookAt(minEnemyPosition, transform.up);
 
@@ -115,20 +111,20 @@ public class Ballista : MonoBehaviour
             //bow rotation doesn't work with solely assigning rotatePoint.transform.rotation
             bow.transform.rotation = Quaternion.Euler(angles[0], angles[1], angles[2]);
 
-            //bow.transform.rotation = rotatePoint.transform.rotation;
-
             //make new arrow
 
             GameObject arr2 = Instantiate(newArrow, arrow.transform.position, bow.transform.rotation);
-            Rigidbody rb2 = arr2.GetComponent<Rigidbody>();
-            rb2.useGravity = false;
+            Physics.IgnoreCollision(arr2.GetComponent<Collider>(), GetComponent<Collider>());
+
+            arr2.GetComponent<Projectile>().damageOutput = damageOutput;
 
             //change velocity of arrow
 
             Vector3 vel = minEnemyPosition - transform.position;
             Vector3 direction = vel.normalized;
+            Rigidbody rbArrow = arr2.GetComponent<Rigidbody>();
 
-            rb2.velocity = direction * velocity;
+            rbArrow.velocity = direction * velocity;
 
             StartCoroutine(RemoveArrow(arr2));
 
@@ -138,8 +134,18 @@ public class Ballista : MonoBehaviour
 
     IEnumerator RemoveArrow(GameObject arr)
     {
-        yield return new WaitForSeconds(destroyRate);
-        Destroy(arr);
+        //wait until the arrow has hit an enemy (and is destroyed) OR the arrow has left the radius of the tower
+        WaitUntil arrowDestroy = new WaitUntil(() => arr == null ||
+            arr.transform.position[1] < 5);
+
+        yield return arrowDestroy;
+
+        //if the arrow hasn't been destroyed already, destroy it :)
+        if(arr != null)
+        { 
+            Destroy(arr);
+        }
+        
     }
 
 }
