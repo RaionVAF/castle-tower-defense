@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class mainMenu : MonoBehaviour
 {
-    public GameObject canvas;
+    public GameObject menu;
+    public GameObject playerUI;
     // Start is called before the first frame update
     void Start()
     {
@@ -18,7 +19,11 @@ public class mainMenu : MonoBehaviour
     }
 
     public void PlayGame(){
-		// StartCoroutine(FadeMenu());
-        Destroy(canvas, 0.25f);
+        menu.SetActive(false);
+        playerUI.SetActive(true);
+	}
+
+    public void QuitGame(){
+        Application.Quit();
 	}
 }
