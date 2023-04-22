@@ -56,7 +56,6 @@ public class zombieController : MonoBehaviour
         } 
         else if (finishedRotating && !finishedMoving)
         {
-            Debug.Log("finished rotating");
             moveZombieTowardsTarget(target.transform.localPosition);
         }
 
@@ -91,38 +90,9 @@ public class zombieController : MonoBehaviour
                 // Reset joint rotations that were being used for movement
                 resetMovementJoints();
 
-                // Store values
-                Quaternion leftArmJointStartRotation = leftArmJoint.transform.localRotation;
-                Quaternion rightArmJointStartRotation = rightArmJoint.transform.localRotation;
-                Quaternion raisingRotation = Quaternion.Euler(-160f, 0, 0);
-                Quaternion swingingRotation = Quaternion.Euler(-60f, 0, 0);
+                // Call attacking animation
+                attackingAnimation();
 
-                if (!armsAreRaised)
-                {
-                    // Call animation to raise arms up
-                    leftArmJoint.transform.localRotation
-                        = Quaternion.Slerp(leftArmJointStartRotation, raisingRotation, Time.deltaTime);
-                    rightArmJoint.transform.localRotation
-                        = Quaternion.Slerp(rightArmJointStartRotation, raisingRotation, Time.deltaTime);
-                    
-                    if (isFinishedRotating(leftArmJoint.transform.localRotation, raisingRotation, 0.01f))
-                    {
-                        armsAreRaised = true;
-                    }
-                }
-                else
-                {
-                    // After previous animation ends, call animation to swing arms down
-                    leftArmJoint.transform.localRotation
-                         = Quaternion.Slerp(leftArmJointStartRotation, swingingRotation, Time.deltaTime * 4f);
-                    rightArmJoint.transform.localRotation
-                         = Quaternion.Slerp(rightArmJointStartRotation, swingingRotation, Time.deltaTime * 4f);
-
-                    if (isFinishedRotating(leftArmJoint.transform.localRotation, swingingRotation, 0.01f))
-                    {
-                        armsAreRaised = false;
-                    }
-                }     
                 // Wait and run again 
                 yield return null;
             }
@@ -168,7 +138,6 @@ public class zombieController : MonoBehaviour
         // Check if the zombie is within a fixed range (2f) of the target to signal zombie to stop moving
         if (Vector3.Distance(zombieModel.transform.position, target.transform.position) < attackingRange)
         {   
-            Debug.Log("finished moving");
             finishedMoving = true;
             // Toggle isMoving off to stop movement animating coroutine
             isMoving = false;
@@ -199,6 +168,43 @@ public class zombieController : MonoBehaviour
         float legRotation = Mathf.Sin(Time.time * jointRotationSpeed) * legRotationAngle;
         leftLegJoint.transform.localRotation = Quaternion.AngleAxis(-legRotation, Vector3.left);
         rightLegJoint.transform.localRotation = Quaternion.AngleAxis(legRotation, Vector3.left);
+    }
+
+    // Helper that animates zombie attacking target
+    private void attackingAnimation()
+    {
+        // Store values
+        Quaternion leftArmJointStartRotation = leftArmJoint.transform.localRotation;
+        Quaternion rightArmJointStartRotation = rightArmJoint.transform.localRotation;
+        Quaternion raisingRotation = Quaternion.Euler(-160f, 0, 0);
+        Quaternion swingingRotation = Quaternion.Euler(-60f, 0, 0);
+
+        if (!armsAreRaised)
+        {
+            // Call animation to raise arms up
+            leftArmJoint.transform.localRotation
+                = Quaternion.Slerp(leftArmJointStartRotation, raisingRotation, Time.deltaTime);
+            rightArmJoint.transform.localRotation
+                = Quaternion.Slerp(rightArmJointStartRotation, raisingRotation, Time.deltaTime);
+
+            if (isFinishedRotating(leftArmJoint.transform.localRotation, raisingRotation, 0.01f))
+            {
+                armsAreRaised = true;
+            }
+        }
+        else
+        {
+            // After previous animation ends, call animation to swing arms down
+            leftArmJoint.transform.localRotation
+                 = Quaternion.Slerp(leftArmJointStartRotation, swingingRotation, Time.deltaTime * 4f);
+            rightArmJoint.transform.localRotation
+                 = Quaternion.Slerp(rightArmJointStartRotation, swingingRotation, Time.deltaTime * 4f);
+
+            if (isFinishedRotating(leftArmJoint.transform.localRotation, swingingRotation, 0.01f))
+            {
+                armsAreRaised = false;
+            }
+        }
     }
 
     // Helper that determines if the zombie is finished rotation
