@@ -4,33 +4,38 @@ using UnityEngine;
 
 public class RotateCamera : MonoBehaviour
 {
-    // private Vector3 rotationRate = new Vector3(0f, 90f, 0f);
+    public Transform pivot;
+    private bool side;
     
     // Start is called before the first frame update
     void Start()
     {
+        side = true;
     }
 
-    // Update is called once per frame
-    void Update()
+    private void OnTriggerEnter(Collider other)
     {
-        if(Input.GetKey(".")){
-            StartCoroutine(Camera(-60f));
-        } else if(Input.GetKey(",")){
-            StartCoroutine(Camera(60f));
+        if(other.name == "playableKnight"){
+            if(side){
+                StartCoroutine(Camera(-60f));
+            } else {
+                StartCoroutine(Camera(60f));
+            }
         }
     }
 
     IEnumerator Camera(float degree){
-        Quaternion start1 = transform.localRotation; 
-        Quaternion end1 = Quaternion.Euler(0f, transform.localEulerAngles.y + degree, 0f);
+        Quaternion start1 = pivot.localRotation; 
+        Quaternion end1 = Quaternion.Euler(0f, pivot.localEulerAngles.y + degree, 0f);
         float t = 0;
 
         while(t < 1){
             t += .05f;
-            transform.localRotation = Quaternion.Slerp(start1, end1, t);
+            pivot.localRotation = Quaternion.Slerp(start1, end1, t);
 
             yield return null;
         }
+
+        side = !side;
     }
 }

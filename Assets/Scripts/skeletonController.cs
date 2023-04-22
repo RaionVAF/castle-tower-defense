@@ -6,13 +6,16 @@ public class skeletonController : MonoBehaviour
 {
     // Public member for death particles
     public GameObject deathParticleEffects;
+    public GameObject wood;
+    public GameObject stone;
+    public GameObject iron;
 
     // Zombie model rigidbody and joint references
     private Rigidbody  skeletonRB;
     private GameObject skeletonModel, leftArmJoint, rightArmJoint, leftLegJoint, rightLegJoint, 
                        leftElbowJoint, rightElbowJoint;
     // Target placeholder (CHANGE)
-    private GameObject target;
+    public GameObject target;
 
     // Speed constants
     float movementSpeed = 3f;
@@ -28,7 +31,7 @@ public class skeletonController : MonoBehaviour
     bool appliedForce = false;
 
     // PLACEHOLDER BOOLEAN TO TEST DEATH ANIMATION
-    bool isDead = false;
+    private bool isDead = false;
 
     // Start is called before the first frame update
     void Start()
@@ -43,7 +46,7 @@ public class skeletonController : MonoBehaviour
         leftElbowJoint = GameObject.Find("skeleton/Left Arm Joint/Left Elbow Joint");
         rightElbowJoint = GameObject.Find("skeleton/Right Arm Joint/Right Elbow Joint");
         // Get target placeholder 
-        target = GameObject.Find("alchemist");
+        // target = GameObject.Find("alchemist");
         StartCoroutine(animate());
     }
 
@@ -123,6 +126,7 @@ public class skeletonController : MonoBehaviour
         {
             // Instantiate death particles
             Instantiate(deathParticleEffects, skeletonModel.transform.localPosition, deathParticleEffects.transform.localRotation);
+            SpawnMaterial();
             Destroy(deathParticleEffects, 1);
             // (!) Could replace this line with resource object 
             Destroy(skeletonModel);
@@ -209,5 +213,15 @@ public class skeletonController : MonoBehaviour
     {
         leftLegJoint.transform.localRotation = Quaternion.AngleAxis(0, Vector3.right);
         rightLegJoint.transform.localRotation = Quaternion.AngleAxis(0, Vector3.right);
+    }
+
+    private void SpawnMaterial(){
+        int randomInt = Random.Range(1, 101);
+        
+        if (randomInt <= 20) Instantiate(wood, skeletonModel.transform.localPosition + new Vector3(0f, 3f, 0f), wood.transform.localRotation);
+        
+        if (randomInt >= 21 && randomInt <= 25) Instantiate(stone, skeletonModel.transform.localPosition + new Vector3(0f, 3f, 0f), stone.transform.localRotation);
+
+        if (randomInt == 100) Instantiate(iron, skeletonModel.transform.localPosition + new Vector3(0f, 3f, 0f), iron.transform.localRotation);
     }
 }

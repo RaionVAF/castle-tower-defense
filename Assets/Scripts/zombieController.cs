@@ -6,12 +6,15 @@ public class zombieController : MonoBehaviour
 {
     // Public member for death particles
     public GameObject deathParticleEffects;
+    public GameObject wood;
+    public GameObject stone;
+    public GameObject iron;
 
     // Zombie model rigidbody and joint references
     private Rigidbody zombieRB;
     private GameObject zombieModel, leftArmJoint, rightArmJoint, leftLegJoint, rightLegJoint;
     // Target placeholder (CHANGE)
-    private GameObject target;
+    public GameObject target;
 
     // Speed constants
     float movementSpeed = 1f;
@@ -28,7 +31,7 @@ public class zombieController : MonoBehaviour
     bool appliedForce = false;
 
     // PLACEHOLDER BOOLEAN TO TEST DEATH ANIMATION
-    bool isDead = false;
+    private bool isDead = false;
 
     // Start is called before the first frame update
     void Start()
@@ -41,7 +44,7 @@ public class zombieController : MonoBehaviour
         leftLegJoint = GameObject.Find("zombie/Left Leg Joint");
         rightLegJoint = GameObject.Find("zombie/Right Leg Joint");
         // Get target placeholder 
-        target = GameObject.Find("blacksmith");
+        // target = GameObject.Find("blacksmith");
         StartCoroutine(animate());
     }
 
@@ -118,6 +121,7 @@ public class zombieController : MonoBehaviour
         {
             // Instantiate death particles
             Instantiate(deathParticleEffects, zombieModel.transform.localPosition, deathParticleEffects.transform.localRotation);
+            SpawnMaterial();
             Destroy(deathParticleEffects, 1);
             // (!) Could replace this line with resource object 
             Destroy(zombieModel);
@@ -220,5 +224,15 @@ public class zombieController : MonoBehaviour
     {
         leftLegJoint.transform.localRotation = Quaternion.AngleAxis(0, Vector3.right);
         rightLegJoint.transform.localRotation = Quaternion.AngleAxis(0, Vector3.right);
+    }
+
+    private void SpawnMaterial(){
+        int randomInt = Random.Range(1, 101);
+        
+        if (randomInt <= 20) Instantiate(wood, zombieModel.transform.localPosition + new Vector3(0f, 3f, 0f), wood.transform.localRotation);
+        
+        if (randomInt >= 21 && randomInt <= 25) Instantiate(stone, zombieModel.transform.localPosition + new Vector3(0f, 3f, 0f), stone.transform.localRotation);
+
+        if (randomInt == 100) Instantiate(iron, zombieModel.transform.localPosition + new Vector3(0f, 3f, 0f), iron.transform.localRotation);
     }
 }
