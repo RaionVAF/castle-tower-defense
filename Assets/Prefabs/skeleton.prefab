@@ -354,7 +354,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff48a78753842054c893c66f30e3ac74, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  deathParticleEffects: {fileID: 0}
+  deathParticleEffects: {fileID: 1703371083485241626, guid: 792562e61601fd34dab3370d7d5f068f, type: 3}
 --- !u!54 &2074589931770217026
 Rigidbody:
   m_ObjectHideFlags: 0
