@@ -10,7 +10,7 @@ public class spawning : MonoBehaviour
     private float timer;
 
     // time between increase of mobs
-    static float leveltimer = 5f;
+    static float leveltimer = 10f;
     private GameObject[] spawnplats;
     public List<GameObject> enemyList = new List<GameObject>();
     
