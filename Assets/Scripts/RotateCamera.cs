@@ -5,18 +5,19 @@ using UnityEngine;
 public class RotateCamera : MonoBehaviour
 {
     public Transform pivot;
-    private bool side;
+    public GameObject bounds;
+    private bool[] sides;
     
     // Start is called before the first frame update
     void Start()
     {
-        side = true;
+        sides = new bool[] {true, false, true, false, true, false};
     }
 
     private void OnTriggerEnter(Collider other)
     {
         if(other.name == "playableKnight"){
-            if(side){
+            if(sides[int.Parse(transform.name) - 1]){
                 StartCoroutine(Camera(-60f));
             } else {
                 StartCoroutine(Camera(60f));
@@ -36,6 +37,6 @@ public class RotateCamera : MonoBehaviour
             yield return null;
         }
 
-        side = !side;
+        for(int i = 0; i < sides.Length; i++) sides[i] = !sides[i];
     }
 }

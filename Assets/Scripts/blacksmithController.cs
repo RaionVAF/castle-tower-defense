@@ -17,7 +17,7 @@ public class blacksmithController : MonoBehaviour
     // Blacksmith model joint references
     private GameObject leftArmJoint, rightArmJoint, headJoint, blacksmithHead;
     // Get interaction button reference
-    private GameObject interactionPopup = null;
+    public GameObject interactionPopup;
 
     // Constants
     float noddingRotationSpeed = 2f;
@@ -62,6 +62,7 @@ public class blacksmithController : MonoBehaviour
         if (isPlayerDetected)
         {
             interactionPopup.SetActive(true);
+            interactionPopup.transform.rotation = Quaternion.LookRotation(interactionPopup.transform.position - mainCamera.transform.position);
             floatPopup();
 
             // Activate camera interactions (E key switches cameras b/w menu and world)

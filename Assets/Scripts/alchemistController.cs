@@ -62,6 +62,7 @@ public class alchemistController : MonoBehaviour
         if (isPlayerDetected)
         {
             interactionPopup.SetActive(true);
+            // interactionPopup.transform.rotation = Quaternion.LookRotation(interactionPopup.transform.position - mainCamera.transform.position);
             floatPopup();
 
             // Activate camera interactions (E key switches cameras b/w menu and world)
