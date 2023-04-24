@@ -8,7 +8,7 @@ public class Ballista : MonoBehaviour
 
     float velocity = 15f;
     float destroyRate = 6.5f;
-    public int damageOutput = 2;
+    public int damageOutput = 20;
     public float shootingRate = 2.0f;
     public GameObject arrow;
     public GameObject bow;
@@ -112,21 +112,23 @@ public class Ballista : MonoBehaviour
             bow.transform.rotation = Quaternion.Euler(angles[0], angles[1], angles[2]);
 
             //make new arrow
+    
 
             GameObject arr2 = Instantiate(newArrow, arrow.transform.position, bow.transform.rotation);
-            Physics.IgnoreCollision(arr2.GetComponent<Collider>(), GetComponent<Collider>());
-
-            arr2.GetComponent<Projectile>().damageOutput = damageOutput;
+            arr2.GetComponent<Projectile>().damageOutput = 50;
+            arr2.GetComponent<Projectile>().target = enemyList[0].transform;
+            arr2.GetComponent<Projectile>().settings("Enemy", "weapon");
+            //Physics.IgnoreCollision(arr2.GetComponent<Collider>(), GetComponent<Collider>());
 
             //change velocity of arrow
 
-            Vector3 vel = minEnemyPosition - transform.position;
-            Vector3 direction = vel.normalized;
-            Rigidbody rbArrow = arr2.GetComponent<Rigidbody>();
+            //Vector3 vel = minEnemyPosition - transform.position;
+            //Vector3 direction = vel.normalized;
+            //Rigidbody rbArrow = arr2.GetComponent<Rigidbody>();
 
-            rbArrow.velocity = direction * velocity;
-
-            StartCoroutine(RemoveArrow(arr2));
+            //rbArrow.velocity = direction * velocity;
+           
+            //StartCoroutine(RemoveArrow(arr2));
 
             yield return new WaitForSeconds(shootingRate);
         }

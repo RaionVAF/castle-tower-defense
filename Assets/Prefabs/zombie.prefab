@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3393736578767023033}
   - component: {fileID: 3393736578767023032}
   - component: {fileID: 3393736578767023039}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Right Arm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -109,7 +109,7 @@ GameObject:
   - component: {fileID: 3393736578819927795}
   - component: {fileID: 3393736578819927794}
   - component: {fileID: 3393736578819927793}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Left Arm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -206,7 +206,7 @@ GameObject:
   - component: {fileID: 3393736578899678863}
   - component: {fileID: 3393736578899678862}
   - component: {fileID: 3393736578899678861}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Right Leg
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -302,7 +302,7 @@ GameObject:
   - component: {fileID: 3393736578929063781}
   - component: {fileID: 3393736578929063783}
   - component: {fileID: 3393736578929063782}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Right Arm Joint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -358,7 +358,7 @@ GameObject:
   - component: {fileID: 3393736579468617371}
   - component: {fileID: 3393736579468617370}
   - component: {fileID: 3393736579468617369}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -454,7 +454,7 @@ GameObject:
   - component: {fileID: 3393736579933334245}
   - component: {fileID: 3393736579933334247}
   - component: {fileID: 3393736579933334246}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Left Leg Joint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -509,7 +509,7 @@ GameObject:
   - component: {fileID: 3393736580311399586}
   - component: {fileID: 3393736580311399580}
   - component: {fileID: 3393736580311399587}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Left Arm Joint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -565,7 +565,7 @@ GameObject:
   - component: {fileID: 3393736580386485380}
   - component: {fileID: 3393736580386485387}
   - component: {fileID: 3393736580386485386}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Head
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -661,7 +661,7 @@ GameObject:
   - component: {fileID: 3393736580435247728}
   - component: {fileID: 3393736580435247730}
   - component: {fileID: 3393736580435247729}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Right Leg Joint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -714,11 +714,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3393736580470528621}
-  - component: {fileID: 3393736580470528620}
   - component: {fileID: 3393736580470528627}
-  m_Layer: 0
+  - component: {fileID: -1230397017939091305}
+  - component: {fileID: -4578729986194644605}
+  m_Layer: 8
   m_Name: zombie
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -744,22 +745,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!54 &3393736580470528620
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3393736580470528626}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 10
-  m_CollisionDetection: 0
 --- !u!114 &3393736580470528627
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -773,6 +758,43 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   deathParticleEffects: {fileID: 1703371083485241626, guid: 792562e61601fd34dab3370d7d5f068f, type: 3}
+  zombie: {fileID: -1230397017939091305}
+  health: 100
+--- !u!195 &-1230397017939091305
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3393736580470528626}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 1.5
+  m_Speed: 4
+  m_Acceleration: 6
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 2
+  m_BaseOffset: 0
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
+--- !u!65 &-4578729986194644605
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3393736580470528626}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 3, y: 6, z: 3}
+  m_Center: {x: 0, y: 3, z: 0}
 --- !u!1 &3393736580509662541
 GameObject:
   m_ObjectHideFlags: 0
@@ -785,7 +807,7 @@ GameObject:
   - component: {fileID: 3393736580509662537}
   - component: {fileID: 3393736580509662536}
   - component: {fileID: 3393736580509662543}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Left Leg
   m_TagString: Untagged
   m_Icon: {fileID: 0}

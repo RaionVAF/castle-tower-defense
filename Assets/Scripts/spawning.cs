@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using System;
 using Random=UnityEngine.Random;
 using UnityEngine;
 
@@ -10,7 +9,7 @@ public class spawning : MonoBehaviour
     private float timer;
 
     // time between increase of mobs
-    static float leveltimer = 10f;
+    static float leveltimer = 2f;
     private GameObject[] spawnplats;
     public List<GameObject> enemyList = new List<GameObject>();
     
@@ -41,7 +40,7 @@ public class spawning : MonoBehaviour
         }
         
         // temp hard cap on mobs
-        mobcap = Math.Clamp(mobcap, 0, 50);
+        mobcap = Mathf.Clamp(mobcap, 1, 25);
     }
 
     IEnumerator spawn(){
@@ -58,7 +57,7 @@ public class spawning : MonoBehaviour
             newmob = Instantiate(Zombie, spawnplats[plat].transform.position, spawnplats[plat].transform.rotation);
         } else {
             //probability for mobs to be spawned
-            int i = Random.Range(0,100);
+            int i = Random.Range(0,101);
             if (i < 80){
                 newmob = Instantiate(Zombie, spawnplats[plat].transform.position, spawnplats[plat].transform.rotation);
             } else if (i > 80){
@@ -66,7 +65,6 @@ public class spawning : MonoBehaviour
             }
         }
         enemyList.Add(newmob);
-        Debug.Log("enemy spawned");
     }
     }
    
