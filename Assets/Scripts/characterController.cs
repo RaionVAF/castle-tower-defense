@@ -6,7 +6,7 @@ public class characterController : MonoBehaviour
 {
     // Player model rigidbody and joint references
     private Rigidbody playerRB;
-    private GameObject leftArmJoint, rightArmJoint, leftLegJoint, rightLegJoint;
+    private GameObject playerModel, leftArmJoint, rightArmJoint, leftLegJoint, rightLegJoint;
 
     // Speed constants
     public float movementSpeed = 25f;
@@ -24,10 +24,11 @@ public class characterController : MonoBehaviour
     {
         // Initialize GameObjects that will be used for animating
         playerRB = GetComponent<Rigidbody>();
-        leftArmJoint = GameObject.Find("Left Arm Joint");
-        rightArmJoint = GameObject.Find("Right Arm Joint");
-        leftLegJoint = GameObject.Find("Left Leg Joint");
-        rightLegJoint = GameObject.Find("Right Leg Joint");
+        playerModel = GameObject.Find("playableKnight");
+        leftArmJoint = GameObject.Find("playableKnight/Left Arm Joint");
+        rightArmJoint = GameObject.Find("playableKnight/Right Arm Joint");
+        leftLegJoint = GameObject.Find("playableKnight/Left Leg Joint");
+        rightLegJoint = GameObject.Find("playableKnight/Right Leg Joint");
         // Start animation coroutine
         StartCoroutine(AnimateMovement());
     }
@@ -50,6 +51,27 @@ public class characterController : MonoBehaviour
             Quaternion rotation = Quaternion.LookRotation(input, Vector3.up);
             playerRB.rotation = Quaternion.Slerp(playerRB.rotation, Quaternion.LookRotation(input, Vector3.up), 0.5F);
         }
+    }
+
+    // Toggle isMoving off and stop animation coroutine if the playable model is disabled
+    void OnDisable()
+    {   
+        StopCoroutine(AnimateMovement());
+        isMoving = false;
+    }
+
+    // Re-enable animation coroutine if the playable character is reactivated
+    void OnEnable()
+    {
+        // Re-initialize GameObjects that will be used for animating
+        playerRB = GetComponent<Rigidbody>();
+        playerModel = GameObject.Find("playableKnight");
+        leftArmJoint = GameObject.Find("playableKnight/Left Arm Joint");
+        rightArmJoint = GameObject.Find("playableKnight/Right Arm Joint");
+        leftLegJoint = GameObject.Find("playableKnight/Left Leg Joint");
+        rightLegJoint = GameObject.Find("playableKnight/Right Leg Joint");
+        // Restart coroutine
+        StartCoroutine(AnimateMovement());
     }
 
     // Coroutine that animates movement when isMoving is true
