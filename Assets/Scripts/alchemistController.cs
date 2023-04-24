@@ -84,7 +84,6 @@ public class alchemistController : MonoBehaviour
     {
         if (other.tag == "Player")
         {
-            Debug.Log("Detected");
             isPlayerDetected = true;
         }
     }
@@ -92,7 +91,6 @@ public class alchemistController : MonoBehaviour
     // Detect when the NPC's collider no longer touches the player and toggle's isPlayerDetected false
     void OnTriggerExit(Collider other)
     {
-        Debug.Log("Gone");
         isPlayerDetected = false;
     }
 
