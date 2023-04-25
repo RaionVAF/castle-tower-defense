@@ -41,6 +41,7 @@ public class spawning : MonoBehaviour
         
         // temp hard cap on mobs
         mobcap = Mathf.Clamp(mobcap, 1, 25);
+        enemyList.RemoveAll(e => e == null);
     }
 
     IEnumerator spawn(){
