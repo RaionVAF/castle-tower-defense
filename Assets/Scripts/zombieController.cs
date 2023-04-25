@@ -68,8 +68,6 @@ public class zombieController : MonoBehaviour
             rightArmJoint.transform.localRotation = Quaternion.Euler(-90f, 0, 0);
         }
 
-        if (!zombie.hasPath)
-
         if (health <= 0){
             Destroy(gameObject);
         }
