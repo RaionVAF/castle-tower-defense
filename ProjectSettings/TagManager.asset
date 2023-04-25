@@ -9,6 +9,9 @@ TagManager:
   - weapon
   - Enemy
   - Tower
+  - spawnplat
+  - temptarget
+  - skeletonweapon
   layers:
   - Default
   - TransparentFX
