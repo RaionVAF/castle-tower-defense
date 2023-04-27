@@ -6,6 +6,9 @@ public class skeletonController : MonoBehaviour
 {
     // Public member for death particles
     public GameObject deathParticleEffects;
+    public GameObject wood;
+    public GameObject stone;
+    public GameObject iron;
 
     // Zombie model rigidbody and joint references
     private Rigidbody  skeletonRB;
@@ -75,6 +78,7 @@ public class skeletonController : MonoBehaviour
         }
 
         if (health <= 0){
+            SpawnMaterial();
             Destroy(gameObject);
         }
     }
@@ -164,21 +168,30 @@ public class skeletonController : MonoBehaviour
     }
 
     private Transform closestTarget(){
-
-    Transform closest = null;
-    float minDist = Mathf.Infinity;
-    foreach (Transform t in source.transform)
-    {
-        if (!t.gameObject.active){
-            continue;
-        }
-        float dist = Vector3.Distance(t.position, transform.position);
-        if (dist < minDist)
+        Transform closest = null;
+        float minDist = Mathf.Infinity;
+        foreach (Transform t in source.transform)
         {
-            closest= t;
-            minDist = dist;
+            if (!t.gameObject.active){
+                continue;
+            }
+            float dist = Vector3.Distance(t.position, transform.position);
+            if (dist < minDist)
+            {
+                closest= t;
+                minDist = dist;
+            }
         }
-    }
-    return closest;
+        return closest;
     }  
+
+    private void SpawnMaterial(){
+        int randomInt = Random.Range(1, 101);
+        
+        if (randomInt <= 40) Instantiate(wood, skeletonModel.transform.localPosition + new Vector3(0f, 3f, 0f), wood.transform.localRotation);
+        
+        if (randomInt >= 41 && randomInt <= 80) Instantiate(stone, skeletonModel.transform.localPosition + new Vector3(0f, 3f, 0f), stone.transform.localRotation);
+
+        if (randomInt >= 81) Instantiate(iron, skeletonModel.transform.localPosition + new Vector3(0f, 3f, 0f), iron.transform.localRotation);
+    }
 }
