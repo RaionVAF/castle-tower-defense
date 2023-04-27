@@ -2,14 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class bossController : MonoBehaviour
+public class darkKnightController : MonoBehaviour
 {
     // Public member for death particles
     public GameObject deathParticleEffects;
 
     // Zombie model rigidbody and joint references
-    private Rigidbody bossRB;
-    private GameObject bossModel, leftArmJoint, rightArmJoint, leftLegJoint, rightLegJoint,
+    private Rigidbody darkKnightRB;
+    private GameObject darkKnightModel, leftArmJoint, rightArmJoint, leftLegJoint, rightLegJoint,
                        source;
 
     // Constants
@@ -33,41 +33,41 @@ public class bossController : MonoBehaviour
     void Start()
     {
         // Get joints
-        bossRB = GetComponent<Rigidbody>();
-        bossModel = GameObject.Find("boss");
-        leftArmJoint = GameObject.Find("boss/Left Arm Joint");
-        rightArmJoint = GameObject.Find("boss/Right Arm Joint");
-        leftLegJoint = GameObject.Find("boss/Left Leg Joint");
-        rightLegJoint = GameObject.Find("boss/Right Leg Joint");
+        darkKnightRB = GetComponent<Rigidbody>();
+        darkKnightModel = GameObject.Find("darkKnight");
+        leftArmJoint = GameObject.Find("darkKnight/Left Arm Joint");
+        rightArmJoint = GameObject.Find("darkKnight/Right Arm Joint");
+        leftLegJoint = GameObject.Find("darkKnight/Left Leg Joint");
+        rightLegJoint = GameObject.Find("darkKnight/Right Leg Joint");
     }
 
     // Update is called once per frame
     void Update()
     {
         // Make right arm move idly
-        float rightArmRotation = Mathf.Sin(Time.time * 1f) * -10f;
-        rightArmJoint.transform.localRotation = Quaternion.AngleAxis(rightArmRotation, Vector3.left);
+        float leftArmRotation = Mathf.Sin(Time.time * 1f) * -10f;
+        leftArmJoint.transform.localRotation = Quaternion.AngleAxis(leftArmRotation, Vector3.left);
 
         // Call attack animation
         attackingAnimation();
     }
 
-    // Helper that animates boss attacking target
+    // Helper that animates knight attacking target
     private void attackingAnimation()
     {
         // Store values
         Quaternion leftArmJointStartRotation = leftArmJoint.transform.localRotation;
         Quaternion rightArmJointStartRotation = rightArmJoint.transform.localRotation;
-        Quaternion raisingRotation = Quaternion.Euler(-110f, 0, 0);
-        Quaternion swingingRotation = Quaternion.Euler(30f, 0, 0);
+        Quaternion raisingRotation = Quaternion.Euler(-150f, 0, 0);
+        Quaternion swingingRotation = Quaternion.Euler(10f, 0, 0);
 
         if (!armsAreRaised)
         {
             // Call animation to raise arms up
-            leftArmJoint.transform.localRotation
-                = Quaternion.Slerp(leftArmJointStartRotation, raisingRotation, Time.deltaTime);
+            rightArmJoint.transform.localRotation
+                = Quaternion.Slerp(rightArmJointStartRotation, raisingRotation, Time.deltaTime);
 
-            if (isFinishedRotating(leftArmJoint.transform.localRotation, raisingRotation, 0.01f))
+            if (isFinishedRotating(rightArmJoint.transform.localRotation, raisingRotation, 0.01f))
             {
                 armsAreRaised = true;
             }
@@ -75,10 +75,10 @@ public class bossController : MonoBehaviour
         else
         {
             // After previous animation ends, call animation to swing arms down
-            leftArmJoint.transform.localRotation
-                 = Quaternion.Slerp(leftArmJointStartRotation, swingingRotation, Time.deltaTime * 4f);
+            rightArmJoint.transform.localRotation
+                 = Quaternion.Slerp(rightArmJointStartRotation, swingingRotation, Time.deltaTime * 6f);
 
-            if (isFinishedRotating(leftArmJoint.transform.localRotation, swingingRotation, 0.01f))
+            if (isFinishedRotating(rightArmJoint.transform.localRotation, swingingRotation, 0.01f))
             {
                 armsAreRaised = false;
             }
