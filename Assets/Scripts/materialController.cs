@@ -22,7 +22,7 @@ public class materialController : MonoBehaviour
         
         transform.position = Vector3.Lerp(start, end, t);
 
-        print(t + " = " + transform.position);
+        // print(t + " = " + transform.position);
         
         if(flip){
             t += .025f;

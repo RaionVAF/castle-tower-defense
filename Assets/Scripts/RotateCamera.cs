@@ -5,27 +5,25 @@ using UnityEngine;
 public class RotateCamera : MonoBehaviour
 {
     public Transform pivot;
-    public GameObject bounds;
     private bool[] sides;
     
     // Start is called before the first frame update
     void Start()
     {
-        sides = new bool[] {true, false, true, false, true, false};
+        sides = new bool[] {false, true, false, true, false, true};
     }
 
-    private void OnTriggerEnter(Collider other)
-    {
-        if(other.name == "playableKnight"){
-            if(sides[int.Parse(transform.name) - 1]){
-                StartCoroutine(Camera(-60f));
-            } else {
-                StartCoroutine(Camera(60f));
-            }
+    public void callCam(int bound){
+        if(bound > 1) return;
+
+        if(sides[bound]){
+            StartCoroutine(RotateCam(-60f));
+        } else {
+            StartCoroutine(RotateCam(60f));
         }
     }
 
-    IEnumerator Camera(float degree){
+    IEnumerator RotateCam(float degree){
         Quaternion start1 = pivot.localRotation; 
         Quaternion end1 = Quaternion.Euler(0f, pivot.localEulerAngles.y + degree, 0f);
         float t = 0;

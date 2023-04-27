@@ -19,6 +19,8 @@ public class blacksmithController : MonoBehaviour
     // Get interaction button reference
     public GameObject interactionPopup;
 
+    public int hexNum;
+
     // Constants
     float noddingRotationSpeed = 2f;
     float jointRotationSpeed = 0.25f;
@@ -41,7 +43,7 @@ public class blacksmithController : MonoBehaviour
         rightArmJoint = GameObject.Find("blacksmith/Right Arm Joint");
 
         // Initialize button popup and set it inactive
-        interactionPopup = GameObject.Find("blacksmith/Canvas Holder/Interaction Canvas/Interaction Popup");
+        // interactionPopup = GameObject.Find("blacksmith/Canvas Holder/Interaction Canvas/Interaction Popup");
         interactionPopup.SetActive(false);
 
         // Fetch renderer from the GameObject

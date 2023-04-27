@@ -8,28 +8,42 @@ public class materialTracker : MonoBehaviour
 {
     private int max = 999999;
 
-    public TextMeshProUGUI mainWood;
-    public TextMeshProUGUI bsWood;
-
-    public TextMeshProUGUI mainStone;
-    public TextMeshProUGUI bsStone;
-
-    public TextMeshProUGUI mainIron;
-    public TextMeshProUGUI bsIron;
+    public TextMeshProUGUI[] main;
+    public TextMeshProUGUI[] blacksmith;
+    public TextMeshProUGUI[] alchemist;
     
+    public int XPCount = 0;
     public int WoodCount = 0;
     public int StoneCount = 0;
     public int IronCount = 0;
 
     public void Update()
     {
-        mainWood.text = WoodCount.ToString();
-        bsWood.text = WoodCount.ToString();
+        main[0].text = XPCount.ToString();
+        main[1].text = StoneCount.ToString();
+        main[2].text = WoodCount.ToString();
+        main[3].text = IronCount.ToString();
 
-        mainStone.text = StoneCount.ToString();
-        bsStone.text = StoneCount.ToString();
+        blacksmith[0].text = StoneCount.ToString();
+        blacksmith[1].text = WoodCount.ToString();
+        blacksmith[2].text = IronCount.ToString();
 
-        mainIron.text = IronCount.ToString();
-        bsIron.text = IronCount.ToString();
+        alchemist[0].text = XPCount.ToString();
+    }
+
+    public void changeXP(int amount){
+        if(XPCount > 0 || XPCount < max) XPCount += amount;
+    }
+
+    public void changeWood(int amount){
+        if(WoodCount > 0 || WoodCount < max) WoodCount += amount;
+    }
+
+    public void changeStone(int amount){
+        if(StoneCount > 0 || StoneCount < max) StoneCount += amount;
+    }
+
+    public void changeIron(int amount){
+        if(IronCount > 0 || IronCount < max) IronCount += amount;
     }
 }
