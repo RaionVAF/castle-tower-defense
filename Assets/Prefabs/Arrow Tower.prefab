@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6176133343086241439}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: rotatePoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -42,7 +42,7 @@ GameObject:
   - component: {fileID: 1157153582919689505}
   - component: {fileID: 1157153582919689511}
   - component: {fileID: 1157153582919689510}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: bow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -127,14 +127,13 @@ GameObject:
   - component: {fileID: 1157153584773656931}
   - component: {fileID: 1157153584773656930}
   - component: {fileID: 1157153584773656941}
-  - component: {fileID: 1157153584773656928}
   - component: {fileID: 6329387850141135395}
   - component: {fileID: 6328734383142525273}
   - component: {fileID: 1040911938062860167}
-  - component: {fileID: 7032617615890283538}
-  m_Layer: 3
+  - component: {fileID: 3627692142795694277}
+  m_Layer: 6
   m_Name: Arrow Tower
-  m_TagString: Untagged
+  m_TagString: Ballista
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -390,7 +389,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1157153584965050427}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Group
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -6,22 +6,23 @@ TagManager:
   tags:
   - balcksmith
   - alchemist
-  - weapon
   - Enemy
-  - Tower
   - spawnplat
-  - temptarget
-  - skeletonweapon
+  - enemyWeapon
+  - towerWeapon
+  - Cannon
+  - Catapult
+  - Ballista
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - TOWER
+  - 
   - Water
   - UI
-  - WEAPON
+  - Combat
   - 
-  - ENEMY
+  - 
   - 
   - 
   - 

@@ -6,7 +6,7 @@ public class Upgrades : MonoBehaviour
 {
     public void increaseDamage(int damageChange = 1)
     {
-        gameObject.GetComponent<Ballista>().damageOutput += damageChange;
+        gameObject.GetComponent<towerController>().damageOutput += damageChange;
     }
 
     public void increaseRange(int rangeChange = 1)
@@ -16,6 +16,6 @@ public class Upgrades : MonoBehaviour
 
     public void increaseRate(int rateChange = 1)
     {
-        gameObject.GetComponent<Ballista>().shootingRate += rateChange;
+        gameObject.GetComponent<towerController>().shootingRate += rateChange;
     }
 }

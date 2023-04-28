@@ -17,7 +17,7 @@ public class zombieController : MonoBehaviour
     public GameObject iron;
     public NavMeshAgent zombie;
 
-    targets targetScript;
+    boundary boundaryScript;
 
     float movementSpeed = 1f;
     float zombieRotationSpeed = 1.5f;
@@ -27,7 +27,7 @@ public class zombieController : MonoBehaviour
 
     private Transform target;
 
-    float attackdamage = 20;
+    float damageOutput = 20;
 
     public float health = 100;
 
@@ -50,9 +50,9 @@ public class zombieController : MonoBehaviour
         leftLegJoint = transform.GetChild(4).gameObject;
         rightLegJoint = transform.GetChild(5).gameObject;
 
-        source = GameObject.Find("Targets"); 
+        source = GameObject.Find("Bounds"); 
         target = closestTarget();
-        targetScript = target.GetComponent<targets>();
+        boundaryScript = target.GetComponent<boundary>();
         zombie.destination = target.position;
 
         StartCoroutine(animate());
@@ -65,7 +65,7 @@ public class zombieController : MonoBehaviour
         if (!target.gameObject.active){
             target = closestTarget();
             zombie.destination = target.position;
-            targetScript = target.GetComponent<targets>();
+            boundaryScript = target.GetComponent<boundary>();
             leftArmJoint.transform.localRotation = Quaternion.Euler(-90f, 0, 0);
             rightArmJoint.transform.localRotation = Quaternion.Euler(-90f, 0, 0);
         }
@@ -82,7 +82,7 @@ public class zombieController : MonoBehaviour
     {
         //when enemy enters the shooting radius, add this enemy to enemyList
         GameObject enemy = other.gameObject;
-        if (enemy.tag == "weapon")
+        if (enemy.tag == "towerWeapon")
         {
             GameObject particles = Instantiate(deathParticleEffects, zombieModel.transform.localPosition, deathParticleEffects.transform.localRotation);
             Destroy(particles);
@@ -152,7 +152,7 @@ public class zombieController : MonoBehaviour
                 if (isFinishedRotating(leftArmJoint.transform.localRotation, swingingRotation, 0.01f))
                 {
                     armsAreRaised = false;
-                    targetScript.hit(attackdamage);
+                    boundaryScript.hit(damageOutput);
                 }
             }
         }

@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1118118897696299593}
   - component: {fileID: 1575231387309361678}
   - component: {fileID: 1575231387309361679}
-  m_Layer: 8
+  m_Layer: 6
   m_Name: Rib 6
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -110,7 +110,7 @@ GameObject:
   - component: {fileID: 5173666850747842229}
   - component: {fileID: 5135192279862502199}
   - component: {fileID: 913301371142650187}
-  m_Layer: 8
+  m_Layer: 6
   m_Name: Pelvis
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -208,7 +208,7 @@ GameObject:
   - component: {fileID: 5457238623110269517}
   - component: {fileID: 4101671592542507657}
   - component: {fileID: 4101671592542507654}
-  m_Layer: 8
+  m_Layer: 6
   m_Name: Body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -313,7 +313,7 @@ GameObject:
   - component: {fileID: 2074589931770217029}
   - component: {fileID: -2379737985048501827}
   - component: {fileID: 8419731337703097075}
-  m_Layer: 8
+  m_Layer: 6
   m_Name: skeleton
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -362,6 +362,7 @@ MonoBehaviour:
   newArrow: {fileID: 199154194798286668, guid: 6778912db95234e418a05cd4f9bb1bfa, type: 3}
   skeleton: {fileID: -2379737985048501827}
   health: 100
+  damageOutput: 0
   armsAreRaised: 0
 --- !u!195 &-2379737985048501827
 NavMeshAgent:
@@ -410,7 +411,7 @@ GameObject:
   - component: {fileID: 5172231504244978495}
   - component: {fileID: 4324583229641079759}
   - component: {fileID: 4324583229641079756}
-  m_Layer: 8
+  m_Layer: 6
   m_Name: Rib 8
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -508,7 +509,7 @@ GameObject:
   - component: {fileID: 8199255035794704980}
   - component: {fileID: 4010023531141719197}
   - component: {fileID: 4046241164332167645}
-  m_Layer: 8
+  m_Layer: 6
   m_Name: Upper Left Arm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -605,7 +606,7 @@ GameObject:
   - component: {fileID: 5394738121602195954}
   - component: {fileID: 1723833567978797493}
   - component: {fileID: 2355283389370511945}
-  m_Layer: 8
+  m_Layer: 6
   m_Name: Rib 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -700,7 +701,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5032919555581482534}
-  m_Layer: 8
+  m_Layer: 6
   m_Name: PT_Medieval_bow_01_down_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -732,7 +733,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5032919555619012813}
-  m_Layer: 8
+  m_Layer: 6
   m_Name: PT_Medieval_bow_01_root
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -768,7 +769,7 @@ GameObject:
   - component: {fileID: 5032919555755514151}
   - component: {fileID: 5032919555755514149}
   - component: {fileID: 5032919555755514148}
-  m_Layer: 8
+  m_Layer: 6
   m_Name: Right Elbow Joint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -823,7 +824,7 @@ GameObject:
   - component: {fileID: 5032919555807281646}
   - component: {fileID: 5032919555807281644}
   - component: {fileID: 5032919555807281647}
-  m_Layer: 8
+  m_Layer: 6
   m_Name: Left Arm Joint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -877,7 +878,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5032919556083772197}
-  m_Layer: 8
+  m_Layer: 6
   m_Name: PT_Medieval_bow_01_up_04
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -909,7 +910,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5032919556279328497}
   - component: {fileID: 5032919556279328462}
-  m_Layer: 8
+  m_Layer: 6
   m_Name: PT_Medieval_Bow_01_a_string
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1006,7 +1007,7 @@ GameObject:
   - component: {fileID: 5032919556305808395}
   - component: {fileID: 5032919556305808394}
   - component: {fileID: 5032919556305808392}
-  m_Layer: 8
+  m_Layer: 6
   m_Name: Lower Left Arm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1100,7 +1101,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5032919556337160710}
-  m_Layer: 8
+  m_Layer: 6
   m_Name: PT_Medieval_bow_01_down_03
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1134,7 +1135,7 @@ GameObject:
   - component: {fileID: 5032919556339754421}
   - component: {fileID: 5032919556339754419}
   - component: {fileID: 5032919556339754418}
-  m_Layer: 8
+  m_Layer: 6
   m_Name: Right Leg Joint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1187,7 +1188,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5032919555822965538}
-  m_Layer: 8
+  m_Layer: 6
   m_Name: Bow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1222,7 +1223,7 @@ GameObject:
   - component: {fileID: 5032919556394103565}
   - component: {fileID: 5032919556394103563}
   - component: {fileID: 5032919556394103562}
-  m_Layer: 8
+  m_Layer: 6
   m_Name: Left Leg Joint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1275,7 +1276,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5032919556445836802}
-  m_Layer: 8
+  m_Layer: 6
   m_Name: PT_Medieval_Bow_01_a
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1308,7 +1309,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5032919556476507007}
-  m_Layer: 8
+  m_Layer: 6
   m_Name: PT_Medieval_bow_01_up_02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1340,7 +1341,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5032919556669483877}
-  m_Layer: 8
+  m_Layer: 6
   m_Name: PT_Medieval_bow_01_up_03
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1372,7 +1373,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5032919556690384988}
-  m_Layer: 8
+  m_Layer: 6
   m_Name: PT_Medieval_bow_01_up_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1404,7 +1405,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5032919556751817875}
-  m_Layer: 8
+  m_Layer: 6
   m_Name: PT_Medieval_bow_01_string
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1437,7 +1438,7 @@ GameObject:
   - component: {fileID: 5032919556833404097}
   - component: {fileID: 5032919556833404127}
   - component: {fileID: 5032919556833404126}
-  m_Layer: 8
+  m_Layer: 6
   m_Name: Left Elbow Joint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1492,7 +1493,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5032919556843403581}
   - component: {fileID: 5032919556843403578}
-  m_Layer: 8
+  m_Layer: 6
   m_Name: PT_Medieval_Bow_01_a_body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1588,7 +1589,7 @@ GameObject:
   - component: {fileID: 5032919556966780427}
   - component: {fileID: 5032919556966780425}
   - component: {fileID: 5032919556966780424}
-  m_Layer: 8
+  m_Layer: 6
   m_Name: Right Arm Joint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1642,7 +1643,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5032919557032333379}
-  m_Layer: 8
+  m_Layer: 6
   m_Name: PT_Medieval_bow_01_down_04
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1673,7 +1674,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5032919557058911283}
-  m_Layer: 8
+  m_Layer: 6
   m_Name: PT_Medieval_bow_01_down_02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1708,7 +1709,7 @@ GameObject:
   - component: {fileID: 5032919557124679473}
   - component: {fileID: 5032919557124679472}
   - component: {fileID: 5032919557124679438}
-  m_Layer: 8
+  m_Layer: 6
   m_Name: Lower Right Arm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1805,7 +1806,7 @@ GameObject:
   - component: {fileID: 215513684016397632}
   - component: {fileID: 4889077197746305156}
   - component: {fileID: 215513684016397633}
-  m_Layer: 8
+  m_Layer: 6
   m_Name: Rib 5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1903,7 +1904,7 @@ GameObject:
   - component: {fileID: 5636854570417006128}
   - component: {fileID: 952953609524396008}
   - component: {fileID: 952953609524396009}
-  m_Layer: 8
+  m_Layer: 6
   m_Name: Rib 4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2001,7 +2002,7 @@ GameObject:
   - component: {fileID: 8772468248755850303}
   - component: {fileID: 1224477826244285179}
   - component: {fileID: 1224477826244285176}
-  m_Layer: 8
+  m_Layer: 6
   m_Name: Right Leg
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2098,7 +2099,7 @@ GameObject:
   - component: {fileID: 4051244907346007089}
   - component: {fileID: 3412344529188705130}
   - component: {fileID: 4051244907346007054}
-  m_Layer: 8
+  m_Layer: 6
   m_Name: Rib 3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2196,7 +2197,7 @@ GameObject:
   - component: {fileID: 915883440399667435}
   - component: {fileID: 8152088245545762109}
   - component: {fileID: 915883440399667432}
-  m_Layer: 8
+  m_Layer: 6
   m_Name: Rib 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2294,7 +2295,7 @@ GameObject:
   - component: {fileID: 8005970861828011896}
   - component: {fileID: 5466072043464883781}
   - component: {fileID: 8646116602649774816}
-  m_Layer: 8
+  m_Layer: 6
   m_Name: Left Leg
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2391,7 +2392,7 @@ GameObject:
   - component: {fileID: 842768538932453827}
   - component: {fileID: 6705108023349222900}
   - component: {fileID: 842768538932453824}
-  m_Layer: 8
+  m_Layer: 6
   m_Name: Head
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2488,7 +2489,7 @@ GameObject:
   - component: {fileID: 6974573772813157275}
   - component: {fileID: 5800302036399255702}
   - component: {fileID: 3335301648915631006}
-  m_Layer: 8
+  m_Layer: 6
   m_Name: Spine
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2585,7 +2586,7 @@ GameObject:
   - component: {fileID: 3830953989271306562}
   - component: {fileID: 5587554211671176263}
   - component: {fileID: 3830953989271306563}
-  m_Layer: 8
+  m_Layer: 6
   m_Name: Rib 7
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2683,7 +2684,7 @@ GameObject:
   - component: {fileID: 7749214113841053545}
   - component: {fileID: 8670858190944688611}
   - component: {fileID: 4380373314687969415}
-  m_Layer: 8
+  m_Layer: 6
   m_Name: Upper Right Arm
   m_TagString: Untagged
   m_Icon: {fileID: 0}

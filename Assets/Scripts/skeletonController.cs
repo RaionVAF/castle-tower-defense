@@ -15,7 +15,7 @@ public class skeletonController : MonoBehaviour
     private GameObject skeletonModel, leftArmJoint, rightArmJoint, leftLegJoint, rightLegJoint, 
                        leftElbowJoint, rightElbowJoint, source;
     // Target placeholder (CHANGE)
-    targets targetScript;
+    boundary boundaryScript;
     private Transform target;
     public GameObject newArrow;
     public UnityEngine.AI.NavMeshAgent skeleton;
@@ -27,6 +27,8 @@ public class skeletonController : MonoBehaviour
     float attackingRange = 10f;
 
     public float health = 50;
+
+    public float damageOutput = 50;
 
     int attackInterval = 2;
 
@@ -59,9 +61,9 @@ public class skeletonController : MonoBehaviour
 
      
 
-        source = GameObject.Find("Targets"); 
+        source = GameObject.Find("Bounds"); 
         target = closestTarget();
-        targetScript = target.GetComponent<targets>();
+        boundaryScript = target.GetComponent<boundary>();
         skeleton.destination = target.position;
 
         StartCoroutine(animate());
@@ -72,7 +74,7 @@ public class skeletonController : MonoBehaviour
         if (!target.gameObject.active){
             target = closestTarget();
             skeleton.destination = target.position;
-            targetScript = target.GetComponent<targets>();
+            boundaryScript = target.GetComponent<boundary>();
             leftArmJoint.transform.localRotation = Quaternion.Euler(0, 0, 0);
             rightArmJoint.transform.localRotation = Quaternion.Euler(0, 0, 0);
         }
@@ -88,7 +90,7 @@ public class skeletonController : MonoBehaviour
     {
         //when enemy enters the shooting radius, add this enemy to enemyList
         GameObject enemy = other.gameObject;
-        if (enemy.tag == "weapon")
+        if (enemy.tag == "towerWeapon")
         {
             GameObject particles = Instantiate(deathParticleEffects, skeletonModel.transform.localPosition, deathParticleEffects.transform.localRotation);
             Destroy(particles);
@@ -142,11 +144,9 @@ public class skeletonController : MonoBehaviour
 
                 armsAreRaised = true;
             }          
-            GameObject arr = Instantiate(newArrow, leftArmJoint.transform.position, leftArmJoint.transform.localRotation);
-            arr.GetComponent<Projectile>().damageOutput = 50;
-            arr.GetComponent<Projectile>().target = target;
-            arr.GetComponent<Projectile>().settings("Tower", "skeletonweapon");
-            arr.transform.localScale = new Vector3(.25f, .25f, .125f);
+            GameObject createdarrow = Instantiate(newArrow, leftArmJoint.transform.position, leftArmJoint.transform.localRotation);
+            createdarrow.transform.localScale = new Vector3(.25f,.25f,.125f);
+            createdarrow.GetComponent<Projectile>().settings("enemyWeapon", target.tag, 50f, 40f, 240f, target);
             yield return new WaitForSeconds(attackInterval);
         }
             
