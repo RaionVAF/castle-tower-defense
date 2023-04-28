@@ -55,8 +55,6 @@ public class zombieController : MonoBehaviour
         targetScript = target.GetComponent<targets>();
         zombie.destination = target.position;
 
-        zombieAudio = GetComponent<AudioSource>();
-
         StartCoroutine(animate());
         StartCoroutine(attack());
     }
