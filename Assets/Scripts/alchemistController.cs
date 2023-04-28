@@ -17,7 +17,9 @@ public class alchemistController : MonoBehaviour
     // Alchemist model joint references
     private GameObject leftArmJoint, rightArmJoint, headJoint, alchemistHead;
     // Get interaction button reference
-    private GameObject interactionPopup = null;
+    public GameObject interactionPopup = null;
+
+    public int hexNum;
 
     // Constants
     float noddingRotationSpeed = 2f;
@@ -41,7 +43,7 @@ public class alchemistController : MonoBehaviour
         rightArmJoint = GameObject.Find("alchemist/Right Arm Joint");
 
         // Initialize button popup and set it inactive
-        interactionPopup = GameObject.Find("alchemist/Canvas Holder/Interaction Canvas/Interaction Popup");
+        // interactionPopup = GameObject.Find("alchemist/Canvas Holder/Interaction Canvas/Interaction Popup");
         interactionPopup.SetActive(false);
 
         // Fetch renderer from the GameObject
@@ -62,6 +64,7 @@ public class alchemistController : MonoBehaviour
         if (isPlayerDetected)
         {
             interactionPopup.SetActive(true);
+            // interactionPopup.transform.rotation = Quaternion.LookRotation(interactionPopup.transform.position - mainCamera.transform.position);
             floatPopup();
 
             // Activate camera interactions (E key switches cameras b/w menu and world)

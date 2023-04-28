@@ -17,7 +17,9 @@ public class blacksmithController : MonoBehaviour
     // Blacksmith model joint references
     private GameObject leftArmJoint, rightArmJoint, headJoint, blacksmithHead;
     // Get interaction button reference
-    private GameObject interactionPopup = null;
+    public GameObject interactionPopup;
+
+    public int hexNum;
 
     // Constants
     float noddingRotationSpeed = 2f;
@@ -41,7 +43,7 @@ public class blacksmithController : MonoBehaviour
         rightArmJoint = GameObject.Find("blacksmith/Right Arm Joint");
 
         // Initialize button popup and set it inactive
-        interactionPopup = GameObject.Find("blacksmith/Canvas Holder/Interaction Canvas/Interaction Popup");
+        // interactionPopup = GameObject.Find("blacksmith/Canvas Holder/Interaction Canvas/Interaction Popup");
         interactionPopup.SetActive(false);
 
         // Fetch renderer from the GameObject
@@ -62,6 +64,7 @@ public class blacksmithController : MonoBehaviour
         if (isPlayerDetected)
         {
             interactionPopup.SetActive(true);
+            interactionPopup.transform.rotation = Quaternion.LookRotation(interactionPopup.transform.position - mainCamera.transform.position);
             floatPopup();
 
             // Activate camera interactions (E key switches cameras b/w menu and world)

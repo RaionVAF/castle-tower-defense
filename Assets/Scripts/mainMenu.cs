@@ -6,6 +6,7 @@ public class mainMenu : MonoBehaviour
 {
     public GameObject menu;
     public GameObject playerUI;
+    public GameObject tutorial;
     // Start is called before the first frame update
     void Start()
     {
@@ -20,7 +21,8 @@ public class mainMenu : MonoBehaviour
 
     public void PlayGame(){
         menu.SetActive(false);
-        playerUI.SetActive(true);
+        // playerUI.SetActive(true);
+        tutorial.SetActive(true);
 	}
 
     public void QuitGame(){

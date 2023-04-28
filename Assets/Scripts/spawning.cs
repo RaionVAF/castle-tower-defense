@@ -46,27 +46,27 @@ public class spawning : MonoBehaviour
 
     IEnumerator spawn(){
 
-    WaitUntil lessthancap = new WaitUntil(() => enemyList.Count < mobcap);
+        WaitUntil lessthancap = new WaitUntil(() => enemyList.Count < mobcap);
 
-    while (true){
+        while (true){
 
-        yield return lessthancap;
+            yield return lessthancap;
 
-        plat = UnityEngine.Random.Range(0,1);
-        if (mobcap < 5){
-            // early game always spawns zombies
-            newmob = Instantiate(Zombie, spawnplats[plat].transform.position, spawnplats[plat].transform.rotation);
-        } else {
-            //probability for mobs to be spawned
-            int i = Random.Range(0,101);
-            if (i < 80){
+            plat = UnityEngine.Random.Range(0,1);
+            if (mobcap < 5){
+                // early game always spawns zombies
                 newmob = Instantiate(Zombie, spawnplats[plat].transform.position, spawnplats[plat].transform.rotation);
-            } else if (i > 80){
-                newmob = Instantiate(Skeleton, spawnplats[plat].transform.position, spawnplats[plat].transform.rotation);
+            } else {
+                //probability for mobs to be spawned
+                int i = Random.Range(0,101);
+                if (i < 80){
+                    newmob = Instantiate(Zombie, spawnplats[plat].transform.position, spawnplats[plat].transform.rotation);
+                } else if (i > 80){
+                    newmob = Instantiate(Skeleton, spawnplats[plat].transform.position, spawnplats[plat].transform.rotation);
+                }
             }
+            enemyList.Add(newmob);
         }
-        enemyList.Add(newmob);
-    }
     }
    
 }

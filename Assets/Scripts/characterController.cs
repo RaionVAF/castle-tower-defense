@@ -36,11 +36,6 @@ public class characterController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // Takes WASD input and applys it as:
-        //      - W up a region
-        //      - A towards castle
-        //      - S down a region
-        //      - D away from the castle
         Vector3 input = new Vector3(-1f * Input.GetAxis("Horizontal"), 0, -1f * Input.GetAxis("Vertical"));
         input = Quaternion.Euler(0, pivot.eulerAngles.y, 0) * input;
         playerRB.MovePosition(playerRB.position + input * Time.deltaTime * movementSpeed);
