@@ -52,7 +52,7 @@ public class spawning : MonoBehaviour
 
             yield return lessthancap;
 
-            plat = UnityEngine.Random.Range(0,1);
+            plat = UnityEngine.Random.Range(0,spawnplats.Length);
             if (mobcap < 5){
                 // early game always spawns zombies
                 newmob = Instantiate(Zombie, spawnplats[plat].transform.position, spawnplats[plat].transform.rotation);
