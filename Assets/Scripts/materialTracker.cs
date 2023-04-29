@@ -12,10 +12,10 @@ public class materialTracker : MonoBehaviour
     public TextMeshProUGUI[] blacksmith;
     public TextMeshProUGUI[] alchemist;
     
-    public int XPCount = 0;
-    public int WoodCount = 0;
-    public int StoneCount = 0;
-    public int IronCount = 0;
+    public static int XPCount = 300;
+    public static int WoodCount = 400;
+    public static int StoneCount = 300;
+    public static int IronCount = 300;
 
     public void Update()
     {

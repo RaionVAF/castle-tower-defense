@@ -8,7 +8,7 @@ public class Ballista : MonoBehaviour
 
     float velocity = 15f;
     float destroyRate = 6.5f;
-    public int damageOutput = 20;
+    public int damageOutput;
     public float shootingRate = 2.0f;
     public GameObject arrow;
     public GameObject bow;
@@ -24,6 +24,7 @@ public class Ballista : MonoBehaviour
      */
     void Start()
     {
+        damageOutput = 50;
         bow = transform.GetChild(0).gameObject;
         arrow = bow.transform.GetChild(0).gameObject;
         rotatePoint = transform.Find("rotatePoint").gameObject;
@@ -117,7 +118,7 @@ public class Ballista : MonoBehaviour
     
 
             GameObject arr2 = Instantiate(newArrow, arrow.transform.position, bow.transform.rotation);
-            arr2.GetComponent<Projectile>().damageOutput = 50;
+            arr2.GetComponent<Projectile>().damageOutput = damageOutput;
             arr2.GetComponent<Projectile>().target = enemyList[0].transform;
             arr2.GetComponent<Projectile>().settings("Enemy", "weapon");
             //Physics.IgnoreCollision(arr2.GetComponent<Collider>(), GetComponent<Collider>());
@@ -153,5 +154,4 @@ public class Ballista : MonoBehaviour
         }
         
     }
-
 }
