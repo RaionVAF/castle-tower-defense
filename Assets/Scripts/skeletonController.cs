@@ -11,36 +11,28 @@ public class skeletonController : MonoBehaviour
     public GameObject iron;
 
     // Zombie model rigidbody and joint references
-    private Rigidbody  skeletonRB;
     private GameObject skeletonModel, leftArmJoint, rightArmJoint, leftLegJoint, rightLegJoint, 
                        leftElbowJoint, rightElbowJoint, source;
     // Target placeholder (CHANGE)
-    targets targetScript;
+    boundary targetScript;
     private Transform target;
-    public GameObject newArrow;
+    private Vector3 targetVector;
+    public GameObject Arrow;
     public UnityEngine.AI.NavMeshAgent skeleton;
     // Speed constants
-    float movementSpeed = 3f;
-    float skeletonRotationSpeed = 2f;
+
     float jointRotationSpeed = 5f;
     float legRotationAngle = 15f;
-    float attackingRange = 10f;
 
-    public float health = 50;
+    public float health = 100;
+    public float damageOutput = 50;
 
     int attackInterval = 2;
 
     // Bool member to run moving animation script if true
-    bool isMoving = false;
-    bool finishedRotating = false;
-    bool finishedMoving = false;
-    bool appliedForce = false;
     public bool armsAreRaised = false;
 
- 
 
-    // PLACEHOLDER BOOLEAN TO TEST DEATH ANIMATION
-    bool isDead = false;
 
     // Start is called before the first frame update
     void Start()
@@ -48,31 +40,31 @@ public class skeletonController : MonoBehaviour
         // Initialize GameObjects that will be used for animating
 
         // Edit: access local gameobject instead of gameobject.find
-        skeleton.stoppingDistance = 20f;
+        skeleton.stoppingDistance = 25f;
+        skeleton.avoidancePriority = Random.Range(0,99);
 
-        skeletonRB = GetComponent<Rigidbody>();
         skeletonModel = transform.gameObject;
         leftArmJoint = transform.GetChild(4).gameObject;
         rightArmJoint = transform.GetChild(5).gameObject;
         leftLegJoint = transform.GetChild(6).gameObject;
         rightLegJoint = transform.GetChild(7).gameObject;
 
-     
-
         source = GameObject.Find("Targets"); 
         target = closestTarget();
-        targetScript = target.GetComponent<targets>();
-        skeleton.destination = target.position;
+        targetVector = new Vector3(target.position.x, 0f, target.position.z);
+        targetScript = target.GetComponent<boundary>();
+        skeleton.destination = targetVector;
 
         StartCoroutine(animate());
         StartCoroutine(attack());
     }
     void Update()
     {
-        if (!target.gameObject.active){
+        if (!target.gameObject.activeInHierarchy){
             target = closestTarget();
-            skeleton.destination = target.position;
-            targetScript = target.GetComponent<targets>();
+            targetVector = new Vector3(target.position.x, 0f, target.position.z);
+            skeleton.destination = targetVector;
+            targetScript = target.GetComponent<boundary>();
             leftArmJoint.transform.localRotation = Quaternion.Euler(0, 0, 0);
             rightArmJoint.transform.localRotation = Quaternion.Euler(0, 0, 0);
         }
@@ -88,7 +80,7 @@ public class skeletonController : MonoBehaviour
     {
         //when enemy enters the shooting radius, add this enemy to enemyList
         GameObject enemy = other.gameObject;
-        if (enemy.tag == "weapon")
+        if (enemy.tag == "towerWeapon")
         {
             GameObject particles = Instantiate(deathParticleEffects, skeletonModel.transform.localPosition, deathParticleEffects.transform.localRotation);
             Destroy(particles);
@@ -100,7 +92,7 @@ public class skeletonController : MonoBehaviour
     IEnumerator animate()
     {
         // Create a WaitUntil object that will wait until isMoving is true
-        WaitUntil isMoving = new WaitUntil(() => Vector3.Distance(transform.position, target.position) >= skeleton.stoppingDistance);
+        WaitUntil isMoving = new WaitUntil(() => Vector3.Distance(transform.position, targetVector) >= skeleton.stoppingDistance);
 
         while (true)
         {
@@ -121,17 +113,15 @@ public class skeletonController : MonoBehaviour
 
     IEnumerator attack()
     {
-        WaitUntil inRange = new WaitUntil(() => Vector3.Distance(transform.position, target.position) <= skeleton.stoppingDistance);
+        WaitUntil inRange = new WaitUntil(() => Vector3.Distance(transform.position, targetVector) <= skeleton.stoppingDistance);
 
         while (true){
             yield return inRange;
 
-            if (Vector3.Distance(transform.position, target.position) <= skeleton.stoppingDistance){
+            if (skeleton.isOnNavMesh && Vector3.Distance(transform.position, targetVector) <= skeleton.stoppingDistance){
                 resetMovementJoints();
-                if (skeleton.isOnNavMesh){
-                    skeleton.ResetPath();
-                }
-                transform.LookAt(target);  
+                skeleton.ResetPath();
+                transform.LookAt(targetVector);
             }
             
             if (!armsAreRaised)
@@ -142,11 +132,9 @@ public class skeletonController : MonoBehaviour
 
                 armsAreRaised = true;
             }          
-            GameObject arr = Instantiate(newArrow, leftArmJoint.transform.position, leftArmJoint.transform.localRotation);
-            arr.GetComponent<Projectile>().damageOutput = 50;
-            arr.GetComponent<Projectile>().target = target;
-            arr.GetComponent<Projectile>().settings("Tower", "skeletonweapon");
-            arr.transform.localScale = new Vector3(.25f, .25f, .125f);
+            GameObject createdammo = Instantiate(Arrow, leftArmJoint.transform.position, leftArmJoint.transform.rotation);
+            createdammo.GetComponent<Projectile>().settings("enemyWeapon", target.tag, damageOutput, 80f, 240f, target);
+            createdammo.transform.localScale = new Vector3(.25f, .25f, .125f);
             yield return new WaitForSeconds(attackInterval);
         }
             
@@ -172,7 +160,7 @@ public class skeletonController : MonoBehaviour
         float minDist = Mathf.Infinity;
         foreach (Transform t in source.transform)
         {
-            if (!t.gameObject.active){
+            if (!t.gameObject.activeInHierarchy){
                 continue;
             }
             float dist = Vector3.Distance(t.position, transform.position);
@@ -183,7 +171,7 @@ public class skeletonController : MonoBehaviour
             }
         }
         return closest;
-    }  
+    }    
 
     private void SpawnMaterial(){
         int randomInt = Random.Range(1, 101);

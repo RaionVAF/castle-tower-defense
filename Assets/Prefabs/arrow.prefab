@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 8331411326086199488}
   m_Layer: 6
   m_Name: arrow
-  m_TagString: weapon
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -114,6 +114,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damageOutput: 1
   target: {fileID: 0}
+  thisTag: 
+  targetTag: 
 --- !u!54 &8331411326086199488
 Rigidbody:
   m_ObjectHideFlags: 0

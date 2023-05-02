@@ -8,9 +8,11 @@ public class tutorial : MonoBehaviour
 {
     public GameObject player;
     public GameObject king;
+    public GameObject spawn;
 
     private characterController playerController;
     private kingController kingController;
+    public GameObject maincam;
 
     public GameObject playerUI;
     public GameObject tutorialUI;
@@ -52,6 +54,7 @@ public class tutorial : MonoBehaviour
 
     void OnEnable()
     {
+
         playerController = player.GetComponent<characterController>();
         playerController.enabled = false;
 
@@ -125,6 +128,8 @@ public class tutorial : MonoBehaviour
         directionPopup.SetActive(false);
         tutorialUI.SetActive(false);
         playerUI.SetActive(true);
+        maincam.GetComponent<cameraManager>().followcam = true;
+        spawn.SetActive(true);
     }
 
     public void nextButton(){

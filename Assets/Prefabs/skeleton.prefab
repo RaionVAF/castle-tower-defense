@@ -359,9 +359,10 @@ MonoBehaviour:
   wood: {fileID: 3807756189239285795, guid: 48763318232413841bc36e62b95fcd01, type: 3}
   stone: {fileID: 4744405160977385580, guid: c2c7e91a9329c8644ac81cba1c60564b, type: 3}
   iron: {fileID: 4337311903292609315, guid: 5cdbda217e75fe9418ac9ed0aa7b5c64, type: 3}
-  newArrow: {fileID: 199154194798286668, guid: 6778912db95234e418a05cd4f9bb1bfa, type: 3}
+  Arrow: {fileID: 199154194798286668, guid: 6778912db95234e418a05cd4f9bb1bfa, type: 3}
   skeleton: {fileID: -2379737985048501827}
   health: 100
+  damageOutput: 50
   armsAreRaised: 0
 --- !u!195 &-2379737985048501827
 NavMeshAgent:
@@ -372,7 +373,7 @@ NavMeshAgent:
   m_GameObject: {fileID: 1693841787932924158}
   m_Enabled: 1
   m_AgentTypeID: 0
-  m_Radius: 1.5
+  m_Radius: 2
   m_Speed: 8
   m_Acceleration: 16
   avoidancePriority: 50
