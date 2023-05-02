@@ -31,6 +31,9 @@ public class zombieController : MonoBehaviour
 
     public float health = 100;
 
+    public AudioSource audioSource;
+    public AudioClip hit;
+
     // Bool member to run moving animation script if true
     bool isMoving = false;
     bool finishedRotating = false;
@@ -54,6 +57,8 @@ public class zombieController : MonoBehaviour
         target = closestTarget();
         targetScript = target.GetComponent<targets>();
         zombie.destination = target.position;
+
+        audioSource = GetComponent<AudioSource>();
 
         StartCoroutine(animate());
         StartCoroutine(attack());
@@ -86,6 +91,7 @@ public class zombieController : MonoBehaviour
         {
             GameObject particles = Instantiate(deathParticleEffects, zombieModel.transform.localPosition, deathParticleEffects.transform.localRotation);
             Destroy(particles);
+            audioSource.PlayOneShot(hit, 0.9f);
             health -= enemy.GetComponent<Projectile>().damageOutput;
         }
     }

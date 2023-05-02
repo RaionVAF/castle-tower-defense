@@ -243,7 +243,7 @@ MonoBehaviour:
   rotatePoint: {fileID: 0}
   enemyList: []
   ballistaAudio: {fileID: 0}
-  hitSound: {fileID: 8300000, guid: d355a15367d2b488c8974cf37c650e04, type: 3}
+  hitSound: {fileID: 8300000, guid: 8748f866d99564d34be2ba2cdd5daec0, type: 3}
 --- !u!54 &6329387850141135395
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -285,6 +285,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b2f66809d7e634bcaafb715865f40019, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  leftTower: {fileID: 0}
+  rightTower: {fileID: 0}
+  centerTower1: {fileID: 0}
+  centerTower2: {fileID: 0}
+  leftStoneButton: {fileID: 0}
+  leftWoodButton: {fileID: 0}
+  leftIronButton: {fileID: 0}
+  rightStoneButton: {fileID: 0}
+  rightWoodButton: {fileID: 0}
+  rightIronButton: {fileID: 0}
+  centerStoneButton: {fileID: 0}
+  centerWoodButton: {fileID: 0}
+  centerIronButton: {fileID: 0}
+  leftStoneText: {fileID: 0}
+  leftWoodText: {fileID: 0}
+  leftIronText: {fileID: 0}
+  rightStoneText: {fileID: 0}
+  rightWoodText: {fileID: 0}
+  rightIronText: {fileID: 0}
+  centerStoneText: {fileID: 0}
+  centerWoodText: {fileID: 0}
+  centerIronText: {fileID: 0}
 --- !u!82 &7032617615890283538
 AudioSource:
   m_ObjectHideFlags: 0
@@ -295,7 +317,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: d355a15367d2b488c8974cf37c650e04, type: 3}
+  m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
   m_Volume: 0.46
   m_Pitch: 1

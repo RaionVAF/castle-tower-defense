@@ -763,10 +763,9 @@ MonoBehaviour:
   stone: {fileID: 4744405160977385580, guid: c2c7e91a9329c8644ac81cba1c60564b, type: 3}
   iron: {fileID: 4337311903292609315, guid: 5cdbda217e75fe9418ac9ed0aa7b5c64, type: 3}
   zombie: {fileID: -1230397017939091305}
-  zombieAudio: {fileID: 0}
-  zombieCry: {fileID: 0}
-  zombieHit: {fileID: 8300000, guid: cd68cc6e86da144c7bb8411440b63269, type: 3}
   health: 100
+  audioSource: {fileID: 0}
+  hit: {fileID: 8300000, guid: cd68cc6e86da144c7bb8411440b63269, type: 3}
 --- !u!195 &-1230397017939091305
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -812,15 +811,15 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 0
-  m_Volume: 1
+  m_audioClip: {fileID: 8300000, guid: c82f34da93b5346018c33376e2612d51, type: 3}
+  m_PlayOnAwake: 1
+  m_Volume: 0.34
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
-  Priority: 128
+  Priority: 173
   DopplerLevel: 1
   MinDistance: 1
   MaxDistance: 500

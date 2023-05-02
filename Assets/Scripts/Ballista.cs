@@ -16,7 +16,7 @@ public class Ballista : MonoBehaviour
     public GameObject rotatePoint;
     public List<GameObject> enemyList = new List<GameObject>();
     public AudioSource ballistaAudio;
-    public AudioClip hitSound;
+    public AudioClip shootSound;
 
     /*
      * Start() first uses the arrow already in the tower model. Shoot() is then called
@@ -133,7 +133,7 @@ public class Ballista : MonoBehaviour
 
             //StartCoroutine(RemoveArrow(arr2));
 
-            ballistaAudio.PlayOneShot(hitSound, 0.6f);
+            ballistaAudio.PlayOneShot(shootSound, 0.6f);
 
             yield return new WaitForSeconds(shootingRate);
         }

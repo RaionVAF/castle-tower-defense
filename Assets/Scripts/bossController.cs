@@ -29,6 +29,10 @@ public class bossController : MonoBehaviour
     // Death boolean
     bool isDead = false;
 
+    // Audio
+    public AudioSource audioSource;
+    public AudioClip hit;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -39,6 +43,9 @@ public class bossController : MonoBehaviour
         rightArmJoint = GameObject.Find("boss/Right Arm Joint");
         leftLegJoint = GameObject.Find("boss/Left Leg Joint");
         rightLegJoint = GameObject.Find("boss/Right Leg Joint");
+
+        // Get audio source
+        audioSource = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
