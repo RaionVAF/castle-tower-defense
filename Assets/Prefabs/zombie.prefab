@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3393736578767023033}
   - component: {fileID: 3393736578767023032}
   - component: {fileID: 3393736578767023039}
-  m_Layer: 8
+  m_Layer: 6
   m_Name: Right Arm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -109,7 +109,7 @@ GameObject:
   - component: {fileID: 3393736578819927795}
   - component: {fileID: 3393736578819927794}
   - component: {fileID: 3393736578819927793}
-  m_Layer: 8
+  m_Layer: 6
   m_Name: Left Arm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -206,7 +206,7 @@ GameObject:
   - component: {fileID: 3393736578899678863}
   - component: {fileID: 3393736578899678862}
   - component: {fileID: 3393736578899678861}
-  m_Layer: 8
+  m_Layer: 6
   m_Name: Right Leg
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -302,7 +302,7 @@ GameObject:
   - component: {fileID: 3393736578929063781}
   - component: {fileID: 3393736578929063783}
   - component: {fileID: 3393736578929063782}
-  m_Layer: 8
+  m_Layer: 6
   m_Name: Right Arm Joint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -358,7 +358,7 @@ GameObject:
   - component: {fileID: 3393736579468617371}
   - component: {fileID: 3393736579468617370}
   - component: {fileID: 3393736579468617369}
-  m_Layer: 8
+  m_Layer: 6
   m_Name: Body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -454,7 +454,7 @@ GameObject:
   - component: {fileID: 3393736579933334245}
   - component: {fileID: 3393736579933334247}
   - component: {fileID: 3393736579933334246}
-  m_Layer: 8
+  m_Layer: 6
   m_Name: Left Leg Joint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -509,7 +509,7 @@ GameObject:
   - component: {fileID: 3393736580311399586}
   - component: {fileID: 3393736580311399580}
   - component: {fileID: 3393736580311399587}
-  m_Layer: 8
+  m_Layer: 6
   m_Name: Left Arm Joint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -565,7 +565,7 @@ GameObject:
   - component: {fileID: 3393736580386485380}
   - component: {fileID: 3393736580386485387}
   - component: {fileID: 3393736580386485386}
-  m_Layer: 8
+  m_Layer: 6
   m_Name: Head
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -661,7 +661,7 @@ GameObject:
   - component: {fileID: 3393736580435247728}
   - component: {fileID: 3393736580435247730}
   - component: {fileID: 3393736580435247729}
-  m_Layer: 8
+  m_Layer: 6
   m_Name: Right Leg Joint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -718,7 +718,7 @@ GameObject:
   - component: {fileID: -1230397017939091305}
   - component: {fileID: -4578729986194644605}
   - component: {fileID: -3718877977474351845}
-  m_Layer: 8
+  m_Layer: 6
   m_Name: zombie
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -763,9 +763,7 @@ MonoBehaviour:
   stone: {fileID: 4744405160977385580, guid: c2c7e91a9329c8644ac81cba1c60564b, type: 3}
   iron: {fileID: 4337311903292609315, guid: 5cdbda217e75fe9418ac9ed0aa7b5c64, type: 3}
   zombie: {fileID: -1230397017939091305}
-  zombieAudio: {fileID: 0}
-  zombieCry: {fileID: 0}
-  zombieHit: {fileID: 8300000, guid: cd68cc6e86da144c7bb8411440b63269, type: 3}
+  target: {fileID: 0}
   health: 100
 --- !u!195 &-1230397017939091305
 NavMeshAgent:
@@ -910,7 +908,7 @@ GameObject:
   - component: {fileID: 3393736580509662537}
   - component: {fileID: 3393736580509662536}
   - component: {fileID: 3393736580509662543}
-  m_Layer: 8
+  m_Layer: 6
   m_Name: Left Leg
   m_TagString: Untagged
   m_Icon: {fileID: 0}

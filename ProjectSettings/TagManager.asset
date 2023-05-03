@@ -8,10 +8,10 @@ TagManager:
   - alchemist
   - weapon
   - Enemy
-  - Tower
   - spawnplat
-  - temptarget
-  - skeletonweapon
+  - enemyWeapon
+  - towerWeapon
+  - Structure
   layers:
   - Default
   - TransparentFX
@@ -19,9 +19,9 @@ TagManager:
   - TOWER
   - Water
   - UI
-  - WEAPON
+  - combat
   - 
-  - ENEMY
+  - 
   - 
   - 
   - 
