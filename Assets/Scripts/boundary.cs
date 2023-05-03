@@ -6,15 +6,25 @@ public class boundary : MonoBehaviour
 {
     public GameObject building;
     public bool isAttackable = true;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
+    public float health = 2500;
+   
     void Update()
     {
-        
+        if (health <= 0){
+            this.gameObject.SetActive(false);
+        }
+    }
+
+    void OnTriggerEnter(Collider other)
+    {
+        GameObject enemy = other.gameObject;
+        if (enemy.tag == "enemyWeapon")
+        {
+            health -= enemy.GetComponent<Projectile>().damageOutput;
+        }
+    }
+
+    public void hit(float damage){
+        health -= damage;
     }
 }
