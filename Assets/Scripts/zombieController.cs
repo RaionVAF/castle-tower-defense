@@ -60,6 +60,8 @@ public class zombieController : MonoBehaviour
 
         audioSource = GetComponent<AudioSource>();
 
+        Debug.Log("heyyyyy");
+
         StartCoroutine(animate());
         StartCoroutine(attack());
     }

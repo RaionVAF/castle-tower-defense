@@ -37,10 +37,14 @@ public class skeletonController : MonoBehaviour
     bool appliedForce = false;
     public bool armsAreRaised = false;
 
- 
-
     // PLACEHOLDER BOOLEAN TO TEST DEATH ANIMATION
     bool isDead = false;
+
+    // Audio source and audio clip when hit
+
+    public AudioSource audioSource;
+    public AudioClip skeletonHit;
+    public AudioClip skeletonDeath;
 
     // Start is called before the first frame update
     void Start()
@@ -57,12 +61,12 @@ public class skeletonController : MonoBehaviour
         leftLegJoint = transform.GetChild(6).gameObject;
         rightLegJoint = transform.GetChild(7).gameObject;
 
-     
-
         source = GameObject.Find("Targets"); 
         target = closestTarget();
         targetScript = target.GetComponent<targets>();
         skeleton.destination = target.position;
+
+        audioSource = GetComponent<AudioSource>();
 
         StartCoroutine(animate());
         StartCoroutine(attack());
@@ -79,6 +83,8 @@ public class skeletonController : MonoBehaviour
 
         if (health <= 0){
             SpawnMaterial();
+            Debug.Log("NAME: " + audioSource.name);
+            audioSource.PlayOneShot(skeletonDeath, 0.8f);
             Destroy(gameObject);
         }
     }
@@ -92,6 +98,7 @@ public class skeletonController : MonoBehaviour
         {
             GameObject particles = Instantiate(deathParticleEffects, skeletonModel.transform.localPosition, deathParticleEffects.transform.localRotation);
             Destroy(particles);
+            audioSource.PlayOneShot(skeletonHit, 1f);
             health -= enemy.GetComponent<Projectile>().damageOutput;
         }
     }
