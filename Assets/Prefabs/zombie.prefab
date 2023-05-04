@@ -765,6 +765,10 @@ MonoBehaviour:
   zombie: {fileID: -1230397017939091305}
   target: {fileID: 0}
   health: 100
+  audioSource: {fileID: 0}
+  externalAudio: {fileID: 0}
+  dropClip: {fileID: 8300000, guid: ad471970a500140cdad124b5ce66dfd1, type: 3}
+  hitClip: {fileID: 8300000, guid: cd68cc6e86da144c7bb8411440b63269, type: 3}
 --- !u!195 &-1230397017939091305
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -810,11 +814,11 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 0
-  m_Volume: 1
+  m_audioClip: {fileID: 8300000, guid: c82f34da93b5346018c33376e2612d51, type: 3}
+  m_PlayOnAwake: 1
+  m_Volume: 0.35
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0

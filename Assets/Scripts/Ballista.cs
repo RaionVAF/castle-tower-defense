@@ -15,8 +15,8 @@ public class Ballista : MonoBehaviour
     public GameObject ammo;
     public GameObject rotatePoint;
     public List<GameObject> enemyList = new List<GameObject>();
-    public AudioSource ballistaAudio;
-    public AudioClip hitSound;
+    public AudioSource audioSource;
+    public AudioClip shootSound;
 
     /*
      * Start() first uses the arrow already in the tower model. Shoot() is then called
@@ -28,6 +28,8 @@ public class Ballista : MonoBehaviour
         body = transform.GetChild(0).gameObject;
         ammostart = body.transform.GetChild(0).gameObject;
         rotatePoint = transform.Find("rotatePoint").gameObject;
+
+        audioSource = GetComponent<AudioSource>();
 
         //START COROUTINE TO SHOOT ARROWS
         StartCoroutine(Shoot());
@@ -126,7 +128,9 @@ public class Ballista : MonoBehaviour
             createdammo.GetComponent<Projectile>().settings("towerWeapon", enemyList[0].transform.gameObject.tag, damageOutput, velocity, rotationSpeed, enemyList[0].transform);
             if (towerType == "Catapult"){
                 body.transform.rotation = Quaternion.Slerp(body.transform.rotation, Quaternion.Euler(-60f, 0 ,0), Time.deltaTime);
-            }  
+            }
+
+            audioSource.PlayOneShot(shootSound, 1f);
 
             yield return new WaitForSeconds(shootingRate);
         }

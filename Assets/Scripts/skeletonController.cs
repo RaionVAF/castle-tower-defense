@@ -32,7 +32,12 @@ public class skeletonController : MonoBehaviour
     // Bool member to run moving animation script if true
     public bool armsAreRaised = false;
 
-
+    // Audio
+    public AudioSource audioSource;
+    public AudioSource externalSource;
+    public AudioClip skeletonHit;
+    public AudioClip skeletonDeath;
+    public AudioClip shoot;
 
     // Start is called before the first frame update
     void Start()
@@ -55,6 +60,9 @@ public class skeletonController : MonoBehaviour
         targetScript = target.GetComponent<boundary>();
         skeleton.destination = targetVector;
 
+        audioSource = GetComponent<AudioSource>();
+        externalSource = GameObject.Find("backgroundAudio").gameObject.GetComponent<AudioSource>();
+
         StartCoroutine(animate());
         StartCoroutine(attack());
     }
@@ -71,6 +79,7 @@ public class skeletonController : MonoBehaviour
 
         if (health <= 0){
             SpawnMaterial();
+            externalSource.PlayOneShot(skeletonDeath, 0.8f);
             Destroy(gameObject);
         }
     }
@@ -85,6 +94,7 @@ public class skeletonController : MonoBehaviour
             GameObject particles = Instantiate(deathParticleEffects, skeletonModel.transform.localPosition, deathParticleEffects.transform.localRotation);
             Destroy(particles);
             health -= enemy.GetComponent<Projectile>().damageOutput;
+            audioSource.PlayOneShot(skeletonHit, 0.8f);
         }
     }
 
@@ -135,6 +145,7 @@ public class skeletonController : MonoBehaviour
             GameObject createdammo = Instantiate(Arrow, leftArmJoint.transform.position, leftArmJoint.transform.rotation);
             createdammo.GetComponent<Projectile>().settings("enemyWeapon", target.tag, damageOutput, 80f, 240f, target);
             createdammo.transform.localScale = new Vector3(.25f, .25f, .125f);
+            audioSource.PlayOneShot(shoot, 1f);
             yield return new WaitForSeconds(attackInterval);
         }
             

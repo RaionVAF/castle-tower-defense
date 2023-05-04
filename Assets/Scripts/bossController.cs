@@ -32,6 +32,10 @@ public class bossController : MonoBehaviour
     // Bool member to run moving animation script if true
     bool armsAreRaised = false;
 
+    // Audio
+    public AudioSource audioSource;
+    public AudioClip hitClip;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -50,6 +54,8 @@ public class bossController : MonoBehaviour
         targetVector = new Vector3(target.position.x, 0, target.position.z) ;
         targetScript = target.GetComponent<boundary>();
         bossKnight.destination = targetVector;
+
+        audioSource = GetComponent<AudioSource>();
 
         StartCoroutine(animate());
         StartCoroutine(attack());
@@ -86,6 +92,7 @@ public class bossController : MonoBehaviour
         {
             //GameObject particles = Instantiate(deathParticleEffects, zombieModel.transform.localPosition, deathParticleEffects.transform.localRotation);
             //Destroy(particles);
+            audioSource.PlayOneShot(hitClip, 1f);
             health -= enemy.GetComponent<Projectile>().damageOutput;
         }
     }

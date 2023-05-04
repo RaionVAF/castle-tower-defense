@@ -29,8 +29,12 @@ public class zombieController : MonoBehaviour
 
     // Bool member to run moving animation script if true
     bool armsAreRaised = false;
- 
 
+    // Audio
+    public AudioSource audioSource, externalAudio;
+    public AudioClip dropClip;
+    public AudioClip hitClip;
+ 
     // Start is called before the first frame update
     void Start()
     {
@@ -50,6 +54,8 @@ public class zombieController : MonoBehaviour
         targetScript = target.GetComponent<boundary>();
         zombie.destination = targetVector;
 
+        audioSource = gameObject.GetComponent<AudioSource>();
+
         StartCoroutine(animate());
         StartCoroutine(attack());
     }
@@ -67,6 +73,7 @@ public class zombieController : MonoBehaviour
         }
 
         if (health <= 0){
+            audioSource.PlayOneShot(dropClip, 1f);
             SpawnMaterial();
             Destroy(gameObject);
         }
@@ -81,6 +88,7 @@ public class zombieController : MonoBehaviour
             //GameObject particles = Instantiate(deathParticleEffects, zombieModel.transform.localPosition, deathParticleEffects.transform.localRotation);
             //Destroy(particles);
             health -= enemy.GetComponent<Projectile>().damageOutput;
+            audioSource.PlayOneShot(hitClip, 1f);
         }
     }
 
