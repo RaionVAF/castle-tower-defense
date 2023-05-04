@@ -27,6 +27,7 @@ public class Projectile : MonoBehaviour
             Destroy(gameObject);
         }
     }
+    
     public void settings(string inputThisTag, string inputTargetTag, float inputDamage, float inputVelocity, float inputRotation, Transform inputTarget){
         if (inputTargetTag == "Enemy"){
             targetoffset = new Vector3(0, 3, 0);
@@ -41,6 +42,7 @@ public class Projectile : MonoBehaviour
         target = inputTarget;
         activate = true;
     }
+
     void OnTriggerEnter(Collider other)
     {
         GameObject enemy = other.gameObject;

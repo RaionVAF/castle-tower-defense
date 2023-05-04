@@ -16,35 +16,33 @@ public class zombieController : MonoBehaviour
     public GameObject stone;
     public GameObject iron;
     public NavMeshAgent zombie;
+    public GameObject particles;
+    private GameObject materialManager;
+    private materialTracker materials;
 
-    targets targetScript;
-
-    float movementSpeed = 1f;
-    float zombieRotationSpeed = 1.5f;
+    boundary targetScript;
     float jointRotationSpeed = 5f;
     float legRotationAngle = 15f;
-    float attackingRange = 2f;
+    public Transform target;
+    private Vector3 targetVector;
 
-    private Transform target;
-
-    float attackdamage = 20;
+    float attackdamage = 250;
 
     public float health = 100;
 
+    // Bool member to run moving animation script if true
+    bool armsAreRaised = false;
+
+    // Audio source and audio clip when hit
     public AudioSource audioSource;
     public AudioClip hit;
-
-    // Bool member to run moving animation script if true
-    bool isMoving = false;
-    bool finishedRotating = false;
-    bool finishedMoving = false;
-    bool armsAreRaised = false;
-    bool appliedForce = false;
+ 
 
     // Start is called before the first frame update
     void Start()
     {
-        zombie.stoppingDistance = 10f;
+        zombie.stoppingDistance = 16f;
+        zombie.avoidancePriority = Random.Range(0,99);
 
         zombieRB = GetComponent<Rigidbody>();
         zombieModel = transform.gameObject;
@@ -55,12 +53,14 @@ public class zombieController : MonoBehaviour
 
         source = GameObject.Find("Targets"); 
         target = closestTarget();
-        targetScript = target.GetComponent<targets>();
-        zombie.destination = target.position;
+        targetVector = new Vector3(target.position.x, transform.position.y, target.position.z) ;
+        targetScript = target.GetComponent<boundary>();
+        zombie.destination = targetVector;
+
+        materialManager = GameObject.Find("Material Manager"); 
+        materials = materialManager.GetComponent<materialTracker>();
 
         audioSource = GetComponent<AudioSource>();
-
-        Debug.Log("heyyyyy");
 
         StartCoroutine(animate());
         StartCoroutine(attack());
@@ -69,30 +69,31 @@ public class zombieController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!target.gameObject.active){
+        if (!target.gameObject.activeInHierarchy){
             target = closestTarget();
-            zombie.destination = target.position;
-            targetScript = target.GetComponent<targets>();
+            targetVector = new Vector3(target.position.x, 0f, target.position.z) ;
+            zombie.destination = targetVector;
+            targetScript = target.GetComponent<boundary>();
             leftArmJoint.transform.localRotation = Quaternion.Euler(-90f, 0, 0);
             rightArmJoint.transform.localRotation = Quaternion.Euler(-90f, 0, 0);
         }
 
         if (health <= 0){
+            SpawnXP();
             SpawnMaterial();
+            // audioSource.PlayOneShot(zombieDeath, 0.8f);
             Destroy(gameObject);
         }
-
-
     }
 
     void OnTriggerEnter(Collider other)
     {
         //when enemy enters the shooting radius, add this enemy to enemyList
         GameObject enemy = other.gameObject;
-        if (enemy.tag == "weapon")
+        if (enemy.tag == "towerWeapon")
         {
-            GameObject particles = Instantiate(deathParticleEffects, zombieModel.transform.localPosition, deathParticleEffects.transform.localRotation);
-            Destroy(particles);
+            //GameObject particles = Instantiate(deathParticleEffects, zombieModel.transform.localPosition, deathParticleEffects.transform.localRotation);
+            //Destroy(particles);
             audioSource.PlayOneShot(hit, 0.9f);
             health -= enemy.GetComponent<Projectile>().damageOutput;
         }
@@ -102,32 +103,30 @@ public class zombieController : MonoBehaviour
     IEnumerator animate()
     {
         // Create a WaitUntil object that will wait until isMoving is true
-        WaitUntil isMoving = new WaitUntil(() => Vector3.Distance(transform.position, target.position) >= zombie.stoppingDistance);
+        WaitUntil isMoving = new WaitUntil(() => Vector3.Distance(transform.position, targetVector) >= zombie.stoppingDistance);
 
         while (true)
         {
             yield return isMoving; 
-
-            //stand.enabled = false;
-        float legRotation = Mathf.Sin(Time.time * jointRotationSpeed) * legRotationAngle;
-        leftLegJoint.transform.localRotation = Quaternion.AngleAxis(-legRotation, Vector3.left);
-        rightLegJoint.transform.localRotation = Quaternion.AngleAxis(legRotation, Vector3.left);
+            float legRotation = Mathf.Sin(Time.time * jointRotationSpeed) * legRotationAngle;
+            leftLegJoint.transform.localRotation = Quaternion.AngleAxis(-legRotation, Vector3.left);
+            rightLegJoint.transform.localRotation = Quaternion.AngleAxis(legRotation, Vector3.left);
         }
     }
 
     IEnumerator attack()
     {
-        WaitUntil inRange = new WaitUntil(() => Vector3.Distance(transform.position, target.position) <= zombie.stoppingDistance);
+        WaitUntil inRange = new WaitUntil(() => Vector3.Distance(transform.position, targetVector) <= zombie.stoppingDistance);
 
-        while (true){
+        while (true)
+        {
             yield return inRange;
-
-            if (Vector3.Distance(transform.position, target.position) <= zombie.stoppingDistance){
+            
+            if (zombie.isOnNavMesh && Vector3.Distance(transform.position, targetVector) <= zombie.stoppingDistance){
                 resetMovementJoints();
-                if (zombie.isOnNavMesh){
-                    zombie.ResetPath();
-                }
-                transform.LookAt(target);
+                zombie.ResetPath();
+                // Negates y location so model does not tilt when looking at target
+                transform.LookAt(targetVector);
             }
            
 
@@ -185,7 +184,7 @@ public class zombieController : MonoBehaviour
         float minDist = Mathf.Infinity;
         foreach (Transform t in source.transform)
         {
-            if (!t.gameObject.active){
+            if (!t.gameObject.activeInHierarchy){
                 continue;
             }
             float dist = Vector3.Distance(t.position, transform.position);
@@ -197,6 +196,12 @@ public class zombieController : MonoBehaviour
         }
         return closest;
     }   
+
+    private void SpawnXP(){
+        Instantiate(particles, zombieModel.transform.localPosition, particles.transform.localRotation);
+
+        materials.changeXP(10);
+    }
 
     private void SpawnMaterial(){
         int randomInt = Random.Range(1, 101);
