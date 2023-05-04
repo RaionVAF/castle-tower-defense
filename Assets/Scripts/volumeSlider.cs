@@ -6,7 +6,7 @@ using UnityEngine.UI; //to access UI features
 public class volumeSlider : MonoBehaviour
 {
 
-    Slider slider;
+    [SerializeField] Slider slider;
 
     // Start is called before the first frame update
     void Start()

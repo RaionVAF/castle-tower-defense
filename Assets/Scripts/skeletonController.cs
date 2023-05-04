@@ -9,33 +9,42 @@ public class skeletonController : MonoBehaviour
     public GameObject wood;
     public GameObject stone;
     public GameObject iron;
-    public GameObject particles;
-    private GameObject materialManager;
-    private materialTracker materials;
 
     // Zombie model rigidbody and joint references
+    private Rigidbody  skeletonRB;
     private GameObject skeletonModel, leftArmJoint, rightArmJoint, leftLegJoint, rightLegJoint, 
                        leftElbowJoint, rightElbowJoint, source;
     // Target placeholder (CHANGE)
-    boundary targetScript;
+    targets targetScript;
     private Transform target;
-    private Vector3 targetVector;
-    public GameObject Arrow;
+    public GameObject newArrow;
     public UnityEngine.AI.NavMeshAgent skeleton;
     // Speed constants
-
+    float movementSpeed = 3f;
+    float skeletonRotationSpeed = 2f;
     float jointRotationSpeed = 5f;
     float legRotationAngle = 15f;
+    float attackingRange = 10f;
 
-    public float health = 100;
-    public float damageOutput = 50;
+    public float health = 50;
 
     int attackInterval = 2;
 
     // Bool member to run moving animation script if true
+    bool isMoving = false;
+    bool finishedRotating = false;
+    bool finishedMoving = false;
+    bool appliedForce = false;
     public bool armsAreRaised = false;
 
+    // PLACEHOLDER BOOLEAN TO TEST DEATH ANIMATION
+    bool isDead = false;
 
+    // Audio source and audio clip when hit
+
+    public AudioSource audioSource;
+    public AudioClip skeletonHit;
+    public AudioClip skeletonDeath;
 
     // Start is called before the first frame update
     void Start()
@@ -43,9 +52,9 @@ public class skeletonController : MonoBehaviour
         // Initialize GameObjects that will be used for animating
 
         // Edit: access local gameobject instead of gameobject.find
-        skeleton.stoppingDistance = 25f;
-        skeleton.avoidancePriority = Random.Range(0,99);
+        skeleton.stoppingDistance = 20f;
 
+        skeletonRB = GetComponent<Rigidbody>();
         skeletonModel = transform.gameObject;
         leftArmJoint = transform.GetChild(4).gameObject;
         rightArmJoint = transform.GetChild(5).gameObject;
@@ -54,30 +63,28 @@ public class skeletonController : MonoBehaviour
 
         source = GameObject.Find("Targets"); 
         target = closestTarget();
-        targetVector = new Vector3(target.position.x, 0f, target.position.z);
-        targetScript = target.GetComponent<boundary>();
-        skeleton.destination = targetVector;
+        targetScript = target.GetComponent<targets>();
+        skeleton.destination = target.position;
 
-        materialManager = GameObject.Find("Material Manager"); 
-        materials = materialManager.GetComponent<materialTracker>();
+        audioSource = GetComponent<AudioSource>();
 
         StartCoroutine(animate());
         StartCoroutine(attack());
     }
     void Update()
     {
-        if (!target.gameObject.activeInHierarchy){
+        if (!target.gameObject.active){
             target = closestTarget();
-            targetVector = new Vector3(target.position.x, 0f, target.position.z);
-            skeleton.destination = targetVector;
-            targetScript = target.GetComponent<boundary>();
+            skeleton.destination = target.position;
+            targetScript = target.GetComponent<targets>();
             leftArmJoint.transform.localRotation = Quaternion.Euler(0, 0, 0);
             rightArmJoint.transform.localRotation = Quaternion.Euler(0, 0, 0);
         }
 
         if (health <= 0){
-            SpawnXP();
             SpawnMaterial();
+            Debug.Log("NAME: " + audioSource.name);
+            audioSource.PlayOneShot(skeletonDeath, 0.8f);
             Destroy(gameObject);
         }
     }
@@ -87,10 +94,11 @@ public class skeletonController : MonoBehaviour
     {
         //when enemy enters the shooting radius, add this enemy to enemyList
         GameObject enemy = other.gameObject;
-        if (enemy.tag == "towerWeapon")
+        if (enemy.tag == "weapon")
         {
             GameObject particles = Instantiate(deathParticleEffects, skeletonModel.transform.localPosition, deathParticleEffects.transform.localRotation);
             Destroy(particles);
+            audioSource.PlayOneShot(skeletonHit, 1f);
             health -= enemy.GetComponent<Projectile>().damageOutput;
         }
     }
@@ -99,7 +107,7 @@ public class skeletonController : MonoBehaviour
     IEnumerator animate()
     {
         // Create a WaitUntil object that will wait until isMoving is true
-        WaitUntil isMoving = new WaitUntil(() => Vector3.Distance(transform.position, targetVector) >= skeleton.stoppingDistance);
+        WaitUntil isMoving = new WaitUntil(() => Vector3.Distance(transform.position, target.position) >= skeleton.stoppingDistance);
 
         while (true)
         {
@@ -120,15 +128,17 @@ public class skeletonController : MonoBehaviour
 
     IEnumerator attack()
     {
-        WaitUntil inRange = new WaitUntil(() => Vector3.Distance(transform.position, targetVector) <= skeleton.stoppingDistance);
+        WaitUntil inRange = new WaitUntil(() => Vector3.Distance(transform.position, target.position) <= skeleton.stoppingDistance);
 
         while (true){
             yield return inRange;
 
-            if (skeleton.isOnNavMesh && Vector3.Distance(transform.position, targetVector) <= skeleton.stoppingDistance){
+            if (Vector3.Distance(transform.position, target.position) <= skeleton.stoppingDistance){
                 resetMovementJoints();
-                skeleton.ResetPath();
-                transform.LookAt(targetVector);
+                if (skeleton.isOnNavMesh){
+                    skeleton.ResetPath();
+                }
+                transform.LookAt(target);  
             }
             
             if (!armsAreRaised)
@@ -139,9 +149,11 @@ public class skeletonController : MonoBehaviour
 
                 armsAreRaised = true;
             }          
-            GameObject createdammo = Instantiate(Arrow, leftArmJoint.transform.position, leftArmJoint.transform.rotation);
-            createdammo.GetComponent<Projectile>().settings("enemyWeapon", target.tag, damageOutput, 80f, 240f, target);
-            createdammo.transform.localScale = new Vector3(.25f, .25f, .125f);
+            GameObject arr = Instantiate(newArrow, leftArmJoint.transform.position, leftArmJoint.transform.localRotation);
+            arr.GetComponent<Projectile>().damageOutput = 50;
+            arr.GetComponent<Projectile>().target = target;
+            arr.GetComponent<Projectile>().settings("Tower", "skeletonweapon");
+            arr.transform.localScale = new Vector3(.25f, .25f, .125f);
             yield return new WaitForSeconds(attackInterval);
         }
             
@@ -167,7 +179,7 @@ public class skeletonController : MonoBehaviour
         float minDist = Mathf.Infinity;
         foreach (Transform t in source.transform)
         {
-            if (!t.gameObject.activeInHierarchy){
+            if (!t.gameObject.active){
                 continue;
             }
             float dist = Vector3.Distance(t.position, transform.position);
@@ -178,13 +190,7 @@ public class skeletonController : MonoBehaviour
             }
         }
         return closest;
-    }    
-
-    private void SpawnXP(){
-        Instantiate(particles, skeletonModel.transform.localPosition, particles.transform.localRotation);
-
-        materials.changeXP(10);
-    }
+    }  
 
     private void SpawnMaterial(){
         int randomInt = Random.Range(1, 101);

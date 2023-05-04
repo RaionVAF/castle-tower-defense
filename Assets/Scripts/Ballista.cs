@@ -5,18 +5,18 @@ using UnityEngine;
 //DEALS WITH THE PHYSICS AND FUNCTIONALITY OF THE TOWER
 public class Ballista : MonoBehaviour
 {
-    public float damageOutput;
-    public float velocity;
-    public float rotationSpeed;
-    public float shootingRate = 1.0f;
-    public string towerType;
-    public GameObject body;
-    public GameObject ammostart;
-    public GameObject ammo;
+
+    float velocity = 15f;
+    float destroyRate = 6.5f;
+    public int damageOutput;
+    public float shootingRate = 2.0f;
+    public GameObject arrow;
+    public GameObject bow;
+    public GameObject newArrow;
     public GameObject rotatePoint;
     public List<GameObject> enemyList = new List<GameObject>();
     public AudioSource ballistaAudio;
-    public AudioClip hitSound;
+    public AudioClip shootSound;
 
     /*
      * Start() first uses the arrow already in the tower model. Shoot() is then called
@@ -25,8 +25,8 @@ public class Ballista : MonoBehaviour
     void Start()
     {
         damageOutput = 50;
-        body = transform.GetChild(0).gameObject;
-        ammostart = body.transform.GetChild(0).gameObject;
+        bow = transform.GetChild(0).gameObject;
+        arrow = bow.transform.GetChild(0).gameObject;
         rotatePoint = transform.Find("rotatePoint").gameObject;
 
         //START COROUTINE TO SHOOT ARROWS
@@ -106,27 +106,34 @@ public class Ballista : MonoBehaviour
 
             newRotation = Quaternion.LookRotation(minEnemyPosition);
             rotatePoint.transform.LookAt(minEnemyPosition, transform.up);
+
             Vector3 angles = rotatePoint.transform.rotation.eulerAngles;
+
             transform.rotation = Quaternion.Euler(0, angles[1], 0);
 
-            if (towerType != "Catapult"){
-                if (towerType == "Ballista"){
-                    body.transform.rotation = Quaternion.Euler(angles[0], angles[1], angles[2]);
-                    //ballistaAudio.PlayOneShot(hitSound, 0.6f);
-                } else {
-                    body.transform.rotation = Quaternion.Euler(angles[0] + 90f, angles[1], angles[2]);
-                }
-            } else {
-                body.transform.rotation = Quaternion.Slerp(body.transform.rotation, Quaternion.Euler(60f, 0 ,0), Time.deltaTime);
-            }
+            //bow rotation doesn't work with solely assigning rotatePoint.transform.rotation
+            bow.transform.rotation = Quaternion.Euler(angles[0], angles[1], angles[2]);
 
             //make new arrow
+    
 
-            GameObject createdammo = Instantiate(ammo, ammostart.transform.position, body.transform.rotation);
-            createdammo.GetComponent<Projectile>().settings("towerWeapon", enemyList[0].transform.gameObject.tag, damageOutput, velocity, rotationSpeed, enemyList[0].transform);
-            if (towerType == "Catapult"){
-                body.transform.rotation = Quaternion.Slerp(body.transform.rotation, Quaternion.Euler(-60f, 0 ,0), Time.deltaTime);
-            }  
+            GameObject arr2 = Instantiate(newArrow, arrow.transform.position, bow.transform.rotation);
+            arr2.GetComponent<Projectile>().damageOutput = damageOutput;
+            arr2.GetComponent<Projectile>().target = enemyList[0].transform;
+            arr2.GetComponent<Projectile>().settings("Enemy", "weapon");
+            //Physics.IgnoreCollision(arr2.GetComponent<Collider>(), GetComponent<Collider>());
+
+            //change velocity of arrow
+
+            //Vector3 vel = minEnemyPosition - transform.position;
+            //Vector3 direction = vel.normalized;
+            //Rigidbody rbArrow = arr2.GetComponent<Rigidbody>();
+
+            //rbArrow.velocity = direction * velocity;
+
+            //StartCoroutine(RemoveArrow(arr2));
+
+            ballistaAudio.PlayOneShot(shootSound, 0.6f);
 
             yield return new WaitForSeconds(shootingRate);
         }
