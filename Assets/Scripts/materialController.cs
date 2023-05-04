@@ -21,8 +21,6 @@ public class materialController : MonoBehaviour
         transform.eulerAngles += new Vector3(0f, 2f, 0f);
         
         transform.position = Vector3.Lerp(start, end, t);
-
-        // print(t + " = " + transform.position);
         
         if(flip){
             t += .025f;

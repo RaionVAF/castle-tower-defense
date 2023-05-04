@@ -9,6 +9,9 @@ public class skeletonController : MonoBehaviour
     public GameObject wood;
     public GameObject stone;
     public GameObject iron;
+    public GameObject particles;
+    private GameObject materialManager;
+    private materialTracker materials;
 
     // Zombie model rigidbody and joint references
     private GameObject skeletonModel, leftArmJoint, rightArmJoint, leftLegJoint, rightLegJoint, 
@@ -55,6 +58,9 @@ public class skeletonController : MonoBehaviour
         targetScript = target.GetComponent<boundary>();
         skeleton.destination = targetVector;
 
+        materialManager = GameObject.Find("Material Manager"); 
+        materials = materialManager.GetComponent<materialTracker>();
+
         StartCoroutine(animate());
         StartCoroutine(attack());
     }
@@ -70,6 +76,7 @@ public class skeletonController : MonoBehaviour
         }
 
         if (health <= 0){
+            SpawnXP();
             SpawnMaterial();
             Destroy(gameObject);
         }
@@ -172,6 +179,12 @@ public class skeletonController : MonoBehaviour
         }
         return closest;
     }    
+
+    private void SpawnXP(){
+        Instantiate(particles, skeletonModel.transform.localPosition, particles.transform.localRotation);
+
+        materials.changeXP(10);
+    }
 
     private void SpawnMaterial(){
         int randomInt = Random.Range(1, 101);

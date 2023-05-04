@@ -16,6 +16,9 @@ public class zombieController : MonoBehaviour
     public GameObject stone;
     public GameObject iron;
     public NavMeshAgent zombie;
+    public GameObject particles;
+    private GameObject materialManager;
+    private materialTracker materials;
 
     boundary targetScript;
     float jointRotationSpeed = 5f;
@@ -50,6 +53,9 @@ public class zombieController : MonoBehaviour
         targetScript = target.GetComponent<boundary>();
         zombie.destination = targetVector;
 
+        materialManager = GameObject.Find("Material Manager"); 
+        materials = materialManager.GetComponent<materialTracker>();
+
         StartCoroutine(animate());
         StartCoroutine(attack());
     }
@@ -67,6 +73,7 @@ public class zombieController : MonoBehaviour
         }
 
         if (health <= 0){
+            SpawnXP();
             SpawnMaterial();
             Destroy(gameObject);
         }
@@ -181,6 +188,12 @@ public class zombieController : MonoBehaviour
         }
         return closest;
     }   
+
+    private void SpawnXP(){
+        Instantiate(particles, zombieModel.transform.localPosition, particles.transform.localRotation);
+
+        materials.changeXP(10);
+    }
 
     private void SpawnMaterial(){
         int randomInt = Random.Range(1, 101);

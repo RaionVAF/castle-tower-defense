@@ -763,6 +763,7 @@ MonoBehaviour:
   stone: {fileID: 4744405160977385580, guid: c2c7e91a9329c8644ac81cba1c60564b, type: 3}
   iron: {fileID: 4337311903292609315, guid: 5cdbda217e75fe9418ac9ed0aa7b5c64, type: 3}
   zombie: {fileID: -1230397017939091305}
+  particles: {fileID: 1703371083485241626, guid: 792562e61601fd34dab3370d7d5f068f, type: 3}
   target: {fileID: 0}
   health: 100
 --- !u!195 &-1230397017939091305
