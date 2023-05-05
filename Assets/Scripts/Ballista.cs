@@ -17,6 +17,7 @@ public class Ballista : MonoBehaviour
     public List<GameObject> enemyList = new List<GameObject>();
     public AudioSource audioSource;
     public AudioClip shootSound;
+    public Ballista previousTower;
 
     /*
      * Start() first uses the arrow already in the tower model. Shoot() is then called
