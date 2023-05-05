@@ -33,6 +33,11 @@ public class darkKnightController : MonoBehaviour
     // Bool member to run moving animation script if true
     bool armsAreRaised = false;
 
+    // Resources
+    public GameObject particles;
+    private GameObject materialManager;
+    private materialTracker materials;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -51,6 +56,9 @@ public class darkKnightController : MonoBehaviour
         targetVector = new Vector3(target.position.x, 0, target.position.z) ;
         targetScript = target.GetComponent<boundary>();
         darkKnight.destination = targetVector;
+
+        materialManager = GameObject.Find("Material Manager"); 
+        materials = materialManager.GetComponent<materialTracker>();
 
         StartCoroutine(animate());
         StartCoroutine(attack());
@@ -184,6 +192,14 @@ public class darkKnightController : MonoBehaviour
         }
         return closest;
     }    
+
+    private void SpawnXP(){
+        GameObject p = Instantiate(particles, darkKnightModel.transform.localPosition, particles.transform.localRotation);
+
+        materials.changeXP(10);
+        
+        Destroy(p, 1);
+    } 
 
     private void SpawnMaterial(){
         int randomInt = Random.Range(1, 101);

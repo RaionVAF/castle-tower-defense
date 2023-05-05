@@ -34,6 +34,11 @@ public class zombieController : MonoBehaviour
     public AudioSource audioSource, externalSource, deathSource;
     public AudioClip deathClip;
     public AudioClip hitClip;
+
+    // Resources
+    public GameObject particles;
+    private GameObject materialManager;
+    private materialTracker materials;
  
     // Start is called before the first frame update
     void Start()
@@ -58,6 +63,9 @@ public class zombieController : MonoBehaviour
         externalSource = GameObject.Find("backgroundAudio").gameObject.GetComponent<AudioSource>();
         deathSource = GameObject.Find("mobAudio").gameObject.GetComponent<AudioSource>();
 
+        materialManager = GameObject.Find("Material Manager"); 
+        materials = materialManager.GetComponent<materialTracker>();
+
         StartCoroutine(animate());
         StartCoroutine(attack());
     }
@@ -78,6 +86,7 @@ public class zombieController : MonoBehaviour
             externalSource.PlayOneShot(hitClip, 0.6f);
             deathSource.PlayOneShot(deathClip, 1f);
             SpawnMaterial();
+            SpawnXP();
             Destroy(gameObject);
         }
     }
@@ -192,6 +201,14 @@ public class zombieController : MonoBehaviour
         }
         return closest;
     }   
+
+    private void SpawnXP(){
+        GameObject p = Instantiate(particles, zombieModel.transform.localPosition, particles.transform.localRotation);
+
+        materials.changeXP(10);
+        
+        Destroy(p, 1);
+    }
 
     private void SpawnMaterial(){
         int randomInt = Random.Range(1, 101);

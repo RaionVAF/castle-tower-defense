@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class boundary : MonoBehaviour
 {
-    public GameObject building;
     public bool isAttackable = true;
     public float health = 2500;
    

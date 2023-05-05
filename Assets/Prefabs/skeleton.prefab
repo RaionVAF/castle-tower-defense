@@ -269,9 +269,11 @@ MonoBehaviour:
   armsAreRaised: 0
   audioSource: {fileID: 0}
   externalSource: {fileID: 0}
+  deathSource: {fileID: 0}
   skeletonHit: {fileID: 8300000, guid: 0d3e5b9e83c2d4b79ac5928d025f3e8e, type: 3}
   skeletonDeath: {fileID: 8300000, guid: b1e80647a0a8a4a018170029683d4686, type: 3}
   shoot: {fileID: 8300000, guid: d355a15367d2b488c8974cf37c650e04, type: 3}
+  particles: {fileID: 1703371083485241626, guid: 792562e61601fd34dab3370d7d5f068f, type: 3}
 --- !u!195 &7831503300605222725
 NavMeshAgent:
   m_ObjectHideFlags: 0

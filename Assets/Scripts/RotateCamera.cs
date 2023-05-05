@@ -6,20 +6,26 @@ public class RotateCamera : MonoBehaviour
 {
     public Transform pivot;
     private bool[] sides;
+    private bool rotating;
     
     // Start is called before the first frame update
     void Start()
     {
-        sides = new bool[] {false, true, false, true, false, true};
+        sides = new bool[] {false, true};
+        rotating = false;
     }
 
     public void callCam(int bound){
         if(bound > 1) return;
 
-        if(sides[bound]){
-            StartCoroutine(RotateCam(-60f));
-        } else {
-            StartCoroutine(RotateCam(60f));
+        if(!rotating){
+            rotating = true;
+            
+            if(sides[bound]){
+                StartCoroutine(RotateCam(-60f));
+            } else {
+                StartCoroutine(RotateCam(60f));
+            }
         }
     }
 
@@ -30,11 +36,13 @@ public class RotateCamera : MonoBehaviour
 
         while(t < 1){
             t += .05f;
-            pivot.localRotation = Quaternion.Slerp(start1, end1, t);
+            pivot.localRotation = Quaternion.Lerp(start1, end1, t);
 
             yield return null;
         }
 
         for(int i = 0; i < sides.Length; i++) sides[i] = !sides[i];
+
+        rotating = false;
     }
 }
