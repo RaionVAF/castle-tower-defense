@@ -33,8 +33,9 @@ public class bossController : MonoBehaviour
     bool armsAreRaised = false;
 
     // Audio
-    public AudioSource audioSource;
+    public AudioSource audioSource, externalSource, deathSource;
     public AudioClip hitClip;
+    public AudioClip deathClip;
 
     // Start is called before the first frame update
     void Start()
@@ -56,6 +57,8 @@ public class bossController : MonoBehaviour
         bossKnight.destination = targetVector;
 
         audioSource = GetComponent<AudioSource>();
+        externalSource = GameObject.Find("backgroundAudio").gameObject.GetComponent<AudioSource>();
+        deathSource = GameObject.Find("mobAudio").gameObject.GetComponent<AudioSource>();
 
         StartCoroutine(animate());
         StartCoroutine(attack());
@@ -75,7 +78,8 @@ public class bossController : MonoBehaviour
 
         if (health <= 0){
             //SpawnMaterial();
-            
+            externalSource.PlayOneShot(hitClip, 1f);
+            deathSource.PlayOneShot(deathClip, 0.8f);
             Destroy(gameObject);
         }      
         

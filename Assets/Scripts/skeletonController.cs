@@ -33,8 +33,7 @@ public class skeletonController : MonoBehaviour
     public bool armsAreRaised = false;
 
     // Audio
-    public AudioSource audioSource;
-    public AudioSource externalSource;
+    public AudioSource audioSource, externalSource, deathSource;
     public AudioClip skeletonHit;
     public AudioClip skeletonDeath;
     public AudioClip shoot;
@@ -62,6 +61,7 @@ public class skeletonController : MonoBehaviour
 
         audioSource = GetComponent<AudioSource>();
         externalSource = GameObject.Find("backgroundAudio").gameObject.GetComponent<AudioSource>();
+        deathSource = GameObject.Find("mobAudio").gameObject.GetComponent<AudioSource>();
 
         StartCoroutine(animate());
         StartCoroutine(attack());
@@ -79,6 +79,7 @@ public class skeletonController : MonoBehaviour
 
         if (health <= 0){
             SpawnMaterial();
+            externalSource.PlayOneShot(skeletonHit, 0.8f);
             externalSource.PlayOneShot(skeletonDeath, 0.8f);
             Destroy(gameObject);
         }

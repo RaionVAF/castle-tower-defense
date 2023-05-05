@@ -767,7 +767,7 @@ MonoBehaviour:
   health: 100
   audioSource: {fileID: 0}
   externalAudio: {fileID: 0}
-  dropClip: {fileID: 8300000, guid: ad471970a500140cdad124b5ce66dfd1, type: 3}
+  deathClip: {fileID: 8300000, guid: 70747f126ead34009b4f0eef6355f942, type: 3}
   hitClip: {fileID: 8300000, guid: cd68cc6e86da144c7bb8411440b63269, type: 3}
 --- !u!195 &-1230397017939091305
 NavMeshAgent:

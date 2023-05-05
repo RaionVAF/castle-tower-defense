@@ -743,7 +743,9 @@ MonoBehaviour:
   attackdamage: 500
   health: 2500
   audioSource: {fileID: 0}
+  externalSource: {fileID: 0}
   hitClip: {fileID: 8300000, guid: cd68cc6e86da144c7bb8411440b63269, type: 3}
+  deathClip: {fileID: 8300000, guid: a1f46e90c817d4864b7a616491015c02, type: 3}
 --- !u!195 &137335562964990290
 NavMeshAgent:
   m_ObjectHideFlags: 0
