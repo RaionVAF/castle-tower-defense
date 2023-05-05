@@ -10,6 +10,8 @@ public class materialController : MonoBehaviour
     private Vector3 end;
     private GameObject materialManager;
     private materialTracker materials;
+    [SerializeField] private LayerMask inputLayerMask;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -18,6 +20,8 @@ public class materialController : MonoBehaviour
 
         start = transform.position;
         end = transform.position + new Vector3(0f, 1f, 0f);
+
+        Camera.main.eventMask = inputLayerMask;
     }
 
     // Update is called once per frame
@@ -42,19 +46,15 @@ public class materialController : MonoBehaviour
         }
     }
 
-    void OnTriggerEnter(Collider other){
-        Debug.Log(transform.name + " " + other.name);
-
-        if(other.name == "playableKnight"){
-            if(transform.name == "stone(Clone)"){
-                materials.changeStone(10);
-            } else if(transform.name == "stick(Clone)"){
-                materials.changeWood(10);
-            } else {
-                materials.changeIron(10);
-            }
-
-            Destroy(gameObject);
+    void OnMouseDown(){
+        if(transform.name == "stone(Clone)"){
+            materials.changeStone(10);
+        } else if(transform.name == "stick(Clone)"){
+            materials.changeWood(10);
+        } else {
+            materials.changeIron(10);
         }
+
+        Destroy(gameObject);
     }
 }

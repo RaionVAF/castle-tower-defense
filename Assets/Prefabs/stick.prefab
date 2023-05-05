@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 3807756189239285793}
   - component: {fileID: 3807756189239285792}
   - component: {fileID: -1666812739518473998}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: stick
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -114,6 +114,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c39be730be3eca643a1659e798ee0bbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mainCam: {fileID: 0}
+  inputLayerMask:
+    serializedVersion: 2
+    m_Bits: 128
 --- !u!135 &-1666812739518473998
 SphereCollider:
   m_ObjectHideFlags: 0

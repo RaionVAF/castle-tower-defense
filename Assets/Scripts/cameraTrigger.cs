@@ -6,6 +6,8 @@ public class cameraTrigger : MonoBehaviour
 {
     public GameObject bounds;
     private RotateCamera rotateCam;
+    public AudioSource audioSource;
+    public AudioClip error;
 
     void Start(){
         rotateCam = bounds.GetComponent<RotateCamera>();
@@ -21,6 +23,7 @@ public class cameraTrigger : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         // play error sound
+        audioSource.PlayOneShot(error, 1f);
         // Debug.Log("error");
     }
 }
