@@ -37,6 +37,11 @@ public class bossController : MonoBehaviour
     public AudioClip hitClip;
     public AudioClip deathClip;
 
+    // Resources
+    // public GameObject particles;
+    // private GameObject materialManager;
+    // private materialTracker materials;
+
     // Start is called before the first frame update
     void Start()
     {
