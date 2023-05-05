@@ -23,8 +23,12 @@ public class Ballista : MonoBehaviour
      * to generate new instances of the arrow prefab.
      */
     void Start()
-    {
-        damageOutput = 50;
+    {   
+        if (towerType == "Cannon")
+        {
+            damageOutput = previousTower.damageOutput + 500;
+            shootingRate = previousTower.shootingRate - 0.25f;
+        }
         body = transform.GetChild(0).gameObject;
         ammostart = body.transform.GetChild(0).gameObject;
         rotatePoint = transform.Find("rotatePoint").gameObject;
