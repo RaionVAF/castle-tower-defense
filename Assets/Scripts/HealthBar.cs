@@ -12,6 +12,5 @@ public class HealthBar : MonoBehaviour
     {
         health = building.GetComponent<boundary>().health; // would change to get the current health of the object
         healthBarImage.fillAmount = (health / maxHealth);
-
     }
 }

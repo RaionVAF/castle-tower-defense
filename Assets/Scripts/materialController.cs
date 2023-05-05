@@ -43,8 +43,6 @@ public class materialController : MonoBehaviour
     }
 
     void OnTriggerEnter(Collider other){
-        Debug.Log(transform.name + " " + other.name);
-
         if(other.name == "playableKnight"){
             if(transform.name == "stone(Clone)"){
                 materials.changeStone(10);
