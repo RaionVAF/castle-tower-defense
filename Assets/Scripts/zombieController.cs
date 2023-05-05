@@ -16,9 +16,6 @@ public class zombieController : MonoBehaviour
     public GameObject stone;
     public GameObject iron;
     public NavMeshAgent zombie;
-    public GameObject particles;
-    private GameObject materialManager;
-    private materialTracker materials;
 
     boundary targetScript;
     float jointRotationSpeed = 5f;
@@ -33,11 +30,11 @@ public class zombieController : MonoBehaviour
     // Bool member to run moving animation script if true
     bool armsAreRaised = false;
 
-    // Audio source and audio clip when hit
-    public AudioSource audioSource;
-    public AudioClip hit;
+    // Audio
+    public AudioSource audioSource, externalSource, deathSource;
+    public AudioClip deathClip;
+    public AudioClip hitClip;
  
-
     // Start is called before the first frame update
     void Start()
     {
@@ -57,10 +54,9 @@ public class zombieController : MonoBehaviour
         targetScript = target.GetComponent<boundary>();
         zombie.destination = targetVector;
 
-        materialManager = GameObject.Find("Material Manager"); 
-        materials = materialManager.GetComponent<materialTracker>();
-
-        audioSource = GetComponent<AudioSource>();
+        audioSource = gameObject.GetComponent<AudioSource>();
+        externalSource = GameObject.Find("backgroundAudio").gameObject.GetComponent<AudioSource>();
+        deathSource = GameObject.Find("mobAudio").gameObject.GetComponent<AudioSource>();
 
         StartCoroutine(animate());
         StartCoroutine(attack());
@@ -79,9 +75,9 @@ public class zombieController : MonoBehaviour
         }
 
         if (health <= 0){
-            SpawnXP();
+            externalSource.PlayOneShot(hitClip, 0.6f);
+            deathSource.PlayOneShot(deathClip, 1f);
             SpawnMaterial();
-            // audioSource.PlayOneShot(zombieDeath, 0.8f);
             Destroy(gameObject);
         }
     }
@@ -94,8 +90,8 @@ public class zombieController : MonoBehaviour
         {
             //GameObject particles = Instantiate(deathParticleEffects, zombieModel.transform.localPosition, deathParticleEffects.transform.localRotation);
             //Destroy(particles);
-            audioSource.PlayOneShot(hit, 1f);
             health -= enemy.GetComponent<Projectile>().damageOutput;
+            audioSource.PlayOneShot(hitClip, 1f);
         }
     }
 
@@ -196,14 +192,6 @@ public class zombieController : MonoBehaviour
         }
         return closest;
     }   
-
-    private void SpawnXP(){
-        GameObject p = Instantiate(particles, zombieModel.transform.localPosition, particles.transform.localRotation);
-
-        materials.changeXP(10);
-        
-        Destroy(p, 1);
-    }
 
     private void SpawnMaterial(){
         int randomInt = Random.Range(1, 101);

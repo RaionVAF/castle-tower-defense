@@ -245,8 +245,8 @@ MonoBehaviour:
   ammo: {fileID: 0}
   rotatePoint: {fileID: 0}
   enemyList: []
-  ballistaAudio: {fileID: 0}
-  shootSound: {fileID: 8300000, guid: 8748f866d99564d34be2ba2cdd5daec0, type: 3}
+  audioSource: {fileID: 0}
+  shootSound: {fileID: 8300000, guid: d355a15367d2b488c8974cf37c650e04, type: 3}
 --- !u!54 &6329387850141135395
 Rigidbody:
   m_ObjectHideFlags: 0

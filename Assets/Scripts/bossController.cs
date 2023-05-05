@@ -8,96 +8,166 @@ public class bossController : MonoBehaviour
     public GameObject deathParticleEffects;
 
     // Zombie model rigidbody and joint references
-    private Rigidbody bossRB;
-    private GameObject bossModel, leftArmJoint, rightArmJoint, leftLegJoint, rightLegJoint,
+    private GameObject bossKnightModel, leftArmJoint, rightArmJoint, leftLegJoint, rightLegJoint,
                        source;
+    public GameObject wood;
+    public GameObject stone;
+    public GameObject iron;
+    public UnityEngine.AI.NavMeshAgent bossKnight;
+
+    boundary targetScript;
 
     // Constants
-    float movementSpeed = 1f;
-    float bossRotationSpeed = 2f;
-    float jointRotationSpeed = 5f;
+    float jointRotationSpeed = 2f;
     float legRotationAngle = 15f;
-    float attackingRange = 10f;
 
     // Bool member to run moving animation script if true
-    bool isMoving = false;
-    bool finishedRotating = false;
-    bool finishedMoving = false;
-    bool appliedForce = false;
-    public bool armsAreRaised = false;
+    private Transform target;
+    private Vector3 targetVector;
 
-    // Death boolean
-    bool isDead = false;
+    public float attackdamage = 500;
+
+    public float health = 2500;
+
+    // Bool member to run moving animation script if true
+    bool armsAreRaised = false;
 
     // Audio
-    public AudioSource audioSource;
-    public AudioClip hit;
+    public AudioSource audioSource, externalSource, deathSource;
+    public AudioClip hitClip;
+    public AudioClip deathClip;
 
     // Start is called before the first frame update
     void Start()
     {
+        bossKnight.stoppingDistance = 20f;
+        bossKnight.avoidancePriority = 99;
         // Get joints
-        bossRB = GetComponent<Rigidbody>();
-        bossModel = GameObject.Find("boss(Clone)");
-        leftArmJoint = GameObject.Find("boss(Clone)/Left Arm Joint");
-        rightArmJoint = GameObject.Find("boss(Clone)/Right Arm Joint");
-        leftLegJoint = GameObject.Find("boss(Clone)/Left Leg Joint");
-        rightLegJoint = GameObject.Find("boss(Clone)/Right Leg Joint");
 
-        // Get audio source
+        bossKnightModel = transform.gameObject;
+        leftArmJoint = transform.GetChild(8).gameObject;
+        rightArmJoint = transform.GetChild(7).gameObject;
+        leftLegJoint = transform.GetChild(9).gameObject;
+        rightLegJoint = transform.GetChild(10).gameObject;
+
+        source = GameObject.Find("Targets"); 
+        target = closestTarget();
+        targetVector = new Vector3(target.position.x, 0, target.position.z) ;
+        targetScript = target.GetComponent<boundary>();
+        bossKnight.destination = targetVector;
+
         audioSource = GetComponent<AudioSource>();
+        externalSource = GameObject.Find("backgroundAudio").gameObject.GetComponent<AudioSource>();
+        deathSource = GameObject.Find("mobAudio").gameObject.GetComponent<AudioSource>();
+
+        StartCoroutine(animate());
+        StartCoroutine(attack());
     }
 
     // Update is called once per frame
     void Update()
-    {
-        // Make right arm move idly
-        float rightArmRotation = Mathf.Sin(Time.time * 1f) * -10f;
-        rightArmJoint.transform.localRotation = Quaternion.AngleAxis(rightArmRotation, Vector3.left);
+    {   
+         if (!target.gameObject.activeInHierarchy){
+            target = closestTarget();
+            targetVector = new Vector3(target.position.x, 0, target.position.z) ;
+            bossKnight.destination = targetVector;
+            targetScript = target.GetComponent<boundary>();
+            leftArmJoint.transform.localRotation = Quaternion.Euler(0, 0, 0);
+            rightArmJoint.transform.localRotation = Quaternion.Euler(0, 0, 0);
+        }
 
-        // Call attack animation
-        attackingAnimation();
+        if (health <= 0){
+            //SpawnMaterial();
+            externalSource.PlayOneShot(hitClip, 1f);
+            deathSource.PlayOneShot(deathClip, 0.8f);
+            Destroy(gameObject);
+        }      
+        
+        float leftArmRotation = Mathf.Sin(Time.time * 1f) * -10f;
+        leftArmJoint.transform.localRotation = Quaternion.AngleAxis(leftArmRotation, Vector3.left);
     }
 
-    // Helper that animates boss attacking target
-    private void attackingAnimation()
+    // Helper that animates knight attacking target
+    void OnTriggerEnter(Collider other)
     {
-        // Store values
-        Quaternion leftArmJointStartRotation = leftArmJoint.transform.localRotation;
-        Quaternion rightArmJointStartRotation = rightArmJoint.transform.localRotation;
-        Quaternion raisingRotation = Quaternion.Euler(-110f, 0, 0);
-        Quaternion swingingRotation = Quaternion.Euler(30f, 0, 0);
-
-        if (!armsAreRaised)
+        //when enemy enters the shooting radius, add this enemy to enemyList
+        GameObject enemy = other.gameObject;
+        if (enemy.tag == "towerWeapon")
         {
-            // Call animation to raise arms up
-            leftArmJoint.transform.localRotation
-                = Quaternion.Slerp(leftArmJointStartRotation, raisingRotation, Time.deltaTime);
-
-            if (isFinishedRotating(leftArmJoint.transform.localRotation, raisingRotation, 0.01f))
-            {
-                armsAreRaised = true;
-            }
+            //GameObject particles = Instantiate(deathParticleEffects, zombieModel.transform.localPosition, deathParticleEffects.transform.localRotation);
+            //Destroy(particles);
+            audioSource.PlayOneShot(hitClip, 1f);
+            health -= enemy.GetComponent<Projectile>().damageOutput;
         }
-        else
-        {
-            // After previous animation ends, call animation to swing arms down
-            leftArmJoint.transform.localRotation
-                 = Quaternion.Slerp(leftArmJointStartRotation, swingingRotation, Time.deltaTime * 4f);
+    }
+    
+    IEnumerator animate()
+    {
+        // Create a WaitUntil object that will wait until isMoving is true
+        WaitUntil isMoving = new WaitUntil(() => Vector3.Distance(transform.position, targetVector) >= bossKnight.stoppingDistance);
 
-            if (isFinishedRotating(leftArmJoint.transform.localRotation, swingingRotation, 0.01f))
-            {
-                armsAreRaised = false;
-            }
+        while (true)
+        {
+            yield return isMoving; 
+
+            float legRotation = Mathf.Sin(Time.time * jointRotationSpeed) * legRotationAngle;
+            leftLegJoint.transform.localRotation = Quaternion.AngleAxis(-legRotation, Vector3.left);
+            rightLegJoint.transform.localRotation = Quaternion.AngleAxis(legRotation, Vector3.left);
         }
     }
 
+    IEnumerator attack()
+    {
+        WaitUntil inRange = new WaitUntil(() => Vector3.Distance(transform.position, targetVector) <= bossKnight.stoppingDistance);
+
+        while (true){
+            yield return inRange;
+            
+            if (bossKnight.isOnNavMesh && Vector3.Distance(transform.position, targetVector) <= bossKnight.stoppingDistance){
+                resetMovementJoints();
+                bossKnight.ResetPath();
+                // Negates y location so model does not tilt when looking at target
+                transform.LookAt(targetVector);
+            }
+           
+
+            Quaternion leftArmJointStartRotation = leftArmJoint.transform.localRotation;
+            Quaternion rightArmJointStartRotation = rightArmJoint.transform.localRotation;
+            Quaternion raisingRotation = Quaternion.Euler(-110f, 0, 0);
+            Quaternion swingingRotation = Quaternion.Euler(30f, 0, 0);
+
+            if (!armsAreRaised)
+            {
+                // Call animation to raise arms up
+                rightArmJoint.transform.localRotation
+                    = Quaternion.Slerp(rightArmJointStartRotation, raisingRotation, Time.deltaTime);
+
+                if (isFinishedRotating(rightArmJoint.transform.localRotation, raisingRotation, 0.01f))
+                {
+                    armsAreRaised = true;
+                }
+            }
+            else
+            {
+                // After previous animation ends, call animation to swing arms down
+                rightArmJoint.transform.localRotation
+                    = Quaternion.Slerp(rightArmJointStartRotation, swingingRotation, Time.deltaTime * 6f);
+
+                if (isFinishedRotating(rightArmJoint.transform.localRotation, swingingRotation, 0.01f))
+                {
+                    armsAreRaised = false;
+                    targetScript.hit(attackdamage);
+                }
+            }
+        }
+        
+    }
     // Helper that determines if the rotation is finished
-    private static bool isFinishedRotating(Quaternion skeletonDirection, Quaternion targetDirection, float precision)
+    private static bool isFinishedRotating(Quaternion bossKnightDirection, Quaternion targetDirection, float precision)
     {
         // Quaternion.Dot method returns a value between 1 and -1.
         // 1 or -1 means that the 2 quaternions are "exact", 0 means that they are far from close
-        return Mathf.Abs(Quaternion.Dot(skeletonDirection, targetDirection)) >= 1 - precision;
+        return Mathf.Abs(Quaternion.Dot(bossKnightDirection, targetDirection)) >= 1 - precision;
     }
 
     // Helper that resets joint angles to Euler(0,0,0)
@@ -106,4 +176,22 @@ public class bossController : MonoBehaviour
         leftLegJoint.transform.localRotation = Quaternion.AngleAxis(0, Vector3.right);
         rightLegJoint.transform.localRotation = Quaternion.AngleAxis(0, Vector3.right);
     }
+
+    private Transform closestTarget(){
+        Transform closest = null;
+        float minDist = Mathf.Infinity;
+        foreach (Transform t in source.transform)
+        {
+            if (!t.gameObject.activeInHierarchy){
+                continue;
+            }
+            float dist = Vector3.Distance(t.position, transform.position);
+            if (dist < minDist)
+            {
+                closest= t;
+                minDist = dist;
+            }
+        }
+        return closest;
+    }    
 }
