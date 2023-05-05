@@ -5,12 +5,11 @@ using TMPro;
 using UnityEngine;
 
 public class Upgrades : MonoBehaviour
-{
+{   
     // THIS UPGRADE SCRIPT IS MAIN SECTOR SPECIFIC
 
     // Get Towers
-    public Ballista leftTower, rightTower, centerTower1, centerTower2,
-                    leftCannon, rightCannon, centerCannon1, centerCannon2;
+    public Ballista leftTower, rightTower, centerTower1, centerTower2;
     // Get Buttons
     public Button leftStoneButton, leftWoodButton, leftIronButton,
                   rightStoneButton, rightWoodButton, rightIronButton,
@@ -22,13 +21,13 @@ public class Upgrades : MonoBehaviour
     // All tier and tower specific bools
     bool leftStoneTier1, leftStoneTier2, leftStoneTier3, leftStoneTier4, 
          leftWoodTier1, leftWoodTier2, leftWoodTier3, leftWoodTier4, 
-         leftIronTier,
+         leftIronTier1, leftIronTier2, leftIronTier3, leftIronTier4, 
          rightStoneTier1, rightStoneTier2,rightStoneTier3, rightStoneTier4, 
          rightWoodTier1, rightWoodTier2, rightWoodTier3, rightWoodTier4, 
-         rightIronTier,
+         rightIronTier1, rightIronTier2, rightIronTier3, rightIronTier4, 
          centerStoneTier1, centerStoneTier2, centerStoneTier3, centerStoneTier4,
          centerWoodTier1, centerWoodTier2, centerWoodTier3, centerWoodTier4,
-         centerIronTier;
+         centerIronTier1, centerIronTier2, centerIronTier3, centerIronTier4;
 
     // DEBUGGING
     void Update()
@@ -50,6 +49,7 @@ public class Upgrades : MonoBehaviour
     {
         if (leftStoneTier1 == false && materialTracker.StoneCount >= 6)
         {
+            Debug.Log("tier 1 upgrade");
             // Update tower damage
             leftTower.damageOutput += 50;
             // Decrease resource values
@@ -62,6 +62,7 @@ public class Upgrades : MonoBehaviour
         }
         else if (leftStoneTier1 == true && leftStoneTier2 == false && materialTracker.StoneCount >= 9)
         {
+            Debug.Log("tier 2 upgrade");
             // Update tower damage
             leftTower.damageOutput += 50;
             // Decrease resource values
@@ -74,6 +75,7 @@ public class Upgrades : MonoBehaviour
         }
         else if (leftStoneTier2 == true && leftStoneTier3 == false && materialTracker.StoneCount >= 12)
         {
+            Debug.Log("tier 3 upgrade");
             // Update tower damage
             leftTower.damageOutput += 50;
             // Decrease resource values
@@ -86,6 +88,7 @@ public class Upgrades : MonoBehaviour
         }
         else if (leftStoneTier3 == true && leftStoneTier4 == false && materialTracker.StoneCount >= 15)
         {
+            Debug.Log("tier 4 upgrade");
             // Update tower damage
             leftTower.damageOutput += 50;
             // Decrease resource values
@@ -102,6 +105,7 @@ public class Upgrades : MonoBehaviour
     {
         if (rightStoneTier1 == false && materialTracker.StoneCount >= 6)
         {
+            Debug.Log("tier 1 upgrade");
             // Update tower damage
             rightTower.damageOutput += 50;
             // Decrease resource values
@@ -114,6 +118,7 @@ public class Upgrades : MonoBehaviour
         }
         else if (rightStoneTier1 == true && rightStoneTier2 == false && materialTracker.StoneCount >= 9)
         {
+            Debug.Log("tier 2 upgrade");
             // Update tower damage
             rightTower.damageOutput += 50;
             // Decrease resource values
@@ -126,6 +131,7 @@ public class Upgrades : MonoBehaviour
         }
         else if (rightStoneTier2 == true && rightStoneTier3 == false && materialTracker.StoneCount >= 12)
         {
+            Debug.Log("tier 3 upgrade");
             // Update tower damage
             rightTower.damageOutput += 50;
             // Decrease resource values
@@ -138,6 +144,7 @@ public class Upgrades : MonoBehaviour
         }
         else if (rightStoneTier3 == true && rightStoneTier4 == false && materialTracker.StoneCount >= 15)
         {
+            Debug.Log("tier 4 upgrade");
             // Update tower damage
             rightTower.damageOutput += 50;
             // Decrease resource values
@@ -154,6 +161,7 @@ public class Upgrades : MonoBehaviour
     {
         if (centerStoneTier1 == false && materialTracker.StoneCount >= 6)
         {
+            Debug.Log("tier 1 upgrade");
             // Update tower damage
             centerTower1.damageOutput += 50;
             centerTower2.damageOutput += 50;
@@ -167,6 +175,7 @@ public class Upgrades : MonoBehaviour
         }
         else if (centerStoneTier1 == true && centerStoneTier2 == false && materialTracker.StoneCount >= 9)
         {
+            Debug.Log("tier 2 upgrade");
             // Update tower damage
             centerTower1.damageOutput += 50;
             centerTower2.damageOutput += 50;
@@ -180,6 +189,7 @@ public class Upgrades : MonoBehaviour
         }
         else if (centerStoneTier2 == true && centerStoneTier3 == false && materialTracker.StoneCount >= 12)
         {
+            Debug.Log("tier 3 upgrade");
             // Update tower damage
             centerTower1.damageOutput += 50;
             centerTower2.damageOutput += 50;
@@ -193,6 +203,7 @@ public class Upgrades : MonoBehaviour
         }
         else if (centerStoneTier3 == true && centerStoneTier4 == false && materialTracker.StoneCount >= 15)
         {
+            Debug.Log("tier 4 upgrade");
             // Update tower damage
             centerTower1.damageOutput += 50;
             centerTower2.damageOutput += 50;
@@ -211,8 +222,9 @@ public class Upgrades : MonoBehaviour
     {
         if (leftWoodTier1 == false && materialTracker.WoodCount >= 12)
         {
+            Debug.Log("tier 1 upgrade");
             // Update tower damage
-            leftTower.shootingRate -= 0.25f;
+            leftTower.shootingRate += 1;
             // Decrease resource values
             materialTracker.WoodCount -= 12;
 
@@ -223,8 +235,9 @@ public class Upgrades : MonoBehaviour
         }
         else if (leftWoodTier1 == true && leftWoodTier2 == false && materialTracker.WoodCount >= 20)
         {
+            Debug.Log("tier 2 upgrade");
             // Update tower damage
-            leftTower.shootingRate -= 0.25f;
+            leftTower.shootingRate += 1;
             // Decrease resource values
             materialTracker.WoodCount -= 20;
 
@@ -235,8 +248,9 @@ public class Upgrades : MonoBehaviour
         }
         else if (leftWoodTier2 == true && leftWoodTier3 == false && materialTracker.WoodCount >= 34)
         {
+            Debug.Log("tier 3 upgrade");
             // Update tower damage
-            leftTower.shootingRate -= 0.25f;
+            leftTower.shootingRate += 1;
             // Decrease resource values
             materialTracker.WoodCount -= 34;
 
@@ -247,8 +261,9 @@ public class Upgrades : MonoBehaviour
         }
         else if (leftWoodTier3 == true && leftWoodTier4 == false && materialTracker.WoodCount >= 45)
         {
+            Debug.Log("tier 4 upgrade");
             // Update tower damage
-            leftTower.shootingRate -= 0.25f;
+            leftTower.shootingRate += 1;
             // Decrease resource values
             materialTracker.WoodCount -= 45;
 
@@ -263,8 +278,9 @@ public class Upgrades : MonoBehaviour
     {
         if (rightWoodTier1 == false && materialTracker.WoodCount >= 12)
         {
+            Debug.Log("tier 1 upgrade");
             // Update tower damage
-            rightTower.shootingRate -= 0.25f;
+            rightTower.shootingRate += 1;
             // Decrease resource values
             materialTracker.WoodCount -= 12;
 
@@ -275,8 +291,9 @@ public class Upgrades : MonoBehaviour
         }
         else if (rightWoodTier1 == true && rightWoodTier2 == false && materialTracker.WoodCount >= 20)
         {
+            Debug.Log("tier 2 upgrade");
             // Update tower damage
-            rightTower.shootingRate -= 0.25f;
+            rightTower.shootingRate += 1;
             // Decrease resource values
             materialTracker.WoodCount -= 20;
 
@@ -287,8 +304,9 @@ public class Upgrades : MonoBehaviour
         }
         else if (rightWoodTier2 == true && rightWoodTier3 == false && materialTracker.WoodCount >= 34)
         {
+            Debug.Log("tier 3 upgrade");
             // Update tower damage
-            rightTower.shootingRate -= 0.25f;
+            rightTower.shootingRate += 1;
             // Decrease resource values
             materialTracker.WoodCount -= 34;
 
@@ -299,8 +317,9 @@ public class Upgrades : MonoBehaviour
         }
         else if (rightWoodTier3 == true && rightWoodTier4 == false && materialTracker.WoodCount >= 45)
         {
+            Debug.Log("tier 4 upgrade");
             // Update tower damage
-            rightTower.shootingRate -= 0.25f;
+            rightTower.shootingRate += 1;
             // Decrease resource values
             materialTracker.WoodCount -= 45;
 
@@ -315,9 +334,10 @@ public class Upgrades : MonoBehaviour
     {
         if (centerWoodTier1 == false && materialTracker.WoodCount >= 12)
         {
+            Debug.Log("tier 1 upgrade");
             // Update tower damage
-            centerTower1.shootingRate -= 0.25f;
-            centerTower2.shootingRate -= 0.25f;
+            centerTower1.shootingRate += 1;
+            centerTower2.shootingRate += 1;
             // Decrease resource values
             materialTracker.WoodCount -= 12;
 
@@ -328,9 +348,10 @@ public class Upgrades : MonoBehaviour
         }
         else if (centerWoodTier1 == true && centerWoodTier2 == false && materialTracker.WoodCount >= 20)
         {
+            Debug.Log("tier 2 upgrade");
             // Update tower damage
-            centerTower1.shootingRate -= 0.25f;
-            centerTower2.shootingRate -= 0.25f;
+            centerTower1.shootingRate += 1;
+            centerTower2.shootingRate += 1;
             // Decrease resource values
             materialTracker.WoodCount -= 20;
 
@@ -341,9 +362,10 @@ public class Upgrades : MonoBehaviour
         }
         else if (centerWoodTier2 == true && centerWoodTier3 == false && materialTracker.WoodCount >= 34)
         {
+            Debug.Log("tier 3 upgrade");
             // Update tower damage
-            centerTower1.shootingRate -= 0.25f;
-            centerTower2.shootingRate -= 0.25f;
+            centerTower1.shootingRate += 1;
+            centerTower2.shootingRate += 1;
             // Decrease resource values
             materialTracker.WoodCount -= 34;
 
@@ -354,9 +376,10 @@ public class Upgrades : MonoBehaviour
         }
         else if (centerWoodTier3 == true && centerWoodTier4 == false && materialTracker.WoodCount >= 45)
         {
+            Debug.Log("tier 4 upgrade");
             // Update tower damage
-            centerTower1.shootingRate -= 0.25f;
-            centerTower2.shootingRate -= 0.25f;
+            centerTower1.shootingRate += 1;
+            centerTower2.shootingRate += 1;
             // Decrease resource values
             materialTracker.WoodCount -= 45;
 
@@ -364,70 +387,6 @@ public class Upgrades : MonoBehaviour
             centerWoodTier4 = true;
             // Remove button since this is the last tier
             centerWoodButton.gameObject.SetActive(false);
-        }
-    }
-
-    // Upgrade tower to cannon (damage and rate conversions are handled in Ballista.cs)
-    public void upgradeLeftTowerToCannon()
-    {
-        if (leftIronTier == false && materialTracker.IronCount >= 15)
-        {
-            // Set ballista inactive and cannon active
-            leftTower.gameObject.SetActive(false);
-            leftCannon.gameObject.SetActive(true);
-            // Set new left tower member to cannon and set damage
-            leftTower = leftCannon;
-
-            // Decrease resource values
-            materialTracker.IronCount -= 15;
-
-            // Toggle bool
-            leftIronTier = true;
-            // Remove button since this is the last tier
-            leftIronButton.gameObject.SetActive(false);
-        }
-    }
-
-    public void upgradeRightTowerToCannon()
-    {
-        if (rightIronTier == false && materialTracker.IronCount >= 15)
-        {
-            // Set ballista inactive and cannon active
-            rightTower.gameObject.SetActive(false);
-            rightCannon.gameObject.SetActive(true);
-            // Set new right tower member to cannon
-            rightTower = rightCannon;
-
-            // Decrease resource values
-            materialTracker.IronCount -= 15;
-
-            // Toggle bool
-            rightIronTier = true;
-            // Remove button since this is the last tier
-            rightIronButton.gameObject.SetActive(false);
-        }
-    }
-
-    public void upgradeCenterTowersToCannon()
-    {
-        if (centerIronTier == false && materialTracker.IronCount >= 15)
-        {
-            // Set ballista inactive and cannon active
-            centerTower1.gameObject.SetActive(false);
-            centerTower2.gameObject.SetActive(false);
-            centerCannon1.gameObject.SetActive(true);
-            centerCannon2.gameObject.SetActive(true);
-            // Set new center tower member to cannon
-            centerTower1 = centerCannon1;
-            centerTower2 = centerCannon2;
-
-            // Decrease resource values
-            materialTracker.IronCount -= 15;
-
-            // Toggle bool
-            centerIronTier = true;
-            // Remove button since this is the last tier
-            centerIronButton.gameObject.SetActive(false);
         }
     }
 }
