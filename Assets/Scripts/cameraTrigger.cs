@@ -21,6 +21,6 @@ public class cameraTrigger : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         // play error sound
-        Debug.Log("error");
+        // Debug.Log("error");
     }
 }

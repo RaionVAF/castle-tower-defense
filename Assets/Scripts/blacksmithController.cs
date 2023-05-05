@@ -209,4 +209,8 @@ public class blacksmithController : MonoBehaviour
         // 1 or -1 means that the 2 quaternions are "exact", 0 means that they are far from close
         return Mathf.Abs(Quaternion.Dot(kingDirection, targetDirection)) >= 1 - precision;
     }
+
+    public void speaking(bool status){
+        isSpeaking = status;
+    }
 }

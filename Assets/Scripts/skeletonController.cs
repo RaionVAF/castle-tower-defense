@@ -38,6 +38,11 @@ public class skeletonController : MonoBehaviour
     public AudioClip skeletonDeath;
     public AudioClip shoot;
 
+    // Resources
+    public GameObject particles;
+    private GameObject materialManager;
+    private materialTracker materials;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -62,6 +67,9 @@ public class skeletonController : MonoBehaviour
         audioSource = GetComponent<AudioSource>();
         externalSource = GameObject.Find("backgroundAudio").gameObject.GetComponent<AudioSource>();
         deathSource = GameObject.Find("mobAudio").gameObject.GetComponent<AudioSource>();
+
+        materialManager = GameObject.Find("Material Manager"); 
+        materials = materialManager.GetComponent<materialTracker>();
 
         StartCoroutine(animate());
         StartCoroutine(attack());
@@ -183,7 +191,15 @@ public class skeletonController : MonoBehaviour
             }
         }
         return closest;
-    }    
+    }   
+
+    private void SpawnXP(){
+        GameObject p = Instantiate(particles, skeletonModel.transform.localPosition, particles.transform.localRotation);
+
+        materials.changeXP(10);
+        
+        Destroy(p, 1);
+    } 
 
     private void SpawnMaterial(){
         int randomInt = Random.Range(1, 101);
