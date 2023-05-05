@@ -8,9 +8,14 @@ public class materialController : MonoBehaviour
     private bool flip = true;
     private Vector3 start;
     private Vector3 end;
+    private GameObject materialManager;
+    private materialTracker materials;
     // Start is called before the first frame update
     void Start()
     {
+        materialManager = GameObject.Find("Material Manager"); 
+        materials = materialManager.GetComponent<materialTracker>();
+
         start = transform.position;
         end = transform.position + new Vector3(0f, 1f, 0f);
     }
@@ -34,6 +39,22 @@ public class materialController : MonoBehaviour
             if(t <= 0){
                 flip = true;
             }
+        }
+    }
+
+    void OnTriggerEnter(Collider other){
+        Debug.Log(transform.name + " " + other.name);
+
+        if(other.name == "playableKnight"){
+            if(transform.name == "stone(Clone)"){
+                materials.changeStone(10);
+            } else if(transform.name == "stick(Clone)"){
+                materials.changeWood(10);
+            } else {
+                materials.changeIron(10);
+            }
+
+            Destroy(gameObject);
         }
     }
 }

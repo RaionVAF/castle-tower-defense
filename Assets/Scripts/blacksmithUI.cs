@@ -6,28 +6,42 @@ using TMPro;
 
 public class blacksmithUI : MonoBehaviour
 {
-    private int[] towerCCount;
-    private int[] towerLCount;
-    private int[] towerRCount;
+    private IEnumerator coroutine;
+    public TextMeshProUGUI dialogue;
+    public blacksmithController blacksmithController;
 
-    public TextMeshProUGUI[] towerC;
-    public TextMeshProUGUI[] towerL;
-    public TextMeshProUGUI[] towerR;
-    // Start is called before the first frame update
-    void Start()
+    private string[] script = new string[]{
+            "What upgrades do you require?",
+            "Good choice, knight.",
+    };
+    
+    void OnEnable()
     {
-        towerCCount = new int[] {0,0,0};
-        towerLCount = new int[] {0,0,0};
-        towerRCount = new int[] {0,0,0};
+        coroutine = speak(script[0]);
+        StartCoroutine(coroutine);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+    IEnumerator speak(string str){
+        blacksmithController.speaking(true);
+
+        for(int i = 0; i <= str.Length; i++){
+            dialogue.text = str.Substring(0, i);
+
+            yield return null;
+        }
+
+        blacksmithController.speaking(false);
+
+        if(str == script[1]){
+            yield return new WaitForSeconds(1f);
+            coroutine = speak(script[0]);
+            StartCoroutine(coroutine);
+        }
     }
 
     public void press(){
-
+        StopCoroutine(coroutine);
+        coroutine = speak(script[1]);
+        StartCoroutine(coroutine);            
     }
 }

@@ -236,14 +236,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damageOutput: 20
+  velocity: 0
+  rotationSpeed: 0
   shootingRate: 2
-  arrow: {fileID: 0}
-  bow: {fileID: 0}
-  newArrow: {fileID: 199154194798286668, guid: 6778912db95234e418a05cd4f9bb1bfa, type: 3}
+  towerType: 
+  body: {fileID: 0}
+  ammostart: {fileID: 0}
+  ammo: {fileID: 0}
   rotatePoint: {fileID: 0}
   enemyList: []
   ballistaAudio: {fileID: 0}
-  hitSound: {fileID: 8300000, guid: 8748f866d99564d34be2ba2cdd5daec0, type: 3}
+  shootSound: {fileID: 8300000, guid: 8748f866d99564d34be2ba2cdd5daec0, type: 3}
 --- !u!54 &6329387850141135395
 Rigidbody:
   m_ObjectHideFlags: 0

@@ -766,6 +766,8 @@ MonoBehaviour:
   particles: {fileID: 1703371083485241626, guid: 792562e61601fd34dab3370d7d5f068f, type: 3}
   target: {fileID: 0}
   health: 100
+  audioSource: {fileID: -3718877977474351845}
+  hit: {fileID: 8300000, guid: cd68cc6e86da144c7bb8411440b63269, type: 3}
 --- !u!195 &-1230397017939091305
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -811,11 +813,11 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 0
-  m_Volume: 1
+  m_audioClip: {fileID: 8300000, guid: c82f34da93b5346018c33376e2612d51, type: 3}
+  m_PlayOnAwake: 1
+  m_Volume: 0.25
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0

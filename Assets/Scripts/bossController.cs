@@ -38,11 +38,11 @@ public class bossController : MonoBehaviour
     {
         // Get joints
         bossRB = GetComponent<Rigidbody>();
-        bossModel = GameObject.Find("boss");
-        leftArmJoint = GameObject.Find("boss/Left Arm Joint");
-        rightArmJoint = GameObject.Find("boss/Right Arm Joint");
-        leftLegJoint = GameObject.Find("boss/Left Leg Joint");
-        rightLegJoint = GameObject.Find("boss/Right Leg Joint");
+        bossModel = GameObject.Find("boss(Clone)");
+        leftArmJoint = GameObject.Find("boss(Clone)/Left Arm Joint");
+        rightArmJoint = GameObject.Find("boss(Clone)/Right Arm Joint");
+        leftLegJoint = GameObject.Find("boss(Clone)/Left Leg Joint");
+        rightLegJoint = GameObject.Find("boss(Clone)/Right Leg Joint");
 
         // Get audio source
         audioSource = GetComponent<AudioSource>();

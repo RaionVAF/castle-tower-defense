@@ -84,7 +84,7 @@ public class skeletonController : MonoBehaviour
         if (health <= 0){
             SpawnXP();
             SpawnMaterial();
-            audioSource.PlayOneShot(skeletonDeath, 0.8f);
+            audioSource.PlayOneShot(skeletonDeath, 1f);
             Destroy(gameObject);
         }
     }
@@ -189,9 +189,11 @@ public class skeletonController : MonoBehaviour
     }    
 
     private void SpawnXP(){
-        Instantiate(particles, skeletonModel.transform.localPosition, particles.transform.localRotation);
+        GameObject p = Instantiate(particles, skeletonModel.transform.localPosition, particles.transform.localRotation);
 
         materials.changeXP(10);
+        
+        Destroy(p, 1);
     }
 
     private void SpawnMaterial(){

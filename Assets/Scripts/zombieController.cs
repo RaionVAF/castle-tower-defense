@@ -94,7 +94,7 @@ public class zombieController : MonoBehaviour
         {
             //GameObject particles = Instantiate(deathParticleEffects, zombieModel.transform.localPosition, deathParticleEffects.transform.localRotation);
             //Destroy(particles);
-            audioSource.PlayOneShot(hit, 0.9f);
+            audioSource.PlayOneShot(hit, 1f);
             health -= enemy.GetComponent<Projectile>().damageOutput;
         }
     }
@@ -198,9 +198,11 @@ public class zombieController : MonoBehaviour
     }   
 
     private void SpawnXP(){
-        Instantiate(particles, zombieModel.transform.localPosition, particles.transform.localRotation);
+        GameObject p = Instantiate(particles, zombieModel.transform.localPosition, particles.transform.localRotation);
 
         materials.changeXP(10);
+        
+        Destroy(p, 1);
     }
 
     private void SpawnMaterial(){
