@@ -404,4 +404,4 @@ public class Upgrades2 : MonoBehaviour
             centerIronButton.gameObject.SetActive(false);
         }
     }
-}
+}   
