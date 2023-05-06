@@ -35,6 +35,7 @@ public class Ballista : MonoBehaviour
         rotatePoint = transform.Find("rotatePoint").gameObject;
 
         audioSource = GetComponent<AudioSource>();
+        shootSound = audioSource.clip;
 
         //START COROUTINE TO SHOOT ARROWS
         StartCoroutine(Shoot());
@@ -78,66 +79,85 @@ public class Ballista : MonoBehaviour
 
             //choose the closest enemy to shoot at
 
-            Vector3 minEnemyPosition = enemyList[0].transform.position;
-            Vector3 currEnemyPosition;
-            Quaternion newRotation;
-            float minDistance = float.PositiveInfinity;
-            float enemyDistance;
+            enemyList.RemoveAll(e => e == null);
 
-            for (int e = 0; e < enemyList.Count; e++)
+            if(enemyList.Count > 0)
             {
-                //check if any enemies are dead (marked as non-active)
-                GameObject currEnemy = enemyList[e];
+                Vector3 minEnemyPosition = enemyList[0].transform.position;
+                Vector3 currEnemyPosition;
+                Quaternion newRotation;
+                float minDistance = float.PositiveInfinity;
+                float enemyDistance;
 
-                currEnemyPosition = enemyList[e].transform.position;
-                enemyDistance = Vector3.Distance(transform.position, currEnemyPosition);
-                if (enemyDistance < minDistance)
+                for (int e = 0; e < enemyList.Count; e++)
                 {
-                    minDistance = enemyDistance;
-                    minEnemyPosition = currEnemyPosition;
+                    //check if any enemies are dead (marked as non-active)
+                    GameObject currEnemy = enemyList[e];
+
+                    currEnemyPosition = enemyList[e].transform.position;
+                    enemyDistance = Vector3.Distance(transform.position, currEnemyPosition);
+                    if (enemyDistance < minDistance)
+                    {
+                        minDistance = enemyDistance;
+                        minEnemyPosition = currEnemyPosition;
+                    }
                 }
-            }
 
-            //aim arrow at the middle of the enemy
+                //aim arrow at the middle of the enemy
 
-            minEnemyPosition = new Vector3(minEnemyPosition[0], minEnemyPosition[1] + 3, minEnemyPosition[2]);
+                minEnemyPosition = new Vector3(minEnemyPosition[0], minEnemyPosition[1] + 3, minEnemyPosition[2]);
 
-            /* 
-             * rotate TOWER in direction of the closest enemy!
-             * ! first rotate "rotatePoint" which will have all the euler angles !
-             * 
-             * -  tower rotates in solely y-direction
-             * -  bow and arrow rotate in all directions
-             * 
-             * */
+                /* 
+                 * rotate TOWER in direction of the closest enemy!
+                 * ! first rotate "rotatePoint" which will have all the euler angles !
+                 * 
+                 * -  tower rotates in solely y-direction
+                 * -  bow and arrow rotate in all directions
+                 * 
+                 * */
 
-            newRotation = Quaternion.LookRotation(minEnemyPosition);
-            rotatePoint.transform.LookAt(minEnemyPosition, transform.up);
-            Vector3 angles = rotatePoint.transform.rotation.eulerAngles;
-            transform.rotation = Quaternion.Euler(0, angles[1], 0);
+                newRotation = Quaternion.LookRotation(minEnemyPosition);
+                rotatePoint.transform.LookAt(minEnemyPosition, transform.up);
+                Vector3 angles = rotatePoint.transform.rotation.eulerAngles;
+                transform.rotation = Quaternion.Euler(0, angles[1], 0);
 
-            if (towerType != "Catapult"){
-                if (towerType == "Ballista"){
-                    body.transform.rotation = Quaternion.Euler(angles[0], angles[1], angles[2]);
-                    //ballistaAudio.PlayOneShot(hitSound, 0.6f);
-                } else {
-                    body.transform.rotation = Quaternion.Euler(angles[0] + 90f, angles[1], angles[2]);
+                if (towerType != "Catapult")
+                {
+                    if (towerType == "Ballista")
+                    {
+                        body.transform.rotation = Quaternion.Euler(angles[0], angles[1], angles[2]);
+                        //ballistaAudio.PlayOneShot(hitSound, 0.6f);
+                    }
+                    else
+                    {
+                        body.transform.rotation = Quaternion.Euler(angles[0] + 90f, angles[1], angles[2]);
+                    }
                 }
-            } else {
-                body.transform.rotation = Quaternion.Slerp(body.transform.rotation, Quaternion.Euler(60f, 0 ,0), Time.deltaTime);
+                else
+                {
+                    body.transform.rotation = Quaternion.Slerp(body.transform.rotation, Quaternion.Euler(60f, 0, 0), Time.deltaTime);
+                }
+
+                //make new arrow
+
+                GameObject createdammo = Instantiate(ammo, ammostart.transform.position, body.transform.rotation);
+                createdammo.GetComponent<Projectile>().settings("towerWeapon", enemyList[0].transform.gameObject.tag, damageOutput, velocity, rotationSpeed, enemyList[0].transform);
+                if (towerType == "Catapult")
+                {
+                    body.transform.rotation = Quaternion.Slerp(body.transform.rotation, Quaternion.Euler(-60f, 0, 0), Time.deltaTime);
+                }
+
+                if(towerType == "cannon")
+                {
+                    audioSource.PlayOneShot(shootSound, 0.2f);
+                } else
+                {
+                    audioSource.PlayOneShot(shootSound, 1f);
+                }
+
+                yield return new WaitForSeconds(shootingRate);
             }
 
-            //make new arrow
-
-            GameObject createdammo = Instantiate(ammo, ammostart.transform.position, body.transform.rotation);
-            createdammo.GetComponent<Projectile>().settings("towerWeapon", enemyList[0].transform.gameObject.tag, damageOutput, velocity, rotationSpeed, enemyList[0].transform);
-            if (towerType == "Catapult"){
-                body.transform.rotation = Quaternion.Slerp(body.transform.rotation, Quaternion.Euler(-60f, 0 ,0), Time.deltaTime);
-            }
-
-            audioSource.PlayOneShot(shootSound, 1f);
-
-            yield return new WaitForSeconds(shootingRate);
         }
     }
 
