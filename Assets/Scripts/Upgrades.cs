@@ -30,6 +30,21 @@ public class Upgrades : MonoBehaviour
          centerWoodTier1, centerWoodTier2, centerWoodTier3, centerWoodTier4,
          centerIronTier;
 
+    // DEBUGGING
+    void Update()
+    {
+        // DEBUG TOWER DAMAGE
+        Debug.Log("Left tower damage: " + leftTower.damageOutput);
+        Debug.Log("Right tower damage: " + rightTower.damageOutput);
+        Debug.Log("Center1 tower damage: " + centerTower1.damageOutput);
+        Debug.Log("Center2 tower damage: " + centerTower2.damageOutput);
+        // DEBUG TOWER SHOOTING RATE
+        Debug.Log("Left tower shooting rate: " + leftTower.shootingRate);
+        Debug.Log("Right tower shooting rate: " + rightTower.shootingRate);
+        Debug.Log("Center1 tower damage: " + centerTower1.shootingRate);
+        Debug.Log("Center2 tower damage: " + centerTower2.shootingRate);
+    }
+
     // Damage upgrades are a flat 50 increase
     public void increaseLeftTowerDamage()
     {
