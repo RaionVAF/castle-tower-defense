@@ -31,6 +31,13 @@ public class tutorial : MonoBehaviour
             "To change regions, walk towards either the top or left of the screen.",
             "To repair a building, talk to the alchemist in that building's region.",
             "To upgrade a building, talk to the blacksmith in that building's region.",
+            "Both interactions can be triggered by approaching their respective buildings",
+            "and pressing 'E' on your keyboard. You can also leave the interactions by pressing 'E'.",
+            "When killed, enemies will drop materials to upgrade our defenses and XP to repair our village.",
+            "Simply click on any materials you may find on the ground to collect them.",
+            "Wood will upgrade your tower's shooting speed,",
+            "stone will upgrade your tower's projectile damage,",
+            "and iron will replace the tower's ballista with a cannon.",
             "Fair knight, defend our way of life once more!"
     };
     private int line = 0;
@@ -51,6 +58,11 @@ public class tutorial : MonoBehaviour
 
     public GameObject alcSpot;
     public GameObject bsSpot;
+
+    public GameObject materials;
+    public materialController woodController;
+    public materialController stoneController;
+    public materialController ironController;
 
     void OnEnable()
     {
@@ -105,8 +117,30 @@ public class tutorial : MonoBehaviour
         }
 
         if(line == 11){
-            skipButton.SetActive(false);
             bsSpot.SetActive(false);
+        }
+
+        if(line == 13){
+            materials.SetActive(true);
+        }
+
+        if(line == 15){
+            woodController.enabled = true;
+        }
+
+        if(line == 16){
+            woodController.enabled = false;
+            stoneController.enabled = true;
+        }
+
+        if(line == 17){
+            stoneController.enabled = false;
+            ironController.enabled = true;
+        }
+
+        if(line == script.Length){
+            materials.SetActive(false);
+            skipButton.SetActive(false);
         }
     }
 

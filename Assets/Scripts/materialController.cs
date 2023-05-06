@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class materialController : MonoBehaviour
 {
+    public float dist = 1f;
+    public float diff = .025f;
+    public float deg = 2f;
+
     private float t = 0;
     private bool flip = true;
     private Vector3 start;
@@ -19,7 +23,7 @@ public class materialController : MonoBehaviour
         materials = materialManager.GetComponent<materialTracker>();
 
         start = transform.position;
-        end = transform.position + new Vector3(0f, 1f, 0f);
+        end = transform.position + new Vector3(0f, dist, 0f);
 
         Camera.main.eventMask = inputLayerMask;
     }
@@ -27,18 +31,18 @@ public class materialController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.eulerAngles += new Vector3(0f, 2f, 0f);
+        transform.eulerAngles += new Vector3(0f, deg, 0f);
         
         transform.position = Vector3.Lerp(start, end, t);
         
         if(flip){
-            t += .025f;
+            t += diff;
 
             if(t >= 1){
                 flip = false;
             }
         } else {
-            t -= .025f;
+            t -= diff;
 
             if(t <= 0){
                 flip = true;
