@@ -34,6 +34,7 @@ public class zombieController : MonoBehaviour
     public AudioSource audioSource, externalSource, deathSource;
     public AudioClip deathClip;
     public AudioClip hitClip;
+    public GameObject mobAudio;
 
     // Resources
     public GameObject particles;
@@ -61,10 +62,15 @@ public class zombieController : MonoBehaviour
 
         audioSource = gameObject.GetComponent<AudioSource>();
         externalSource = GameObject.Find("backgroundAudio").gameObject.GetComponent<AudioSource>();
-        deathSource = GameObject.Find("mobAudio").gameObject.GetComponent<AudioSource>();
+        mobAudio = GameObject.Find("mobAudio");
+        deathSource = mobAudio.gameObject.GetComponent<AudioSource>();
 
         materialManager = GameObject.Find("Material Manager"); 
         materials = materialManager.GetComponent<materialTracker>();
+
+        mobAudio.GetComponent<cryController>().numZombies += 1;
+
+        Debug.Log("adding: " + mobAudio.GetComponent<cryController>().numZombies);
 
         StartCoroutine(animate());
         StartCoroutine(attack());
@@ -83,10 +89,12 @@ public class zombieController : MonoBehaviour
         }
 
         if (health <= 0){
-            externalSource.PlayOneShot(hitClip, 0.6f);
-            deathSource.PlayOneShot(deathClip, 1f);
+            externalSource.PlayOneShot(hitClip, 0.4f);
+            deathSource.PlayOneShot(deathClip, 0.6f);
             SpawnMaterial();
             SpawnXP();
+            mobAudio.GetComponent<cryController>().numZombies -= 1;
+            Debug.Log("subtracting: " + mobAudio.GetComponent<cryController>().numZombies);
             Destroy(gameObject);
         }
     }

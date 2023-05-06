@@ -107,7 +107,6 @@ public class skeletonController : MonoBehaviour
         }
     }
 
-
     IEnumerator animate()
     {
         // Create a WaitUntil object that will wait until isMoving is true
