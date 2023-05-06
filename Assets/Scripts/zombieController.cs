@@ -34,6 +34,7 @@ public class zombieController : MonoBehaviour
     public AudioSource audioSource, externalSource, deathSource;
     public AudioClip deathClip;
     public AudioClip hitClip;
+    public GameObject mobAudio;
 
     // Resources
     public GameObject particles;
@@ -61,7 +62,11 @@ public class zombieController : MonoBehaviour
 
         audioSource = gameObject.GetComponent<AudioSource>();
         externalSource = GameObject.Find("backgroundAudio").gameObject.GetComponent<AudioSource>();
-        deathSource = GameObject.Find("mobAudio").gameObject.GetComponent<AudioSource>();
+        mobAudio = GameObject.Find("mobAudio");
+        deathSource = mobAudio.gameObject.GetComponent<AudioSource>();
+
+        //increment zombie count
+        mobAudio.GetComponent<cryController>().numZombies += 1;
 
         materialManager = GameObject.Find("Material Manager"); 
         materials = materialManager.GetComponent<materialTracker>();
@@ -87,6 +92,7 @@ public class zombieController : MonoBehaviour
             deathSource.PlayOneShot(deathClip, 1f);
             SpawnMaterial();
             SpawnXP();
+            mobAudio.GetComponent<cryController>().numZombies -= 1;
             Destroy(gameObject);
         }
     }
