@@ -24,7 +24,7 @@ public class skeletonController : MonoBehaviour
     float jointRotationSpeed = 5f;
     float legRotationAngle = 15f;
 
-    public float health = 100;
+    public float health = 50;
     public float damageOutput = 150;
 
     int attackInterval = 2;

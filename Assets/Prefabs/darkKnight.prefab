@@ -541,7 +541,7 @@ MonoBehaviour:
   stone: {fileID: 4744405160977385580, guid: c2c7e91a9329c8644ac81cba1c60564b, type: 3}
   iron: {fileID: 4337311903292609315, guid: 5cdbda217e75fe9418ac9ed0aa7b5c64, type: 3}
   darkKnight: {fileID: 7271489740812512497}
-  health: 300
+  health: 250
   audioSource: {fileID: 0}
   externalSource: {fileID: 0}
   deathSource: {fileID: 0}

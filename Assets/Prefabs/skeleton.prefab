@@ -264,8 +264,8 @@ MonoBehaviour:
   iron: {fileID: 4337311903292609315, guid: 5cdbda217e75fe9418ac9ed0aa7b5c64, type: 3}
   Arrow: {fileID: 199154194798286668, guid: 6778912db95234e418a05cd4f9bb1bfa, type: 3}
   skeleton: {fileID: 7831503300605222725}
-  health: 100
-  damageOutput: 50
+  health: 50
+  damageOutput: 150
   armsAreRaised: 0
   audioSource: {fileID: 0}
   externalSource: {fileID: 0}
