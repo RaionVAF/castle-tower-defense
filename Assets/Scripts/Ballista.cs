@@ -41,6 +41,29 @@ public class Ballista : MonoBehaviour
         StartCoroutine(Shoot());
     }
 
+    void OnEnable()
+    {
+        if (towerType == "Cannon")
+        {
+            damageOutput = previousTower.damageOutput + 500;
+            shootingRate = previousTower.shootingRate - 0.25f;
+        }
+        body = transform.GetChild(0).gameObject;
+        ammostart = body.transform.GetChild(0).gameObject;
+        rotatePoint = transform.Find("rotatePoint").gameObject;
+
+        audioSource = GetComponent<AudioSource>();
+        shootSound = audioSource.clip;
+
+        //START COROUTINE TO SHOOT ARROWS
+        StartCoroutine(Shoot());
+    }
+
+    void OnDisable()
+    {
+        StopCoroutine(Shoot());
+    }
+
     //THE ENEMY IS THE TRIGGER
     void OnTriggerEnter(Collider other)
     {
