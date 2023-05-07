@@ -13,6 +13,7 @@ public class tutorial : MonoBehaviour
     private characterController playerController;
     private kingController kingController;
     public GameObject healthBars;
+    public GameObject cameraBounds;
 
     public GameObject playerUI;
     public GameObject tutorialUI;
@@ -162,6 +163,7 @@ public class tutorial : MonoBehaviour
         playerUI.SetActive(true);
         spawn.SetActive(true);
         healthBars.SetActive(true);
+        cameraBounds.SetActive(true);
     }
 
     public void nextButton(){

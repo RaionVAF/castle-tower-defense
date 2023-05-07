@@ -12,6 +12,7 @@ TagManager:
   - enemyWeapon
   - towerWeapon
   - Structure
+  - CameraTrigger
   layers:
   - Default
   - TransparentFX

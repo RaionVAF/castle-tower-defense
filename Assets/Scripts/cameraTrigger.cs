@@ -15,7 +15,8 @@ public class cameraTrigger : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.name == "playableKnight"){            
+        if(other.name == "playableKnight"){ 
+            // print(int.Parse(transform.name) - 1);     
             rotateCam.callCam(int.Parse(transform.name) - 1);
         }
     }
