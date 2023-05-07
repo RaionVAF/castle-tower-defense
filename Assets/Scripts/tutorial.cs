@@ -12,7 +12,7 @@ public class tutorial : MonoBehaviour
 
     private characterController playerController;
     private kingController kingController;
-    public GameObject maincam;
+    public GameObject healthBars;
 
     public GameObject playerUI;
     public GameObject tutorialUI;
@@ -43,8 +43,6 @@ public class tutorial : MonoBehaviour
     private int line = 0;
 
     private float startTime;
-
-    // public Camera mainCam;
     
     public GameObject directionPopup;
     private Quaternion directionRotation;
@@ -163,6 +161,7 @@ public class tutorial : MonoBehaviour
         tutorialUI.SetActive(false);
         playerUI.SetActive(true);
         spawn.SetActive(true);
+        healthBars.SetActive(true);
     }
 
     public void nextButton(){

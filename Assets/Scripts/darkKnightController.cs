@@ -33,6 +33,11 @@ public class darkKnightController : MonoBehaviour
     // Bool member to run moving animation script if true
     bool armsAreRaised = false;
 
+    // Audio
+    public AudioSource audioSource, externalSource, deathSource;
+    public AudioClip deathClip;
+    public AudioClip hitClip;
+
     // Resources
     public GameObject particles;
     private GameObject materialManager;
@@ -57,6 +62,10 @@ public class darkKnightController : MonoBehaviour
         targetScript = target.GetComponent<boundary>();
         darkKnight.destination = targetVector;
 
+        audioSource = gameObject.GetComponent<AudioSource>();
+        externalSource = GameObject.Find("backgroundAudio").gameObject.GetComponent<AudioSource>();
+        deathSource = GameObject.Find("mobAudio").gameObject.GetComponent<AudioSource>();
+
         materialManager = GameObject.Find("Material Manager"); 
         materials = materialManager.GetComponent<materialTracker>();
 
@@ -80,6 +89,8 @@ public class darkKnightController : MonoBehaviour
         if (health <= 0){
             //SpawnMaterial();
             Destroy(gameObject);
+            externalSource.PlayOneShot(hitClip, 0.8f);
+            externalSource.PlayOneShot(deathClip, 0.8f);
         }      
         
         float leftArmRotation = Mathf.Sin(Time.time * 1f) * -10f;
@@ -96,6 +107,7 @@ public class darkKnightController : MonoBehaviour
             //GameObject particles = Instantiate(deathParticleEffects, zombieModel.transform.localPosition, deathParticleEffects.transform.localRotation);
             //Destroy(particles);
             health -= enemy.GetComponent<Projectile>().damageOutput;
+            audioSource.PlayOneShot(hitClip, 0.8f);
         }
     }
     

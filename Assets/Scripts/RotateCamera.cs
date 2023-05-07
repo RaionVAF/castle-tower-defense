@@ -6,12 +6,15 @@ public class RotateCamera : MonoBehaviour
 {
     public Transform pivot;
     private bool[] sides;
+    private int state;
     private bool rotating;
+    public GameObject[] healthBars = new GameObject[3];
     
     // Start is called before the first frame update
     void Start()
     {
         sides = new bool[] {false, true};
+        state = 1;
         rotating = false;
     }
 
@@ -20,10 +23,14 @@ public class RotateCamera : MonoBehaviour
 
         if(!rotating){
             rotating = true;
+
+            healthBars[state].SetActive(false);
             
             if(sides[bound]){
+                state++;
                 StartCoroutine(RotateCam(-60f));
             } else {
+                state--;
                 StartCoroutine(RotateCam(60f));
             }
         }
@@ -42,6 +49,8 @@ public class RotateCamera : MonoBehaviour
         }
 
         for(int i = 0; i < sides.Length; i++) sides[i] = !sides[i];
+
+        healthBars[state].SetActive(true);
 
         rotating = false;
     }
