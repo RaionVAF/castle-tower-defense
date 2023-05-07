@@ -26,9 +26,9 @@ public class darkKnightController : MonoBehaviour
     private Transform target;
     private Vector3 targetVector;
 
-    float attackdamage = 100;
+    float attackdamage = 75;
 
-    public float health = 200;
+    public float health = 75;
 
     // Bool member to run moving animation script if true
     bool armsAreRaised = false;

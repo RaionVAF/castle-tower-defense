@@ -25,7 +25,7 @@ public class zombieController : MonoBehaviour
 
     float attackdamage = 50;
 
-    public float health = 100;
+    public float health = 50;
 
     // Bool member to run moving animation script if true
     bool armsAreRaised = false;
