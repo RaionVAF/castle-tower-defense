@@ -35,6 +35,8 @@ public class materialTracker : MonoBehaviour
         blacksmith[8].text = IronCount.ToString();
 
         alchemist[0].text = XPCount.ToString();
+        alchemist[1].text = XPCount.ToString();
+        alchemist[2].text = XPCount.ToString();
     }
 
     public void changeXP(int amount){

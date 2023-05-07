@@ -185,6 +185,8 @@ public class alchemistController : MonoBehaviour
             alchemistCamera.gameObject.SetActive(true);
             // Turn player model off so that it doesnt interfere with the menu camera
             playerModel.gameObject.SetActive(false);
+            // Freeze game state
+            Time.timeScale = 0;
 
             // Toggle bool
             isUpgradeMenuOpen = true;
@@ -196,6 +198,8 @@ public class alchemistController : MonoBehaviour
             mainCamera.gameObject.SetActive(true);
             // Turn player model on so since the user left the menu
             playerModel.gameObject.SetActive(true);
+            // Unfreeze game state
+            Time.timeScale = 1;
 
             // Toggle bool
             isUpgradeMenuOpen = false;

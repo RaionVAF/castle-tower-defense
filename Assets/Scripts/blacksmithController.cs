@@ -179,12 +179,14 @@ public class blacksmithController : MonoBehaviour
         // If the player presses E when the popup is active, switch to upgrade menu
         // If the menu is up and the player presses E again, leave upgrade menu
         if (Input.GetKeyDown(KeyCode.E) && !isUpgradeMenuOpen)
-        {
+        {   
             // Toggle cameras
             mainCamera.gameObject.SetActive(false);
             blacksmithCamera.gameObject.SetActive(true);
             // Turn player model off so that it doesnt interfere with the menu camera
             playerModel.gameObject.SetActive(false);
+            // Freeze game state
+            Time.timeScale = 0;
 
             // Toggle bool
             isUpgradeMenuOpen = true;
@@ -196,6 +198,8 @@ public class blacksmithController : MonoBehaviour
             mainCamera.gameObject.SetActive(true);
             // Turn player model on so since the user left the menu
             playerModel.gameObject.SetActive(true);
+            // Unfreeze game state
+            Time.timeScale = 1;
 
             // Toggle bool
             isUpgradeMenuOpen = false;
