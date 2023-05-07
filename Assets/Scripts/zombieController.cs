@@ -23,9 +23,9 @@ public class zombieController : MonoBehaviour
     public Transform target;
     private Vector3 targetVector;
 
-    float attackdamage = 250;
+    float attackdamage = 50;
 
-    public float health = 100;
+    public float health = 200;
 
     // Bool member to run moving animation script if true
     bool armsAreRaised = false;
@@ -46,6 +46,8 @@ public class zombieController : MonoBehaviour
     {
         zombie.stoppingDistance = 16f;
         zombie.avoidancePriority = Random.Range(0,99);
+        health *= spawning.bossStage;
+        attackdamage *= spawning.bossStage;
 
         zombieRB = GetComponent<Rigidbody>();
         zombieModel = transform.gameObject;
@@ -103,8 +105,6 @@ public class zombieController : MonoBehaviour
         GameObject enemy = other.gameObject;
         if (enemy.tag == "towerWeapon")
         {
-            //GameObject particles = Instantiate(deathParticleEffects, zombieModel.transform.localPosition, deathParticleEffects.transform.localRotation);
-            //Destroy(particles);
             health -= enemy.GetComponent<Projectile>().damageOutput;
             audioSource.PlayOneShot(hitClip, 1f);
         }
