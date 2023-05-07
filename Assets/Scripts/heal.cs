@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class heal : MonoBehaviour
 {
-    public GameObject House1, House2, Windmill, FarmersMarket, Campfire, Farm, House3, TowerL, TowerR, House4, House5, Wall;
     private boundary structureScript;  
     public void repair(GameObject structure){
         structureScript = structure.GetComponent<boundary>();

@@ -25,7 +25,7 @@ public class skeletonController : MonoBehaviour
     float legRotationAngle = 15f;
 
     public float health = 100;
-    public float damageOutput = 50;
+    public float damageOutput = 150;
 
     int attackInterval = 2;
 
@@ -51,6 +51,8 @@ public class skeletonController : MonoBehaviour
         // Edit: access local gameobject instead of gameobject.find
         skeleton.stoppingDistance = 25f;
         skeleton.avoidancePriority = Random.Range(0,99);
+        health *= spawning.bossStage;
+        damageOutput *= spawning.bossStage;
 
         skeletonModel = transform.gameObject;
         leftArmJoint = transform.GetChild(4).gameObject;

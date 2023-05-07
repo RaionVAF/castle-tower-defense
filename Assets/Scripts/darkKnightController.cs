@@ -26,9 +26,9 @@ public class darkKnightController : MonoBehaviour
     private Transform target;
     private Vector3 targetVector;
 
-    float attackdamage = 50;
+    float attackdamage = 100;
 
-    public float health = 300;
+    public float health = 500;
 
     // Bool member to run moving animation script if true
     bool armsAreRaised = false;
@@ -48,6 +48,8 @@ public class darkKnightController : MonoBehaviour
     {
         darkKnight.stoppingDistance = 16f;
         darkKnight.avoidancePriority = Random.Range(0,99);
+        health *= spawning.bossStage;
+        attackdamage *= spawning.bossStage;
         // Get joints
 
         darkKnightModel = transform.gameObject;

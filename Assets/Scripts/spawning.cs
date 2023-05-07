@@ -8,7 +8,7 @@ public class spawning : MonoBehaviour
     public restartConditions condition;
     public int mobcap, plat;
     private float timer;
-    private int bossStage;
+    public static int bossStage = 1;
 
     public int mobcapLimit = 5;
 
