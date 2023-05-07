@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class spawning : MonoBehaviour
 {
+    public restartConditions condition;
     public int mobcap, plat;
     private float timer;
     private int bossStage;
@@ -55,8 +56,9 @@ public class spawning : MonoBehaviour
         }
 
         if (bossPhase && boss == null){
-            if (bossStage == 3){
+            if (bossStage >= 3){
                 //end game
+                condition.youWin();
             }
             mobcapLimit += 25;
             bossStage += 1;
