@@ -541,7 +541,7 @@ MonoBehaviour:
   stone: {fileID: 4744405160977385580, guid: c2c7e91a9329c8644ac81cba1c60564b, type: 3}
   iron: {fileID: 4337311903292609315, guid: 5cdbda217e75fe9418ac9ed0aa7b5c64, type: 3}
   darkKnight: {fileID: 7271489740812512497}
-  health: 75
+  health: 100
   audioSource: {fileID: 0}
   externalSource: {fileID: 0}
   deathSource: {fileID: 0}
@@ -571,7 +571,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 1
-  m_Speed: 3.5
+  m_Speed: 2
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120

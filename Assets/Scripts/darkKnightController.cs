@@ -18,7 +18,7 @@ public class darkKnightController : MonoBehaviour
     boundary targetScript;
 
     // Constants
-    float jointRotationSpeed = 5f;
+    float jointRotationSpeed = 2.5f;
     float legRotationAngle = 15f;
 
 

@@ -29,6 +29,7 @@ public class Upgrades : MonoBehaviour
          centerStoneTier1, centerStoneTier2, centerStoneTier3, centerStoneTier4,
          centerWoodTier1, centerWoodTier2, centerWoodTier3, centerWoodTier4,
          centerIronTier;
+         
 
     // Damage upgrades are a flat 50 increase
     public void increaseLeftTowerDamage()

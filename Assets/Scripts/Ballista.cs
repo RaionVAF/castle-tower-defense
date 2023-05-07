@@ -98,9 +98,9 @@ public class Ballista : MonoBehaviour
                 for (int e = 0; e < enemyList.Count; e++)
                 {
                     //check if any enemies are dead (marked as non-active)
-                    GameObject currEnemy = enemyList[e];
+                    GameObject currEnemy = enemyList[0];
 
-                    currEnemyPosition = enemyList[e].transform.position;
+                    currEnemyPosition = enemyList[0].transform.position;
                     enemyDistance = Vector3.Distance(transform.position, currEnemyPosition);
                     if (enemyDistance < minDistance)
                     {
@@ -127,31 +127,21 @@ public class Ballista : MonoBehaviour
                 Vector3 angles = rotatePoint.transform.rotation.eulerAngles;
                 transform.rotation = Quaternion.Euler(0, angles[1], 0);
 
-                if (towerType != "Catapult")
+              
+                if (towerType == "Ballista")
                 {
-                    if (towerType == "Ballista")
-                    {
                         body.transform.rotation = Quaternion.Euler(angles[0], angles[1], angles[2]);
                         //ballistaAudio.PlayOneShot(hitSound, 0.6f);
-                    }
-                    else
-                    {
-                        body.transform.rotation = Quaternion.Euler(angles[0] + 90f, angles[1], angles[2]);
-                    }
                 }
                 else
                 {
-                    body.transform.rotation = Quaternion.Slerp(body.transform.rotation, Quaternion.Euler(60f, 0, 0), Time.deltaTime);
+                        body.transform.rotation = Quaternion.Euler(angles[0] + 90f, angles[1], angles[2]);
                 }
-
+                
                 //make new arrow
 
                 GameObject createdammo = Instantiate(ammo, ammostart.transform.position, body.transform.rotation);
                 createdammo.GetComponent<Projectile>().settings("towerWeapon", enemyList[0].transform.gameObject.tag, damageOutput, velocity, rotationSpeed, enemyList[0].transform);
-                if (towerType == "Catapult")
-                {
-                    body.transform.rotation = Quaternion.Slerp(body.transform.rotation, Quaternion.Euler(-60f, 0, 0), Time.deltaTime);
-                }
 
                 if(towerType == "cannon")
                 {

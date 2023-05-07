@@ -87,6 +87,7 @@ public class spawning : MonoBehaviour
                     newmob = Instantiate(Skeleton, spawnplats[plat].transform.position, spawnplats[plat].transform.rotation);
                 } else if (i> 90) {
                     newmob = Instantiate(darkKnight, spawnplats[plat].transform.position, spawnplats[plat].transform.rotation);
+                    newmob.transform.localScale = new Vector3(1.5f,1.5f,1.5f);
                 }
             }
             enemyList.Add(newmob);

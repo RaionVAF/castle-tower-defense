@@ -27,7 +27,7 @@ public class skeletonController : MonoBehaviour
     public float health = 50;
     public float damageOutput = 75;
 
-    int attackInterval = 2;
+    int attackInterval = 3;
 
     // Bool member to run moving animation script if true
     public bool armsAreRaised = false;
