@@ -25,8 +25,6 @@ public class boundary : MonoBehaviour
         // update upgrade menu bools
         isAlchemistMenuOpen = alchemist.GetComponent<alchemistController>().isUpgradeMenuOpen;
         isBlacksmithMenuOpen = blacksmith.GetComponent<blacksmithController>().isUpgradeMenuOpen;
-        Debug.Log(isAlchemistMenuOpen);
-        Debug.Log(isBlacksmithMenuOpen);
 
         if (isAlchemistMenuOpen || isBlacksmithMenuOpen)
         {
