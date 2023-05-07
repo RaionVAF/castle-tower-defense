@@ -265,7 +265,7 @@ MonoBehaviour:
   Arrow: {fileID: 199154194798286668, guid: 6778912db95234e418a05cd4f9bb1bfa, type: 3}
   skeleton: {fileID: 7831503300605222725}
   health: 50
-  damageOutput: 150
+  damageOutput: 75
   armsAreRaised: 0
   audioSource: {fileID: 0}
   externalSource: {fileID: 0}

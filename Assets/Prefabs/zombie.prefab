@@ -764,7 +764,7 @@ MonoBehaviour:
   iron: {fileID: 4337311903292609315, guid: 5cdbda217e75fe9418ac9ed0aa7b5c64, type: 3}
   zombie: {fileID: -1230397017939091305}
   target: {fileID: 0}
-  health: 100
+  health: 50
   audioSource: {fileID: 0}
   externalSource: {fileID: 0}
   deathSource: {fileID: 0}
