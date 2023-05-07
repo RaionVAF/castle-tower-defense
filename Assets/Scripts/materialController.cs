@@ -25,7 +25,9 @@ public class materialController : MonoBehaviour
         start = transform.position;
         end = transform.position + new Vector3(0f, dist, 0f);
 
-        Camera.main.eventMask = inputLayerMask;
+        GameObject cam = GameObject.FindWithTag("MainCamera");
+        
+        if(cam != null) cam.GetComponent<Camera>().eventMask = inputLayerMask;
     }
 
     // Update is called once per frame
