@@ -10,7 +10,10 @@ public class boundary : MonoBehaviour
     public float maxHealth;
     public Slider slider;
     public GameObject healthBar;
-   
+
+    public GameObject alchemist, blacksmith;
+    private bool isAlchemistMenuOpen, isBlacksmithMenuOpen;
+
     void Start(){
         slider.maxValue = maxHealth;
         health = maxHealth;
@@ -19,6 +22,17 @@ public class boundary : MonoBehaviour
    
     void Update()
     {
+        // update upgrade menu bools
+        isAlchemistMenuOpen = alchemist.GetComponent<alchemistController>().isUpgradeMenuOpen;
+        isBlacksmithMenuOpen = blacksmith.GetComponent<blacksmithController>().isUpgradeMenuOpen;
+        Debug.Log(isAlchemistMenuOpen);
+        Debug.Log(isBlacksmithMenuOpen);
+
+        if (isAlchemistMenuOpen || isBlacksmithMenuOpen)
+        {
+            healthBar.SetActive(false);
+        }
+
         slider.value = health;
 
         if (health <= 0){
@@ -28,7 +42,8 @@ public class boundary : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.name == "playableKnight"){
+        if(other.gameObject.name == "playableKnight")
+        {   
             healthBar.SetActive(true);
         } else {
             GameObject enemy = other.gameObject;

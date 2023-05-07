@@ -31,7 +31,7 @@ public class alchemistController : MonoBehaviour
     bool isSpeaking = false;
     bool armsAreRaised = false;
     bool isPlayerDetected = false;
-    bool isUpgradeMenuOpen = false;
+    public bool isUpgradeMenuOpen = false;
 
     // Start is called before the first frame update
     void Start()
