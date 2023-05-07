@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.AI;
 
 public class boundary : MonoBehaviour
 {
@@ -14,10 +15,13 @@ public class boundary : MonoBehaviour
     public GameObject alchemist, blacksmith;
     private bool isAlchemistMenuOpen, isBlacksmithMenuOpen;
 
+    private NavMeshObstacle obstacle;
+
     void Start(){
         slider.maxValue = maxHealth;
         health = maxHealth;
         slider.value = health;
+        obstacle = GetComponent<NavMeshObstacle>();
     }
    
     void Update()
@@ -34,6 +38,8 @@ public class boundary : MonoBehaviour
         slider.value = health;
 
         if (health <= 0){
+            healthBar.SetActive(false);
+            // obstacle.carving = false;
             this.gameObject.SetActive(false);
         }
     }

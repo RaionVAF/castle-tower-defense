@@ -59,6 +59,7 @@ public class bossController : MonoBehaviour
 
         source = GameObject.Find("Targets"); 
         target = closestTarget();
+        // print(target.name);
         targetVector = new Vector3(target.position.x, 0, target.position.z) ;
         targetScript = target.GetComponent<boundary>();
         bossKnight.destination = targetVector;
@@ -76,6 +77,7 @@ public class bossController : MonoBehaviour
     {   
          if (!target.gameObject.activeInHierarchy){
             target = closestTarget();
+            // print(target.name);
             targetVector = new Vector3(target.position.x, 0, target.position.z) ;
             bossKnight.destination = targetVector;
             targetScript = target.GetComponent<boundary>();
