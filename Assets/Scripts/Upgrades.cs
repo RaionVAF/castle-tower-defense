@@ -137,33 +137,7 @@ public class Upgrades : MonoBehaviour
 
     public void increaseCenterTowerDamage()
     {
-        if (centerStoneTier1 == false && materialTracker.StoneCount >= 6)
-        {
-            // Update tower damage
-            centerTower1.damageOutput += 50;
-            centerTower2.damageOutput += 50;
-            // Decrease resource values
-            materialTracker.StoneCount -= 6;
-
-            // Toggle bool to trigger next upgrade tier
-            centerStoneTier1 = true;
-            // Edit button text for next tier
-            centerStoneText.text = "9";
-        }
-        else if (centerStoneTier1 == true && centerStoneTier2 == false && materialTracker.StoneCount >= 9)
-        {
-            // Update tower damage
-            centerTower1.damageOutput += 50;
-            centerTower2.damageOutput += 50;
-            // Decrease resource values
-            materialTracker.StoneCount -= 9;
-
-            // Toggle bool to trigger next upgrade tier
-            centerStoneTier2 = true;
-            // Edit button text for next tier
-            centerStoneText.text = "12";
-        }
-        else if (centerStoneTier2 == true && centerStoneTier3 == false && materialTracker.StoneCount >= 12)
+        if (centerStoneTier1 == false && materialTracker.StoneCount >= 12)
         {
             // Update tower damage
             centerTower1.damageOutput += 50;
@@ -172,17 +146,43 @@ public class Upgrades : MonoBehaviour
             materialTracker.StoneCount -= 12;
 
             // Toggle bool to trigger next upgrade tier
-            centerStoneTier3 = true;
+            centerStoneTier1 = true;
             // Edit button text for next tier
             centerStoneText.text = "15";
         }
-        else if (centerStoneTier3 == true && centerStoneTier4 == false && materialTracker.StoneCount >= 15)
+        else if (centerStoneTier1 == true && centerStoneTier2 == false && materialTracker.StoneCount >= 15)
         {
             // Update tower damage
             centerTower1.damageOutput += 50;
             centerTower2.damageOutput += 50;
             // Decrease resource values
             materialTracker.StoneCount -= 15;
+
+            // Toggle bool to trigger next upgrade tier
+            centerStoneTier2 = true;
+            // Edit button text for next tier
+            centerStoneText.text = "18";
+        }
+        else if (centerStoneTier2 == true && centerStoneTier3 == false && materialTracker.StoneCount >= 18)
+        {
+            // Update tower damage
+            centerTower1.damageOutput += 50;
+            centerTower2.damageOutput += 50;
+            // Decrease resource values
+            materialTracker.StoneCount -= 18;
+
+            // Toggle bool to trigger next upgrade tier
+            centerStoneTier3 = true;
+            // Edit button text for next tier
+            centerStoneText.text = "21";
+        }
+        else if (centerStoneTier3 == true && centerStoneTier4 == false && materialTracker.StoneCount >= 21)
+        {
+            // Update tower damage
+            centerTower1.damageOutput += 50;
+            centerTower2.damageOutput += 50;
+            // Decrease resource values
+            materialTracker.StoneCount -= 21;
 
             // Toggle bool to trigger next upgrade tier
             centerStoneTier4 = true;
@@ -298,52 +298,52 @@ public class Upgrades : MonoBehaviour
 
     public void increaseCenterTowerRate()
     {
-        if (centerWoodTier1 == false && materialTracker.WoodCount >= 12)
+        if (centerWoodTier1 == false && materialTracker.WoodCount >= 15)
         {
             // Update tower damage
             centerTower1.shootingRate -= 0.25f;
             centerTower2.shootingRate -= 0.25f;
             // Decrease resource values
-            materialTracker.WoodCount -= 12;
+            materialTracker.WoodCount -= 15;
 
             // Toggle bool to trigger next upgrade tier
             centerWoodTier1 = true;
             // Edit button text for next tier
-            centerWoodText.text = "20";
+            centerWoodText.text = "25";
         }
-        else if (centerWoodTier1 == true && centerWoodTier2 == false && materialTracker.WoodCount >= 20)
+        else if (centerWoodTier1 == true && centerWoodTier2 == false && materialTracker.WoodCount >= 25)
         {
             // Update tower damage
             centerTower1.shootingRate -= 0.25f;
             centerTower2.shootingRate -= 0.25f;
             // Decrease resource values
-            materialTracker.WoodCount -= 20;
+            materialTracker.WoodCount -= 25;
 
             // Toggle bool to trigger next upgrade tier
             centerWoodTier2 = true;
             // Edit button text for next tier
-            centerWoodText.text = "34";
+            centerWoodText.text = "39";
         }
-        else if (centerWoodTier2 == true && centerWoodTier3 == false && materialTracker.WoodCount >= 34)
+        else if (centerWoodTier2 == true && centerWoodTier3 == false && materialTracker.WoodCount >= 39)
         {
             // Update tower damage
             centerTower1.shootingRate -= 0.25f;
             centerTower2.shootingRate -= 0.25f;
             // Decrease resource values
-            materialTracker.WoodCount -= 34;
+            materialTracker.WoodCount -= 39;
 
             // Toggle bool to trigger next upgrade tier
             centerWoodTier3 = true;
             // Edit button text for next tier
-            centerWoodText.text = "45";
+            centerWoodText.text = "48";
         }
-        else if (centerWoodTier3 == true && centerWoodTier4 == false && materialTracker.WoodCount >= 45)
+        else if (centerWoodTier3 == true && centerWoodTier4 == false && materialTracker.WoodCount >= 48)
         {
             // Update tower damage
             centerTower1.shootingRate -= 0.25f;
             centerTower2.shootingRate -= 0.25f;
             // Decrease resource values
-            materialTracker.WoodCount -= 45;
+            materialTracker.WoodCount -= 48;
 
             // Toggle bool to trigger next upgrade tier
             centerWoodTier4 = true;
@@ -395,7 +395,7 @@ public class Upgrades : MonoBehaviour
 
     public void upgradeCenterTowersToCannon()
     {
-        if (centerIronTier == false && materialTracker.IronCount >= 15)
+        if (centerIronTier == false && materialTracker.IronCount >= 25)
         {
             // Set ballista inactive and cannon active
             centerTower1.gameObject.SetActive(false);
@@ -407,7 +407,7 @@ public class Upgrades : MonoBehaviour
             centerTower2 = centerCannon2;
 
             // Decrease resource values
-            materialTracker.IronCount -= 15;
+            materialTracker.IronCount -= 25;
 
             // Toggle bool
             centerIronTier = true;
