@@ -27,7 +27,7 @@ public class bossController : MonoBehaviour
 
     public float attackdamage = 500;
 
-    public float health = 5000;
+    public float health = 2500;
 
     // Bool member to run moving animation script if true
     bool armsAreRaised = false;

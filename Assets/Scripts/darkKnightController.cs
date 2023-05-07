@@ -28,7 +28,7 @@ public class darkKnightController : MonoBehaviour
 
     float attackdamage = 100;
 
-    public float health = 250;
+    public float health = 200;
 
     // Bool member to run moving animation script if true
     bool armsAreRaised = false;
