@@ -10,6 +10,7 @@ public class restartConditions : MonoBehaviour
     // Lose conditions
     public boundary mainWall, leftWall, rightWall;
     private float mainWallHealth, leftWallHealth, rightWallHealth;
+    public materialTracker materials;
 
     // Keep getting updated health
     void Update()
@@ -37,5 +38,6 @@ public class restartConditions : MonoBehaviour
     public void restart()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        materials.reset();
     }
 }

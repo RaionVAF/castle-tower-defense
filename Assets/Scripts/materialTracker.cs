@@ -54,4 +54,11 @@ public class materialTracker : MonoBehaviour
     public void changeIron(int amount){
         if(IronCount > 0 || IronCount < max) IronCount += amount;
     }
+
+    public void reset(){
+        XPCount = 0;
+        WoodCount = 0;
+        StoneCount = 0;
+        IronCount = 0;
+    }
 }
