@@ -23,6 +23,20 @@ public class Ballista : MonoBehaviour
      * Start() first uses the arrow already in the tower model. Shoot() is then called
      * to generate new instances of the arrow prefab.
      */
+    void OnStart()
+    {
+        if (towerType == "Cannon")
+        {
+            damageOutput = previousTower.damageOutput + 500;
+            shootingRate = previousTower.shootingRate - 0.25f;
+        }
+        body = transform.GetChild(0).gameObject;
+        ammostart = body.transform.GetChild(0).gameObject;
+        rotatePoint = transform.Find("rotatePoint").gameObject;
+
+        audioSource = GetComponent<AudioSource>();
+        shootSound = audioSource.clip;
+    }
 
     void OnEnable()
     {
