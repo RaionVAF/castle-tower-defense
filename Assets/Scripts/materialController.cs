@@ -54,9 +54,9 @@ public class materialController : MonoBehaviour
 
     void OnMouseDown(){
         if(transform.name == "stone(Clone)"){
-            materials.changeStone(1);
+            materials.changeStone(2);
         } else if(transform.name == "stick(Clone)"){
-            materials.changeWood(1);
+            materials.changeWood(2);
         } else {
             materials.changeIron(1);
         }

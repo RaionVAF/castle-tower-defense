@@ -347,7 +347,7 @@ public class Upgrades2 : MonoBehaviour
     // Upgrade tower to cannon (damage and rate conversions are handled in Ballista.cs)
     public void upgradeLeftTowerToCannon()
     {
-        if (leftIronTier == false && materialTracker.IronCount >= 15)
+        if (leftIronTier == false && materialTracker.IronCount >= 10)
         {
             // Set ballista inactive and cannon active
             leftTower.gameObject.SetActive(false);
@@ -356,7 +356,7 @@ public class Upgrades2 : MonoBehaviour
             leftTower = leftCannon;
 
             // Decrease resource values
-            materialTracker.IronCount -= 15;
+            materialTracker.IronCount -= 10;
 
             // Toggle bool
             leftIronTier = true;
@@ -367,7 +367,7 @@ public class Upgrades2 : MonoBehaviour
 
     public void upgradeRightTowerToCannon()
     {
-        if (rightIronTier == false && materialTracker.IronCount >= 15)
+        if (rightIronTier == false && materialTracker.IronCount >= 10)
         {
             // Set ballista inactive and cannon active
             rightTower.gameObject.SetActive(false);
@@ -376,7 +376,7 @@ public class Upgrades2 : MonoBehaviour
             rightTower = rightCannon;
 
             // Decrease resource values
-            materialTracker.IronCount -= 15;
+            materialTracker.IronCount -= 10;
 
             // Toggle bool
             rightIronTier = true;
@@ -387,7 +387,7 @@ public class Upgrades2 : MonoBehaviour
 
     public void upgradeCenterTowerToCannon()
     {
-        if (centerIronTier == false && materialTracker.IronCount >= 15)
+        if (centerIronTier == false && materialTracker.IronCount >= 10)
         {
             // Set ballista inactive and cannon active
             centerTower.gameObject.SetActive(false);
@@ -396,7 +396,7 @@ public class Upgrades2 : MonoBehaviour
             centerTower = centerCannon;
 
             // Decrease resource values
-            materialTracker.IronCount -= 15;
+            materialTracker.IronCount -= 10;
 
             // Toggle bool
             centerIronTier = true;
