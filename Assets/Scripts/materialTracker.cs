@@ -15,7 +15,7 @@ public class materialTracker : MonoBehaviour
     public static int XPCount = 0;
     public static int WoodCount = 0;
     public static int StoneCount = 0;
-    public static int IronCount = 70;
+    public static int IronCount = 0;
 
     public void Update()
     {
