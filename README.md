@@ -30,9 +30,8 @@ The game begins with a celebration of the kingdom’s 50th anniversary when sudd
 
   
 
-Intangibles
-UI Elements found [here](https://www.kenney.nl/assets/ui-pack-rpg-expansion)
-
+Intangibles \
+UI Elements found [here](https://www.kenney.nl/assets/ui-pack-rpg-expansion) \
 Fonts found [here](https://fonts.google.com/specimen/Lilita+One?preview.text=Title%20of%20Game%20Castle%20Defense&preview.text_type=custom&category=Display), [here](https://fonts.google.com/specimen/Sigmar?preview.text=%7C%7C&preview.text_type=custom&category=Display), and [here](https://fonts.google.com/specimen/Neucha?preview.text=Hello%20Brave%20Knight&preview.text_type=custom&category=Handwriting)
 
   
