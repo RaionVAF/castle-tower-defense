@@ -31,22 +31,37 @@ The game begins with a celebration of the kingdom’s 50th anniversary when sudd
   
 
 Intangibles
+
 UI Elements found [here](https://www.kenney.nl/assets/ui-pack-rpg-expansion)
+
 Fonts found [here](https://fonts.google.com/specimen/Lilita+One?preview.text=Title%20of%20Game%20Castle%20Defense&preview.text_type=custom&category=Display), [here](https://fonts.google.com/specimen/Sigmar?preview.text=%7C%7C&preview.text_type=custom&category=Display), and [here](https://fonts.google.com/specimen/Neucha?preview.text=Hello%20Brave%20Knight&preview.text_type=custom&category=Handwriting)
 
   
 
 Sounds found:
+
 [Arrow Hit Sound](https://www.kenney.nl/assets/impact-sounds)
+
 [Background Music](https://www.fesliyanstudios.com/royalty-free-music/download/retro-forest/451)
+
 [Boss Death](https://opengameart.org/content/15-monster-gruntpaindeath-sounds)
+
 [Boss Noises](https://opengameart.org/content/big-scary-troll-sounds)
+
 [Bow and Arrow Shot](https://opengameart.org/content/bow-arrow-shot)
+
 [Cannon](https://opengameart.org/content/battle-at-sea)
+
 [Dark Knight](https://opengameart.org/content/15-monster-gruntpaindeath-sounds)
+
 [Error Sound](https://freesound.org/people/distillerystudio/sounds/327735/)
+
 [Menu Click](https://www.kenney.nl/assets/ui-audio)
+
 [Skeleton Hit](https://quicksounds.com/sound/8410/skeleton-footstep)
+
 [Skeleton Death](https://quicksounds.com/sound/8409/skeleton-footstep-4)
+
 [Zombie Death](https://opengameart.org/content/15-monster-gruntpaindeath-sounds)
+
 [Zombie (Idle)](https://opengameart.org/content/zombie-voice-sound-effect)
