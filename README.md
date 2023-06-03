@@ -37,17 +37,17 @@ Fonts found [here](https://fonts.google.com/specimen/Lilita+One?preview.text=Tit
 
   
 
-Sounds found:
-[Arrow Hit Sound](https://www.kenney.nl/assets/impact-sounds)
-[Background Music](https://www.fesliyanstudios.com/royalty-free-music/download/retro-forest/451)
-[Boss Death](https://opengameart.org/content/15-monster-gruntpaindeath-sounds)
-[Boss Noises](https://opengameart.org/content/big-scary-troll-sounds)
-[Bow and Arrow Shot](https://opengameart.org/content/bow-arrow-shot)
-[Cannon](https://opengameart.org/content/battle-at-sea)
-[Dark Knight](https://opengameart.org/content/15-monster-gruntpaindeath-sounds)
-[Error Sound](https://freesound.org/people/distillerystudio/sounds/327735/)
-[Menu Click](https://www.kenney.nl/assets/ui-audio)
-[Skeleton Hit](https://quicksounds.com/sound/8410/skeleton-footstep)
-[Skeleton Death](https://quicksounds.com/sound/8409/skeleton-footstep-4)
-[Zombie Death](https://opengameart.org/content/15-monster-gruntpaindeath-sounds)
+Sounds found: \
+[Arrow Hit Sound](https://www.kenney.nl/assets/impact-sounds) \
+[Background Music](https://www.fesliyanstudios.com/royalty-free-music/download/retro-forest/451) \
+[Boss Death](https://opengameart.org/content/15-monster-gruntpaindeath-sounds) \
+[Boss Noises](https://opengameart.org/content/big-scary-troll-sounds) \
+[Bow and Arrow Shot](https://opengameart.org/content/bow-arrow-shot) \
+[Cannon](https://opengameart.org/content/battle-at-sea) \
+[Dark Knight](https://opengameart.org/content/15-monster-gruntpaindeath-sounds) \
+[Error Sound](https://freesound.org/people/distillerystudio/sounds/327735/) \
+[Menu Click](https://www.kenney.nl/assets/ui-audio) \
+[Skeleton Hit](https://quicksounds.com/sound/8410/skeleton-footstep) \
+[Skeleton Death](https://quicksounds.com/sound/8409/skeleton-footstep-4) \
+[Zombie Death](https://opengameart.org/content/15-monster-gruntpaindeath-sounds) \
 [Zombie (Idle)](https://opengameart.org/content/zombie-voice-sound-effect)
